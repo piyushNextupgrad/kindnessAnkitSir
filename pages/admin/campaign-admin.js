@@ -379,6 +379,7 @@ const Compaign_page = () => {
     }
     if (sectionName == "EducationEquity") {
       try {
+        setIsSubmittingLoader(true);
         const params = { delId: data };
         const delResp = await campaignServices.addEquitySectionContent(params);
 
@@ -387,7 +388,9 @@ const Compaign_page = () => {
         );
         setEducationEquityData(newEducationEquityData);
         showNotification("Item deleted", "Success");
+        setIsSubmittingLoader(false);
       } catch (error) {
+        setIsSubmittingLoader(false);
         console.log(error);
       }
     }
