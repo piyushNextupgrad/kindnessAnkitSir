@@ -2888,7 +2888,7 @@ function showVideo(fileSrc) {
       ) : (
         <ReactPlayer
           url={fileSrc}
-          playing={true}
+          playing={false}
           muted={true}
           width={"50%"}
           height={80}
@@ -2905,7 +2905,7 @@ function showYoutube(fileSrc) {
   return (
     <ReactPlayer
       url={fileSrc}
-      playing={true}
+      playing={false}
       muted={true}
       width={"50%"}
       height={80}

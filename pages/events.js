@@ -112,9 +112,24 @@ const Events = () => {
         if (trackFilter == null) {
           if (date) {
             console.log("Date in tab 1", date);
-            showNotification(
-              "Please select week or month events to filter. Nothing to filter in today's events"
+            // showNotification(
+            //   "Please select week or month events to filter. Nothing to filter in today's events"
+            // );
+            setActiveTabIndex(3);
+            const allFilter = filteredAllEvents.filter(
+              (item) => item.date == date
             );
+            if (trackFilter == null) {
+              if (allFilter.length > 0) {
+                settrackFilter(1);
+                setfilteredAllEvents(allFilter);
+              } else {
+                setDate("");
+                showNotification("No Events on the selected date.");
+              }
+            } else {
+              showNotification("Please reset the date filter.");
+            }
           }
         } else {
           setDate("");
