@@ -489,6 +489,7 @@ const EventPage = () => {
           adminMedia3();
           setnewsMedia("");
           setnewsTitle("");
+          setactive2("");
           showNotification("Data updated Successfully", "Success");
         } else {
           setIsSubmitingLoader(false);
