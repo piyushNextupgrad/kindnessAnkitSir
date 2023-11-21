@@ -1361,7 +1361,7 @@ function MainPage({ metaData }) {
                   sizes="100vw"
                   style={{ width: "100%", height: "auto" }}
                 />
-                <Link href="/get-involved/#donate">
+                <Link href="/get-involved/#donate" target="_blank">
                   <p className="get_p">
                     DONATE <br />
                     {donateText?.length > 150
@@ -1381,7 +1381,7 @@ function MainPage({ metaData }) {
                     sizes="100vw"
                     className="news_title_1"
                   />
-                  <Link href="./get-involved/#volunteer" target="_blank">
+                  <Link href="/get-involved/#volunteer" target="_blank">
                     <p className="get_kindness">
                       VOLUNTEER <br />
                       {volunteerText?.length > 100
@@ -1400,7 +1400,7 @@ function MainPage({ metaData }) {
                     sizes="100vw"
                     style={{ width: "100%", height: "auto" }}
                   />
-                  <Link href="get-involved/#partner" target="_blank">
+                  <Link href="/get-involved/#partner" target="_blank">
                     <p className="get_kindness">
                       PARTNER <br />
                       {partnerText?.length > 100
