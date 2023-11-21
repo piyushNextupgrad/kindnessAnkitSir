@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Layout from "@/layout/layoutTemplate";
 import { useEffect, useState } from "react";
@@ -50,6 +51,7 @@ const Get_involved = () => {
   const stripePromise = loadStripe(publishableKey);
 
   const [selectedOption, setSelectedOption] = useState("");
+  const router = useRouter();
 
   const handleRadioChange = (e) => {
     setSelectedOption(e.target.value);
@@ -142,10 +144,20 @@ const Get_involved = () => {
 
   useEffect(() => {
     getInterestList();
-
     camppage2();
     camppage3();
     showNewsSection();
+
+    console.log("router==>", router.asPath);
+    const index = router.asPath.indexOf("#");
+    const scrollId = index !== -1 ? router.asPath.substring(index + 1) : "";
+
+    if (scrollId.length > 0) {
+      const section = document.getElementById(scrollId);
+      setTimeout(() => {
+        section?.scrollIntoView({ behavior: "smooth" });
+      }, 2000);
+    }
   }, []);
 
   const camppage3 = async () => {

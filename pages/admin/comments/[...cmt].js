@@ -4,17 +4,21 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { newsPageService } from "@/store/services/newsPageService";
 
-
-
 const Comments = () => {
   const [sortedCommentsOfNews, setsortedCommentsOfNews] = useState([]);
   const [isSubmitingLoader, setIsSubmitingLoader] = useState(false);
+  const [name, setname] = useState("");
   const router = useRouter();
   const { isReady } = useRouter();
-  
-  useEffect(() => { 
+
+  useEffect(() => {
+    console.log("Router", router);
+  }, []);
+
+  useEffect(() => {
     if (isReady) {
       fetchComments(router.query?.cmt?.[1]);
+      setname(router.query?.cmt?.[0]);
     }
   }, [router.query]);
 
@@ -22,7 +26,7 @@ const Comments = () => {
     setIsSubmitingLoader(true);
     try {
       const resp = await newsPageService.getComments(params);
-     
+
       const sortedComments = resp.data.data.filter(
         (item) => item.post_id == params
       );
@@ -45,7 +49,7 @@ const Comments = () => {
       formData.append("secName", "news");
       const resp = await newsPageService.postComments(formData);
       if (resp.data.success == true) {
-        fetchComments(router.query.id);
+        fetchComments(router.query?.cmt?.[1]);
       }
     } catch (errro) {
       console.log(errro);
@@ -60,7 +64,7 @@ const Comments = () => {
       formData.append("secName", "news");
       const resp = await newsPageService.postComments(formData);
       if (resp.data.success == true) {
-        fetchComments(router.query.id);
+        fetchComments(router.query?.cmt?.[1]);
         setIsSubmitingLoader(false);
       }
     } catch (errro) {
@@ -77,7 +81,7 @@ const Comments = () => {
       formData.append("secName", "news");
       const resp = await newsPageService.postComments(formData);
       if (resp.data.success == true) {
-        fetchComments(router.query.id);
+        fetchComments(router.query?.cmt?.[1]);
         setIsSubmitingLoader(false);
       }
     } catch (errro) {
@@ -88,7 +92,7 @@ const Comments = () => {
 
   return (
     <>
-      <AdminLayout title={`${router.query.cmt}`}>
+      <AdminLayout title={name}>
         <main role="main">
           {isSubmitingLoader ? (
             <div className="overlay">
@@ -113,7 +117,7 @@ const Comments = () => {
                 aria-hidden="true"
                 style={{ color: "#ff651f" }}
               />{" "}
-              {router.query.cmt}-News Comments
+              {name}-News Comments
             </h2>
 
             <section className="">
