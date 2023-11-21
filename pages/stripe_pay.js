@@ -65,9 +65,9 @@ const CheckoutForm = ({
         },
         body: JSON.stringify({
           paymentMethodId: paymentMethodResult.paymentMethod.id,
-         // paymentAmount: amount,
+          // paymentAmount: amount,
           paymentAmount: amt,
-          returnUrl: "https://localhost:3000", // Specify your frontend return URL here
+          returnUrl: "https://kindness-omega.vercel.app", // Specify your frontend return URL here
         }),
       }
     );
@@ -117,7 +117,12 @@ const CheckoutForm = ({
         /> */}
       </div>
       <CardElement />
-      <button className="payBtn" onClick={handleSubmit} type="button" disabled={!stripe || !elements}>
+      <button
+        className="payBtn"
+        onClick={handleSubmit}
+        type="button"
+        disabled={!stripe || !elements}
+      >
         Pay Now
       </button>
       {errorMessage && <div>{errorMessage}</div>}
