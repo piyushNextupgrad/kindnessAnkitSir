@@ -12,7 +12,7 @@ const SliderCompNews = ({
   FacebookShareButton,
   TwitterShareButton,
   LinkedinShareButton,
-  updateNewsView, 
+  updateNewsView,
   handlefbshare,
   newsSectionFirstData,
 }) => {
@@ -83,132 +83,117 @@ const SliderCompNews = ({
   //   }
   // };
 
-
   return (
     <div id="newsSlider">
       <Slider {...settings}>
         {newsSectionData?.length
           ? newsSectionData?.map((item, index) => (
-            <>
-              <div className="sliderItemNews" key={randomKey()}>
-                
-                <article>
-                  <div className="post-img">
-                    {item.media_type == "image" ? (
-                      <Image
-                        src={
-                          item?.media
-                            ? process.env.SITE_URL + item?.media
-                            : "/no-img.jpg"
-                        }
-                        width={300}
-                        height={300}
-                      />
-                    ) : item.media_type == "video" ? (
-                      <ReactPlayer
-                        url={
-                          item?.media
-                            ? process.env.SITE_URL + item?.media
-                            : "/no-img.jpg"
-                        }
-                        playing={true}
-                        muted={true}
-                        width={"100%"}
-                        height={""}
-                      />
-                    ) : (
-                      <ReactPlayer
-                        url={item?.media}
-                        playing={false}
-
-                        controls={true}
-
-                        muted={false}
-                        width={"100%"}
-                        height={""}
-                      />
-                    )}
-                  </div>
-                  <h2 className="News_title">
-                    <Link
-                      href={"/news/" + item?.id}
-                      disabled={showLoader}
-                      target="_blank"
-                      onClick={() =>
-                        updateNewsView(
-                          item?.id,
-                          item?.view
-                        )
-                      }
-                    >
-                      {item?.title}
-                    </Link>
-                  </h2>
-                  <p className="post-category2">
-                    {item?.news_artical?.substring(0, 200) + "..."}
-                  </p>
-                  <div className="row">
-                    <div className="col-md-4" onClick={() =>
-                      updateNewsView(
-                        item?.id,
-                        item?.view
-                      )
-                    }>
-                      <Link href={"/news/" + item?.id} target="_blank">
-                        <button
-                          type="button"
-                          disabled={showLoader}
-
-                          className="btn btn-info shar_btn"
-
-                        >
-                          Read more
-                        </button>
-                      </Link>
+              <>
+                <div className="sliderItemNews" key={randomKey()}>
+                  <article>
+                    <div className="post-img">
+                      {item.media_type == "image" ? (
+                        <Image
+                          src={
+                            item?.media
+                              ? process.env.SITE_URL + item?.media
+                              : "/no-img.jpg"
+                          }
+                          width={300}
+                          height={300}
+                        />
+                      ) : item.media_type == "video" ? (
+                        <ReactPlayer
+                          url={
+                            item?.media
+                              ? process.env.SITE_URL + item?.media
+                              : "/no-img.jpg"
+                          }
+                          playing={false}
+                          width={"100%"}
+                          height={""}
+                        />
+                      ) : (
+                        <ReactPlayer
+                          url={item?.media}
+                          playing={false}
+                          controls={true}
+                          width={"100%"}
+                          height={""}
+                        />
+                      )}
                     </div>
-
-                    <div className="col-md-8 align-self-center icon_wrap">
-                      <span className="share_wrap icon1">
-                        <i className="fa fa-eye icon1" aria-hidden="true" />
-                        {item?.view ? item?.view : 0}
-                      </span>
-
-                      <a href="#!" className="buttonexpend">
-                        <span className="iconexpend">
-                          {" "}
-                          <span className="share">
-                            <i
-                              className="fa fa-share-alt "
-                              aria-hidden="true"
-                            ></i>
-                          </span>
-                        </span>
-                        &nbsp;&nbsp;
-                        <span className="textexpend">
-                          <FacebookShareButton
-                            url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
-                            quote={item?.title}
-                            hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
+                    <h2 className="News_title">
+                      <Link
+                        href={"/news/" + item?.id}
+                        disabled={showLoader}
+                        target="_blank"
+                        onClick={() => updateNewsView(item?.id, item?.view)}
+                      >
+                        {item?.title}
+                      </Link>
+                    </h2>
+                    <p className="post-category2">
+                      {item?.news_artical?.substring(0, 200) + "..."}
+                    </p>
+                    <div className="row">
+                      <div
+                        className="col-md-4"
+                        onClick={() => updateNewsView(item?.id, item?.view)}
+                      >
+                        <Link href={"/news/" + item?.id} target="_blank">
+                          <button
+                            type="button"
+                            disabled={showLoader}
+                            className="btn btn-info shar_btn"
                           >
-                            {" "}
-                            <i
-                              className="fa fa-facebook"
-                              aria-hidden="true"
-                              onClick={() =>
-                                handlefbshare(
-                                  `${process.env.BASE_LIVE_URL}news/${newsSectionFirstData?.id}`,
-                                  newsSectionFirstData?.title,
-                                  newsSectionFirstData?.news_artical,
-                                  process.env.SITE_URL +
-                                  newsSectionFirstData?.media,
-                                  process.env.BASE_LIVE_URL
-                                )
-                              }
-                            />
-                            &nbsp;
-                          </FacebookShareButton>
+                            Read more
+                          </button>
+                        </Link>
+                      </div>
 
-                          {/* <Link href="#">
+                      <div className="col-md-8 align-self-center icon_wrap">
+                        <span className="share_wrap icon1">
+                          <i className="fa fa-eye icon1" aria-hidden="true" />
+                          {item?.view ? item?.view : 0}
+                        </span>
+
+                        <a href="#!" className="buttonexpend">
+                          <span className="iconexpend">
+                            {" "}
+                            <span className="share">
+                              <i
+                                className="fa fa-share-alt "
+                                aria-hidden="true"
+                              ></i>
+                            </span>
+                          </span>
+                          &nbsp;&nbsp;
+                          <span className="textexpend">
+                            <FacebookShareButton
+                              url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
+                              quote={item?.title}
+                              hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
+                            >
+                              {" "}
+                              <i
+                                className="fa fa-facebook"
+                                aria-hidden="true"
+                                onClick={() =>
+                                  handlefbshare(
+                                    `${process.env.BASE_LIVE_URL}news/${newsSectionFirstData?.id}`,
+                                    newsSectionFirstData?.title,
+                                    newsSectionFirstData?.news_artical,
+                                    process.env.SITE_URL +
+                                      newsSectionFirstData?.media,
+                                    process.env.BASE_LIVE_URL
+                                  )
+                                }
+                              />
+                              &nbsp;
+                            </FacebookShareButton>
+
+                            {/* <Link href="#">
                               <i
                                 className="fa fa-youtube-play"
                                 aria-hidden="true"
@@ -216,42 +201,42 @@ const SliderCompNews = ({
                               &nbsp;
                             </Link> */}
 
-                          <TwitterShareButton
-                            url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
-                            title={item?.title}
-                          >
-                            {" "}
-                            <i className="fa fa-twitter" aria-hidden="true" />
-                            &nbsp;
-                          </TwitterShareButton>
+                            <TwitterShareButton
+                              url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
+                              title={item?.title}
+                            >
+                              {" "}
+                              <i className="fa fa-twitter" aria-hidden="true" />
+                              &nbsp;
+                            </TwitterShareButton>
 
-                          <LinkedinShareButton
-                            url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
-                            title={item?.title}
-                          >
-                            {" "}
-                            <i
-                              className="fa fa-linkedin-square"
-                              aria-hidden="true"
-                            ></i>{" "}
-                            &nbsp;
-                          </LinkedinShareButton>
+                            <LinkedinShareButton
+                              url={`${process.env.BASE_LIVE_URL}/news/${item?.id}`}
+                              title={item?.title}
+                            >
+                              {" "}
+                              <i
+                                className="fa fa-linkedin-square"
+                                aria-hidden="true"
+                              ></i>{" "}
+                              &nbsp;
+                            </LinkedinShareButton>
 
-                          <Link href="#">
-                            {/* <i
+                            <Link href="#">
+                              {/* <i
                               className="fa fa-instagram"
                               aria-hidden="true"
                             ></i> */}
-                            &nbsp;
-                          </Link>
-                        </span>
-                      </a>
+                              &nbsp;
+                            </Link>
+                          </span>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              </div>
-            </>
-          ))
+                  </article>
+                </div>
+              </>
+            ))
           : ""}
       </Slider>
     </div>
