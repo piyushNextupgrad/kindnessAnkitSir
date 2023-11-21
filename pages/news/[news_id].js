@@ -379,9 +379,7 @@ function NewsDetailPage({ data, Newsid }) {
               </div>
               <div className="col-9">
                 <h3 className="align-self-center">
-                  <a href="#">
-                    <span className="share_wrap"> Share </span>
-                  </a>
+                  <span className="share_wrap"> Share </span>
                   &nbsp;&nbsp;
                   <FacebookShareButton
                     url={`${process.env.BASE_LIVE_URL}/news/${data?.id}`}
