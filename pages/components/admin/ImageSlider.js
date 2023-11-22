@@ -18,7 +18,7 @@ const ImageSlider = ({ Images }) => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -27,7 +27,7 @@ const ImageSlider = ({ Images }) => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -36,7 +36,7 @@ const ImageSlider = ({ Images }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: false,
+          dots: true,
         },
       },
     ],

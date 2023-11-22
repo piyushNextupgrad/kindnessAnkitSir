@@ -183,6 +183,7 @@
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  word-break: break-all;
 }
 
 .get_involved_heading {

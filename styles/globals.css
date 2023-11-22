@@ -54,6 +54,7 @@ section {
   overflow: hidden;
 }
 
+
 .readMoreBtn {
   margin-left: 5px;
   background-color: #e5f4fc;
@@ -3422,7 +3423,7 @@ input[type="text"]:hover {
 }
 .youTubeOption2 {
   margin-bottom: 4rem;
-  padding-left: 16rem;
+  /* padding-left: 16rem; */
 }
 #youTubelogo {
   font-size: 3rem !important;
@@ -4034,10 +4035,17 @@ input[type="text"]:hover {
     transition-delay: 0 !important;
   }
 }
+.slick-dots{
+  bottom:-45px !important;
+}
 
 @media (max-width: 992px) {
   .btn-1 {
     width: 30%;
+  }
+  .col-md-12 {
+    
+    text-align: center;
   }
 
   input[type="text"] {
@@ -4504,22 +4512,19 @@ input[type="text"]:hover {
 }
 
 .col-md-3 {
-  max-width: 40%;
+  max-width: 100%;
   padding-bottom: 20px;
 }
 .col-md-12 {
   padding-top: 10px;
-}
-.resetBtn {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  
 }
 @media only screen and (max-width: 900px) {
   .slick-prev,
   .slick-next {
     display: none !important;
   }
+  
 }
 
 .row {
@@ -4592,4 +4597,16 @@ input[type="text"]:hover {
 }
 .homepageModel > div > div {
   max-width: 900px !important;
+}
+@media only screen and (max-width:1200px) {
+  .col-md-8{
+    display:grid;
+  }
+ 
+
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+  #eventTitle{
+      margin-left:100px;
+    }
 }

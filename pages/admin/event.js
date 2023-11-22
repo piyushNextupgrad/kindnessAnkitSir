@@ -213,6 +213,10 @@ const EventPage = () => {
   //function to update the table data - piyush
   function editFieldData(id, index, sectionName) {
     if (sectionName == "EventCategoryList") {
+      let obj = adminMediaData?.find(
+        (newRowListItem) => newRowListItem?.edit === true
+      );
+      if (obj?.id == undefined){
       let data = adminMediaData[index];
       data.edit = true;
 
@@ -222,8 +226,14 @@ const EventPage = () => {
       settext(data?.event_category);
       setupDesc(data?.event_description);
       setUpdateActive(parseInt(data?.active) ? true : false);
-    }
+    }else {
+      showNotification("Please Save Last edited field", "Error");
+    }}
     if (sectionName == "EventImageList") {
+      let obj = eventImageList?.find(
+        (newRowListItem) => newRowListItem?.edit === true
+      );
+      if (obj?.id == undefined){
       let data = eventImageList[index];
       data.edit = true;
 
@@ -235,8 +245,15 @@ const EventPage = () => {
       setupMediaPreview2(process.env.SITE_URL + data?.event_media);
       setUpdateActive2(parseInt(data?.active) ? 1 : 0);
     }
+    if (obj?.id != undefined) {
+      showNotification("Please Save Last edited field", "Error");
+    }}
 
     if (sectionName == "EventList") {
+      let obj = eventList?.find(
+        (newRowListItem) => newRowListItem?.edit === true
+      );
+      if (obj?.id == undefined){
       let data = eventList[index];
       data.edit = true;
 
@@ -248,6 +265,9 @@ const EventPage = () => {
       // setEditStartDate(data?.date)
       setEditActive3(parseInt(data?.active) ? true : false);
     }
+    if (obj?.id != undefined) {
+      showNotification("Please Save Last edited field", "Error");
+    }}
 
     // showNotification("Item Updated", "Success");
   }

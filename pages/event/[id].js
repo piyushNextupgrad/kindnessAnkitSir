@@ -554,7 +554,7 @@ const singleEventData = ({ filter_data }) => {
                                     : "/today_event_img.png"
                                 }
                                 width={200}
-                                height={250}
+                                height={200}
                                 alt={filter_data2[0]?.title}
                               />
 
@@ -743,7 +743,7 @@ const singleEventData = ({ filter_data }) => {
                             </div>
 
                             <div className="col-md-8">
-                              <p className="fst_event">
+                              <p className="fst_event" id="eventTitle">
                                 {filter_data2[0]?.event_description}
                               </p>
 
