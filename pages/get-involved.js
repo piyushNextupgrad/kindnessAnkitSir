@@ -380,7 +380,7 @@ const Get_involved = () => {
                                 className="form-check-label label_radio"
                                 htmlFor="flexRadioDefault1"
                               >
-                                $1,000 &nbsp; &nbsp;
+                                $1,000
                               </label>
                             </div>
 
@@ -397,7 +397,7 @@ const Get_involved = () => {
                                 className="form-check-label label_radio"
                                 htmlFor="flexRadioDefault2"
                               >
-                                $250 &nbsp; 
+                                $250
                               </label>
                             </div>
                           </div>
@@ -415,7 +415,7 @@ const Get_involved = () => {
                                 className="form-check-label label_radio"
                                 htmlFor="flexRadioDefault3"
                               >
-                                $ 500 &nbsp;
+                                $ 500
                               </label>
                             </div>
 
@@ -433,7 +433,7 @@ const Get_involved = () => {
                                 className="form-check-label label_radio"
                                 htmlFor="flexRadioDefault4"
                               >
-                                $100 &nbsp;
+                                $100
                               </label>
                             </div>
                             <div className="form-check">

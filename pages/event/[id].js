@@ -513,7 +513,14 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {isSubmittingLoader ? (
-                      <></>
+                      <Spinner
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          color: "#333",
+                        }}
+                        animation="border"
+                      />
                     ) : (
                       <>
                         <div className="container">
@@ -547,7 +554,7 @@ const singleEventData = ({ filter_data }) => {
                                     : "/today_event_img.png"
                                 }
                                 width={200}
-                                height={200}
+                                height={250}
                                 alt={filter_data2[0]?.title}
                               />
 
@@ -736,7 +743,7 @@ const singleEventData = ({ filter_data }) => {
                             </div>
 
                             <div className="col-md-8">
-                              <p className="fst_event" id="eventTitle">
+                              <p className="fst_event">
                                 {filter_data2[0]?.event_description}
                               </p>
 
@@ -764,7 +771,15 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {eventListLoader ? (
-                      <></>
+                      <Spinner
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          align: "center",
+                          color: "#333",
+                        }}
+                        animation="border"
+                      />
                     ) : weekEvent?.length ? (
                       weekEvent?.map((item, index) => (
                         <div className="container" key={randomKey()}>
@@ -846,7 +861,15 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {eventListLoader ? (
-                      <></>
+                      <Spinner
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          align: "center",
+                          color: "#333",
+                        }}
+                        animation="border"
+                      />
                     ) : monthEvent?.length ? (
                       monthEvent?.map((item, index) => (
                         <div className="container" key={randomKey()}>

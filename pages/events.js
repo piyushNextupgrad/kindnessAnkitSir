@@ -31,7 +31,6 @@ const Events = () => {
   const [listAllEventData, setListAllEventData] = useState([]);
   const [eventListLoader, setEventListLoader] = useState(false);
   const [todayEvent, setTodayEvent] = useState([]);
-  const [isSubmittingLoader, setIsSubmittingLoader] = useState(false);
 
   const [weekEvent, setWeekEvent] = useState([]);
   const [monthEvent, setMonthEvent] = useState([]);
@@ -132,7 +131,9 @@ const Events = () => {
           if (allFilter.length > 0) {
             setfilteredAllEvents(allFilter);
           } else {
-            showNotification("No Events on the selected date.");
+            showNotification(
+              "No Events on the selected date. Showing all events"
+            );
           }
         }
       }
@@ -233,12 +234,8 @@ const Events = () => {
         return accumulator;
       }, []);
 
-      setfilteredAllEvents(
-        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
-      );
-      setfilteredAllEventsBackup(
-        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
-      );
+      setfilteredAllEvents(uniqueArray);
+      setfilteredAllEventsBackup(uniqueArray);
 
       console.log("====>", filteredAllEvents);
     }
@@ -258,21 +255,9 @@ const Events = () => {
 
       if (newsResp?.data?.success) {
         console.log("showAllevents", newsResp?.data);
-        setTodayEvent(
-          newsResp?.data?.today_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
-          )
-        );
-        setMonthEvent(
-          newsResp?.data?.this_month_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
-          )
-        );
-        setWeekEvent(
-          newsResp?.data?.this_week_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
-          )
-        );
+        setTodayEvent(newsResp?.data?.today_events);
+        setMonthEvent(newsResp?.data?.this_month_events);
+        setWeekEvent(newsResp?.data?.this_week_events);
 
         // setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
 
@@ -327,7 +312,6 @@ const Events = () => {
   const updateEventView = async (eventId, views) => {
     console.log("eventId", eventId);
     console.log("views", views);
-    setIsSubmittingLoader(true);
     try {
       let currentViews = views == null ? 0 : views;
 
@@ -340,11 +324,9 @@ const Events = () => {
       if (resp?.data?.success) {
         router.push(`/event/${eventId}`);
       } else {
-        setIsSubmittingLoader(false);
         showNotification(response?.data?.message, "Error");
       }
     } catch (error) {
-      setIsSubmittingLoader(false);
       console.error(error);
     }
   };
@@ -357,21 +339,6 @@ const Events = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout title="Events">
-        {isSubmittingLoader ? (
-          <div className="overlay">
-            <div className="spinner-container">
-              <Spinner
-                className="loaderSpinnerPiyush"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  color: "#0a1c51fc",
-                }}
-                animation="border"
-              />
-            </div>
-          </div>
-        ) : null}
         <section>
           <div className="container">
             <div className="event_wrap_main ">
@@ -581,17 +548,13 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Event Cost:</b>{" "}
-                                  {item?.event_cost && item?.event_cost != "0"
-                                    ? `$ ${item?.event_cost}`
-                                    : " Free"}
+                                  <b>Event Cost:</b> ${item?.event_cost}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
-                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -677,17 +640,13 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Event Cost:</b>{" "}
-                                  {item?.event_cost && item?.event_cost != "0"
-                                    ? `$ ${item?.event_cost}`
-                                    : " Free"}
+                                  <b>Cost:</b> ${item?.event_cost}{" "}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
-                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -773,17 +732,13 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Event Cost:</b>{" "}
-                                  {item?.event_cost && item?.event_cost != "0"
-                                    ? `$ ${item?.event_cost}`
-                                    : " Free"}
+                                  <b>Cost:</b> ${item?.event_cost}{" "}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
-                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -868,17 +823,13 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Event Cost:</b>{" "}
-                                  {item?.event_cost && item?.event_cost != "0"
-                                    ? `$ ${item?.event_cost}`
-                                    : " Free"}
+                                  <b>Cost:</b> ${item?.event_cost}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
-                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
