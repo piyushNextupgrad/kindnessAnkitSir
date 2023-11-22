@@ -513,14 +513,7 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {isSubmittingLoader ? (
-                      <Spinner
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          color: "#333",
-                        }}
-                        animation="border"
-                      />
+                      <></>
                     ) : (
                       <>
                         <div className="container">
@@ -771,15 +764,7 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {eventListLoader ? (
-                      <Spinner
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          align: "center",
-                          color: "#333",
-                        }}
-                        animation="border"
-                      />
+                      <></>
                     ) : weekEvent?.length ? (
                       weekEvent?.map((item, index) => (
                         <div className="container" key={randomKey()}>
@@ -861,15 +846,7 @@ const singleEventData = ({ filter_data }) => {
 
                   <TabPanel>
                     {eventListLoader ? (
-                      <Spinner
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          align: "center",
-                          color: "#333",
-                        }}
-                        animation="border"
-                      />
+                      <></>
                     ) : monthEvent?.length ? (
                       monthEvent?.map((item, index) => (
                         <div className="container" key={randomKey()}>
