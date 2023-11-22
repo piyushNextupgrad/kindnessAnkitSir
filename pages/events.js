@@ -43,6 +43,7 @@ const Events = () => {
   const [promo, setpromo] = useState([]);
   const [allEvents, setallEvents] = useState([]);
   const [filteredAllEvents, setfilteredAllEvents] = useState([]);
+  const [filteredAllEventsBackup, setfilteredAllEventsBackup] = useState([]);
 
   const router = useRouter();
 
@@ -77,7 +78,7 @@ const Events = () => {
   }
 
   function resetFilter() {
-    setDate("");
+    setfilteredAllEvents(filteredAllEventsBackup);
   }
 
   const handleTabSelect = (index) => {
@@ -106,80 +107,80 @@ const Events = () => {
 
   useEffect(() => {
     if (date != "" && date != null) {
-      // console.log("condition hit");
+      setfilteredAllEvents(filteredAllEventsBackup);
+      console.log("condition hit");
+      console.log("DATE===>", date);
 
-      if (activeTabIndex == 0) {
-        if (trackFilter == null) {
-          if (date) {
-            console.log("Date in tab 1", date);
-            // showNotification(
-            //   "Please select week or month events to filter. Nothing to filter in today's events"
-            // );
-            setActiveTabIndex(3);
-            const allFilter = filteredAllEvents.filter(
-              (item) => item.date == date
-            );
-            if (trackFilter == null) {
-              if (allFilter.length > 0) {
-                settrackFilter(1);
-                setfilteredAllEvents(allFilter);
-              } else {
-                setDate("");
-                showNotification("No Events on the selected date.");
-              }
-            } else {
-              showNotification("Please reset the date filter.");
-            }
-          }
-        } else {
-          setDate("");
-          showNotification("Please reset the date filter.");
-        }
-      }
+      if (
+        activeTabIndex == 0 ||
+        activeTabIndex == 1 ||
+        activeTabIndex == 2 ||
+        activeTabIndex == 3
+      ) {
+        if (date) {
+          console.log("Date in tab 1", date);
+          // showNotification(
+          //   "Please select week or month events to filter. Nothing to filter in today's events"
+          // );
+          setActiveTabIndex(3);
 
-      if (activeTabIndex == 1) {
-        const weekFilter = weekEvent.filter((item) => item.date == date);
-        if (trackFilter == null) {
-          if (weekFilter.length > 0) {
-            settrackFilter(1);
-            setWeekEvent(weekFilter);
-          } else {
-            setDate("");
-            showNotification("No Events on the selected date.");
-          }
-        } else {
-          showNotification("Please reset the date filter.");
-        }
-      }
+          const allFilter = filteredAllEventsBackup.filter(
+            (item) => item.date == date
+          );
 
-      if (activeTabIndex == 2) {
-        const monthFilter = monthEvent.filter((item) => item.date == date);
-        if (trackFilter == null) {
-          if (monthFilter.length > 0) {
-            settrackFilter(1);
-            setMonthEvent(monthFilter);
-          } else {
-            setDate("");
-            showNotification("No Events on the selected date.");
-          }
-        } else {
-          showNotification("Please reset the date filter.");
-        }
-      }
-      if (activeTabIndex == 3) {
-        const allFilter = filteredAllEvents.filter((item) => item.date == date);
-        if (trackFilter == null) {
           if (allFilter.length > 0) {
-            settrackFilter(1);
             setfilteredAllEvents(allFilter);
           } else {
-            setDate("");
-            showNotification("No Events on the selected date.");
+            showNotification(
+              "No Events on the selected date. Showing all events"
+            );
           }
-        } else {
-          showNotification("Please reset the date filter.");
         }
       }
+
+      // if (activeTabIndex == 1) {
+      //   const weekFilter = weekEvent.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (weekFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setWeekEvent(weekFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
+
+      // if (activeTabIndex == 2) {
+      //   const monthFilter = monthEvent.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (monthFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setMonthEvent(monthFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
+      // if (activeTabIndex == 3) {
+      //   const allFilter = filteredAllEvents.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (allFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setfilteredAllEvents(allFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
     } else if (date == "") {
       settrackFilter(null);
       setDate(null);
@@ -234,6 +235,7 @@ const Events = () => {
       }, []);
 
       setfilteredAllEvents(uniqueArray);
+      setfilteredAllEventsBackup(uniqueArray);
 
       console.log("====>", filteredAllEvents);
     }
@@ -414,16 +416,18 @@ const Events = () => {
                         minDate={new Date()}
                       />
                     </div>
-                    {trackFilter == 1 ? (
-                      <div className="eventCalendarResetBtn">
-                        <button
-                          className="btn btn-secondary btn-sm mt-2"
-                          onClick={resetFilter}
-                        >
-                          Reset Date Filter
-                        </button>
-                      </div>
-                    ) : null}
+                    <div className="resetBtn">
+                      {date ? (
+                        <div className="eventCalendarResetBtn">
+                          <button
+                            className="btn btn-secondary btn-sm mt-2"
+                            onClick={resetFilter}
+                          >
+                            Reset Date Filter
+                          </button>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
 
                   <section>
