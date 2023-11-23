@@ -997,7 +997,7 @@ const EventPage = () => {
                     <div className="col-md-6">
                       <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary updateBtnSize"
                         style={{ float: "right", marginTop: "20px" }}
                         onClick={updateEventPageSec1}
                       >
@@ -1047,7 +1047,7 @@ const EventPage = () => {
                       <div className="col-md-3">
                         <button
                           type="button"
-                          className="btn btn-outline-primary"
+                          className="btn btn-outline-primary updateBtnSize"
                           onClick={updateEventPageVideo}
                         >
                           Update Site
@@ -1155,7 +1155,7 @@ const EventPage = () => {
                     <div className="col-md-4 text-right">
                       <button
                         type="button"
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                         onClick={updateEventPageVideo}
                       >
                         Update Site
@@ -1372,7 +1372,7 @@ const EventPage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={updateEventPageSec2}
                     >
                       Update Site
@@ -1897,7 +1897,7 @@ const EventPage = () => {
                     <div className="text-right">
                       <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary updateBtnSize"
                         onClick={updateEventManagementSection}
                       >
                         Update Site

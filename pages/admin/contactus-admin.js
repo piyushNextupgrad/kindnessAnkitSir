@@ -298,7 +298,7 @@ const ContactUs = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn align-bottom btn-success"
+                      className="btn btn align-bottom btn-success updateBtnSize"
                       onClick={updatecontactform1}
                     >
                       Update Site
@@ -469,7 +469,7 @@ const ContactUs = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={updateContactus}
                     >
                       Update Site

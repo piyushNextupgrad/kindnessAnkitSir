@@ -491,7 +491,7 @@ const GetInvolved = () => {
                     <button
                       id="btn1"
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => updateData("section1")}
                     >
                       Update Site
@@ -532,7 +532,7 @@ const GetInvolved = () => {
                         <div className="text-right">
                           <button
                             type="button"
-                            className="btn btn btn-outline-primary align-bottom"
+                            className="btn btn btn-outline-primary align-bottom updateBtnSize"
                             onClick={() => updateData("section2")}
                           >
                             Update Site
@@ -679,7 +679,7 @@ const GetInvolved = () => {
                         <div className="text-right">
                           <button
                             type="button"
-                            className="btn btn btn-outline-primary align-bottom"
+                            className="btn btn btn-outline-primary align-bottom updateBtnSize"
                             onClick={() => updateData("section3")}
                           >
                             Update Site
@@ -717,7 +717,7 @@ const GetInvolved = () => {
                         <div className="text-right">
                           <button
                             type="button"
-                            className="btn btn btn-outline-primary align-bottom"
+                            className="btn btn btn-outline-primary align-bottom updateBtnSize"
                             onClick={() => updateData("section4")}
                           >
                             Update Site

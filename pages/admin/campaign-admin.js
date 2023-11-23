@@ -1157,7 +1157,7 @@ const Compaign_page = () => {
                     <div className="col-md-3">
                       <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary updateBtnSize "
                         onClick={(e) => updatePageHeader(e)}
                       >
                         Update Site
@@ -1209,7 +1209,7 @@ const Compaign_page = () => {
                     <div className="col-md-3">
                       <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary updateBtnSize"
                         onClick={(e) => updatePageHeader(e)}
                       >
                         Update Site
@@ -1499,7 +1499,7 @@ const Compaign_page = () => {
                                   <div className="col-md-3">
                                     <button
                                       type="button"
-                                      className="btn btn-outline-primary"
+                                      className="btn btn-outline-primary updateBtnSize"
                                       onClick={(e) => updateEqt(e)}
                                     >
                                       Update Site
@@ -1611,7 +1611,7 @@ const Compaign_page = () => {
                               <div className="col-md-3">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-outline-primary updateBtnSize"
                                   onClick={(e) => updateEqt(e)}
                                 >
                                   Update Site
@@ -1906,7 +1906,7 @@ const Compaign_page = () => {
                                   <div className="col-md-3">
                                     <button
                                       type="button"
-                                      className="btn btn-outline-primary"
+                                      className="btn btn-outline-primary updateBtnSize"
                                       onClick={(e) => updateEdu(e)}
                                     >
                                       Update Site
@@ -2018,7 +2018,7 @@ const Compaign_page = () => {
                               <div className="col-md-3">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-outline-primary updateBtnSize"
                                   onClick={(e) => updateEdu(e)}
                                 >
                                   Update Site
@@ -2320,7 +2320,7 @@ const Compaign_page = () => {
                                   <div className="col-md-3">
                                     <button
                                       type="button"
-                                      className="btn btn-outline-primary"
+                                      className="btn btn-outline-primary updateBtnSize"
                                       onClick={(e) => updateWork(e)}
                                     >
                                       Update Site
@@ -2432,7 +2432,7 @@ const Compaign_page = () => {
                               <div className="col-md-3">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-outline-primary updateBtnSize"
                                   onClick={(e) => updateWork(e)}
                                 >
                                   Update Site
@@ -2730,7 +2730,7 @@ const Compaign_page = () => {
                                   <div className="col-md-3">
                                     <button
                                       type="button"
-                                      className="btn btn-outline-primary"
+                                      className="btn btn-outline-primary updateBtnSize"
                                       onClick={(e) => updatePublic(e)}
                                     >
                                       Update Site
@@ -2842,7 +2842,7 @@ const Compaign_page = () => {
                               <div className="col-md-3">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-outline-primary updateBtnSize"
                                   onClick={(e) => updatePublic(e)}
                                 >
                                   Update Site

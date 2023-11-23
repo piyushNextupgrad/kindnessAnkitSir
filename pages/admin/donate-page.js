@@ -421,7 +421,7 @@ const DonatePage = () => {
                       <div className="text-right">
                         <button
                           type="button"
-                          className="btn btn btn-outline-primary align-bottom"
+                          className="btn btn btn-outline-primary align-bottom updateBtnSize"
                           onClick={() => {
                             updateData("section1");
                           }}
@@ -475,7 +475,7 @@ const DonatePage = () => {
                     <div className="col-md-3">
                       <button
                         type="button"
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary updateBtnSize"
                         onClick={() => {
                           updateData("section1");
                         }}
@@ -590,7 +590,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section2");
                       }}
@@ -672,7 +672,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section3");
                       }}
@@ -751,7 +751,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section4");
                       }}
@@ -805,7 +805,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section5");
                       }}
@@ -962,7 +962,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section6");
                       }}
@@ -1041,7 +1041,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section7");
                       }}
@@ -1080,7 +1080,7 @@ const DonatePage = () => {
                   <div className="text-right">
                     <button
                       type="button"
-                      className="btn btn btn-outline-primary align-bottom"
+                      className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       onClick={() => {
                         updateData("section8");
                       }}
