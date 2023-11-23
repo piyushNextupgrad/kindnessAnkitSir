@@ -1,3 +1,18 @@
+nav[role="navigation"] {
+  position: fixed;
+  width: 200px;
+  top: 70px;
+  bottom: 0px;
+  left: 0px;
+}
+
+main[role="main"] {
+  margin: 0px 0px 0px 200px;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 header[role="banner"] {
   background: white;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
@@ -451,8 +466,74 @@ input:focus {
 .nameWidthIncrease {
   width: 350px;
 }
+@media (max-width: 980px) {
+  .mbSpan {
+    font-size: 8px;
+  }
+  * {
+    font-size: 10px;
+  }
+  nav[role="navigation"] {
+    position: fixed;
+    width: 125px;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  main[role="main"] {
+    margin: 0px 0px 0px 125px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  input[type="file"] {
+    font-size: 7px;
+  }
+}
+@media screen and (min-width: 900px) {
+  footer[role="contentinfo"] {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0px;
+    margin: 0;
+  }
+
+  .panel {
+    width: 47%;
+    clear: none;
+  }
+
+  .panel.important {
+    width: 96%;
+    padding: 25px 20px 25px;
+    margin-top: 80px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  }
+
+  .form-control_0 {
+    border: 1px solid #c1c1c1;
+  }
+
+  .panel.secondary {
+    width: 23%;
+  }
+}
 
 @media screen and (min-width: 600px) {
+  .panel {
+    margin-top: 35px;
+  }
   header[role="banner"] {
     position: fixed;
     top: 0;
@@ -481,7 +562,7 @@ input:focus {
     padding: 0.5em 1em;
   }
 
-  nav[role="navigation"] {
+  /* nav[role="navigation"] {
     position: fixed;
     width: 200px;
     top: 70px;
@@ -495,7 +576,7 @@ input:focus {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+  } */
 
   main[role="main"]:after {
     content: "";
@@ -543,41 +624,103 @@ input:focus {
     margin-left: 200px;
   }
 }
-
-@media screen and (min-width: 900px) {
-  footer[role="contentinfo"] {
+@media screen and (max-width: 600px) {
+  .updateBtnSize {
+    font-size: 7px;
+    padding: 2px;
+    margin: 4px;
+  }
+  .panel {
+    margin-top: 35px;
+  }
+  header[role="banner"] {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    bottom: 0;
+    z-index: 99;
+    padding: 15px;
+    background-image: url("/background-pattern.png");
+  }
+
+  header[role="banner"] .utilities {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    color: darkslategray;
+    width: auto;
+    padding-right: 30px;
+  }
+
+  header[role="banner"] .utilities li {
+    display: inline-block;
+  }
+
+  header[role="banner"] .utilities li a {
+    padding: 0.5em 1em;
+  }
+
+  /* nav[role="navigation"] {
+    position: fixed;
+    width: 200px;
+    top: 70px;
+    bottom: 0px;
     left: 0px;
-    margin: 0;
+  }
+
+  main[role="main"] {
+    margin: 0px 0px 0px 200px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */
+
+  main[role="main"]:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .form-control_admin {
+    background: #f7f7f7 !important;
+    height: 0px !important;
+    border-radius: 4px !important;
+    border: 1px solid #979797 !important;
+    margin: 0px !important;
   }
 
   .panel {
-    width: 47%;
-    clear: none;
-  }
-
-  .panel.important {
+    float: left;
     width: 96%;
-    padding: 25px 20px 25px;
-    margin-top: 80px;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   }
 
-  .form-control_0 {
-    border: 1px solid #c1c1c1;
+  .panel:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 
-  .panel.secondary {
-    width: 23%;
+  .box,
+  .onethird,
+  .twothirds {
+    padding: 1rem;
   }
-}
 
-@media (min-width: 992px) {
-  .container {
-    width: 100%;
+  .onethird {
+    width: 33.333%;
+    float: left;
+  }
+
+  .twothirds {
+    width: 66%;
+    float: left;
+  }
+
+  footer[role="contentinfo"] {
+    clear: both;
+    margin-left: 200px;
   }
 }
 

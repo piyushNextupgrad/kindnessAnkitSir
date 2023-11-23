@@ -69,6 +69,15 @@ section {
   text-align: center;
   padding-bottom: 60px;
 }
+.search11 {
+  display: flex;
+  margin-left: 60px;
+}
+
+.fixMap {
+  margin-left: 2rem;
+  display: inline;
+}
 
 .section-header h2 {
   font-size: 32px;
@@ -2738,6 +2747,7 @@ section {
 }
 
 .sponsorList li {
+  flex-basis: auto;
   /* vertical-align: baseline; */
   display: inline-block;
   width: 20%;
@@ -3445,7 +3455,22 @@ input[type="text"]:hover {
   padding-left: 10px;
 }
 /* -----------------------Media Queries----------------------- */
-
+@media (max-width: 1200px) {
+  .search11 {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
+  .fixMap {
+    margin-top: 1.5rem !important;
+    display: block;
+    width: 100%;
+  }
+  .fst_event {
+    font-weight: 600 !important;
+    margin-bottom: 0;
+  }
+}
 @media (max-width: 900px) {
   .newsSectionthreeItems {
     flex-wrap: wrap;
@@ -3502,11 +3527,11 @@ input[type="text"]:hover {
     border: 5px solid #88b6de;
   }
 
-  .search11 {
+  /* .search11 {
     display: flex;
     margin: 20px;
     z-index: 99999;
-  }
+  } */
 }
 
 /*xs*/
@@ -3547,7 +3572,12 @@ input[type="text"]:hover {
 }
 
 /*sm*/
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
+  .footerLogo {
+    margin-left: -2rem;
+    margin-bottom: 2rem;
+  }
+
   .carousel-inner .active.left {
     left: -50%;
   }
@@ -3583,6 +3613,12 @@ input[type="text"]:hover {
     padding: 30px 30px 30px 30px;
     margin-left: 0px;
   }
+}
+@media (max-width: 768px) {
+  /* .footerLogo {
+    margin-left: 20px;
+    margin-bottom: 1rem;
+  } */
 }
 
 /*md*/
@@ -3652,7 +3688,7 @@ input[type="text"]:hover {
 }
 
 .hero .icon-boxes {
-  padding-bottom: 4g0px;
+  padding-bottom: 40px;
 }
 
 @media (max-width: 640px) {
@@ -3672,6 +3708,11 @@ input[type="text"]:hover {
   }
   .content-outer-wrapper nav {
     display: block;
+  }
+}
+@media (max-width: 512px) {
+  .react-tabs li {
+    font-size: 12px !important;
   }
 }
 
@@ -4178,6 +4219,12 @@ input[type="text"]:hover {
   }
 }
 
+@media (max-width: 390px) {
+  .react-tabs li {
+    font-size: 11px !important;
+  }
+}
+
 .fg--search {
   position: relative;
   width: 200px;
@@ -4208,11 +4255,6 @@ input[type="text"]:hover {
 
 .input_search {
   border-radius: 50px;
-}
-
-.search11 {
-  display: flex;
-  margin-left: 60px;
 }
 
 .searchTerm11 {
@@ -4503,13 +4545,6 @@ input[type="text"]:hover {
   padding: 3%;
 }
 
-.col-md-3 {
-  max-width: 40%;
-  padding-bottom: 20px;
-}
-.col-md-12 {
-  padding-top: 10px;
-}
 .resetBtn {
   width: 100%;
   display: flex;

@@ -1293,7 +1293,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("headerText")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -1357,7 +1357,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("leftImage")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -1400,7 +1400,7 @@ const Home = () => {
                           <div className="col-md-3">
                             <button
                               type="button"
-                              className="btn btn-outline-primary"
+                              className="btn btn-outline-primary updateBtnSize"
                               onClick={() => updateStaticContent("youtube")}
                             >
                               Update Site
@@ -1480,7 +1480,7 @@ const Home = () => {
                           <button
                             type="button"
                             onClick={() => updateStaticContent("middleImage")}
-                            className="btn btn btn-outline-primary align-bottom"
+                            className="btn btn btn-outline-primary align-bottom updateBtnSize"
                           >
                             Update Site
                           </button>
@@ -1559,7 +1559,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("rightImage")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -1592,7 +1592,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("MissionText")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -1622,7 +1622,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("vissionText")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -1869,7 +1869,7 @@ const Home = () => {
                             <button
                               type="button"
                               onClick={(e) => addDesriptionAccomplishment(e)}
-                              className="btn btn btn-outline-primary align-bottom"
+                              className="btn btn btn-outline-primary align-bottom updateBtnSize updateBtnSize"
                             >
                               Update Site
                             </button>
@@ -1894,7 +1894,7 @@ const Home = () => {
                             <button
                               type="button"
                               onClick={() => updateStaticContent("impactLink")}
-                              className="btn btn btn-outline-primary align-bottom"
+                              className="btn btn btn-outline-primary align-bottom updateBtnSize"
                             >
                               Update Site
                             </button>
@@ -2130,15 +2130,17 @@ const Home = () => {
                         </div>
 
                         <div className="col-md-3 ">
-                          <label className="form-check-label">
-                            Active &nbsp;
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={exeActive}
-                            id="active"
-                            onChange={(e) => setExeActive(e?.target?.checked)}
-                          />
+                          <div className="active1">
+                            <label className="form-check-label">
+                              Active &nbsp;
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={exeActive}
+                              id="active"
+                              onChange={(e) => setExeActive(e?.target?.checked)}
+                            />
+                          </div>
                         </div>
                       </div>
                       <br /> <br />
@@ -2163,7 +2165,7 @@ const Home = () => {
                             <button
                               type="button"
                               onClick={(e) => saveMeetExecutive(e)}
-                              className="btn btn btn-outline-primary align-bottom"
+                              className="btn btn btn-outline-primary align-bottom updateBtnSize updateBtnSize"
                             >
                               Update Site
                             </button>
@@ -2256,7 +2258,7 @@ const Home = () => {
                     <div className="form-group">
                       <button
                         type="button"
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                         style={{ float: "right" }}
                         onClick={addMeetOurFounder}
                       >
@@ -2718,7 +2720,7 @@ const Home = () => {
                                 <div className="col-md-3">
                                   <button
                                     type="button"
-                                    className="btn btn-outline-primary"
+                                    className="btn btn-outline-primary updateBtnSize"
                                     onClick={(e) => updateCampNews(e)}
                                   >
                                     Update Site
@@ -2866,7 +2868,7 @@ const Home = () => {
                               <div className="text-right">
                                 <button
                                   type="button"
-                                  className="btn btn btn-outline-primary align-bottom"
+                                  className="btn btn btn-outline-primary align-bottom updateBtnSize"
                                   onClick={(e) => updateCampNews(e)}
                                 >
                                   Update Site
@@ -2905,7 +2907,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("latestIssueLink")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -2926,7 +2928,7 @@ const Home = () => {
                       <button
                         type="button"
                         onClick={() => updateStaticContent("jobPostLink")}
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                       >
                         Update Site
                       </button>
@@ -3135,7 +3137,7 @@ const Home = () => {
                     <div className="text-right">
                       <button
                         type="button"
-                        className="btn btn btn-outline-primary align-bottom"
+                        className="btn btn btn-outline-primary align-bottom updateBtnSize"
                         onClick={(e) => updateSponPartner(e)}
                       >
                         Update Site

@@ -924,7 +924,7 @@ const singleEventData = ({ filter_data }) => {
                               </div>
                             </div>
 
-                            <div className="col-md-8">
+                            <div className="fixMap">
                               <p className="fst_event">
                                 {filter_data2[0]?.event_description}
                               </p>
