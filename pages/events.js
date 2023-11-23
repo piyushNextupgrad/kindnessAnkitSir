@@ -240,7 +240,7 @@ const Events = () => {
 
       let currentDate = getFormatedDate(new Date(), "YYYY-MM-DD");
       const filteredUniqueArray = uniqueArray?.filter(
-        (item) => item?.date > currentDate && item?.active == "1"
+        (item) => item?.date >= currentDate && item?.active == "1"
       );
 
       setfilteredAllEvents(

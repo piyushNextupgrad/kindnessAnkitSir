@@ -64,10 +64,15 @@ const singleEventData = ({ filter_data }) => {
   let id = router.query?.id;
   const filter_data2 = filter_data.filter((element) => element.id == id);
 
-  console.log("filter_data2", filter_data2[0]);
+  const [allEvents, setallEvents] = useState([]);
+  const [filteredAllEvents, setfilteredAllEvents] = useState([]);
+  const [filteredAllEventsBackup, setfilteredAllEventsBackup] = useState([]);
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [value, onChange] = useState(null);
+  const [date, setDate] = useState(null);
 
-  const [value, onChange] = useState(new Date());
-
+  const [data, setdata] = useState([]);
+  const [listAllEventData, setListAllEventData] = useState([]);
   const { query, isReady } = useRouter();
   const [eventCategoryData, setEventCategoryData] = useState([]);
   const [eventData, setEventData] = useState([]);
@@ -235,9 +240,22 @@ const singleEventData = ({ filter_data }) => {
 
       if (newsResp?.data?.success) {
         let respData = newsResp?.data?.data?.reverse();
-        settodayEvent(newsResp?.data?.today_events);
-        setMonthEvent(newsResp?.data?.this_month_events);
-        setWeekEvent(newsResp?.data?.this_week_events);
+        settodayEvent(
+          newsResp?.data?.today_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
+        setMonthEvent(
+          newsResp?.data?.this_month_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
+        setWeekEvent(
+          newsResp?.data?.this_week_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
+        setListAllEventData(newsResp?.data);
 
         // setListAllEventData(respData);
         setIsSubmittingLoader(false);
@@ -247,6 +265,62 @@ const singleEventData = ({ filter_data }) => {
       setIsSubmittingLoader(false);
     }
   };
+
+  useEffect(() => {
+    if (allEvents.length) {
+      const uniqueArray = allEvents.reduce((accumulator, currentEvent) => {
+        const isDuplicate = accumulator.some(
+          (existingEvent) => existingEvent.id === currentEvent.id
+        );
+
+        if (!isDuplicate) {
+          accumulator.push(currentEvent);
+        }
+
+        return accumulator;
+      }, []);
+
+      let currentDate = getFormatedDate(new Date(), "YYYY-MM-DD");
+      const filteredUniqueArray = uniqueArray?.filter(
+        (item) => item?.date >= currentDate && item?.active == "1"
+      );
+
+      setfilteredAllEvents(
+        filteredUniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
+      setfilteredAllEventsBackup(
+        filteredUniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
+    }
+  }, [allEvents]);
+  useEffect(() => {
+    if (value) {
+      setDate(formatDateToYyyyMmDd(value));
+      console.log("date", date);
+    }
+  }, [value]);
+  function formatDateToYyyyMmDd(dateString) {
+    // Create a new Date object from the input dateString
+    const date = new Date(dateString);
+
+    // Get the year, month, and day components
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // Months are 0-based, so add 1
+    const day = date.getDate();
+
+    // Ensure that single-digit month and day values have leading zeros
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+
+    // Combine the components into the "yyyy-mm-dd" format
+    const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
+
+    return formattedDate;
+  }
+  useEffect(() => {
+    // Once todayEvent, weekEvent, and monthEvent are updated, update allEvents
+    setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
+  }, [todayEvent, weekEvent, monthEvent]);
 
   const handlePrintSelectedQuestions = () => {
     const printStyles = `
@@ -402,6 +476,96 @@ const singleEventData = ({ filter_data }) => {
     }
   };
 
+  useEffect(() => {
+    if (date != "" && date != null) {
+      setfilteredAllEvents(filteredAllEventsBackup);
+      console.log("condition hit");
+      console.log("DATE===>", date);
+
+      if (
+        activeTabIndex == 0 ||
+        activeTabIndex == 1 ||
+        activeTabIndex == 2 ||
+        activeTabIndex == 3
+      ) {
+        if (date) {
+          console.log("Date in tab 1", date);
+          // showNotification(
+          //   "Please select week or month events to filter. Nothing to filter in today's events"
+          // );
+          setActiveTabIndex(3);
+
+          const allFilter = filteredAllEventsBackup.filter(
+            (item) => item.date == date
+          );
+
+          if (allFilter.length > 0) {
+            setfilteredAllEvents(allFilter);
+          } else {
+            showNotification(
+              "No Events on the selected date. Showing all events"
+            );
+          }
+        }
+      }
+
+      // if (activeTabIndex == 1) {
+      //   const weekFilter = weekEvent.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (weekFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setWeekEvent(weekFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
+
+      // if (activeTabIndex == 2) {
+      //   const monthFilter = monthEvent.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (monthFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setMonthEvent(monthFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
+      // if (activeTabIndex == 3) {
+      //   const allFilter = filteredAllEvents.filter((item) => item.date == date);
+      //   if (trackFilter == null) {
+      //     if (allFilter.length > 0) {
+      //       settrackFilter(1);
+      //       setfilteredAllEvents(allFilter);
+      //     } else {
+      //       setDate("");
+      //       showNotification("No Events on the selected date.");
+      //     }
+      //   } else {
+      //     showNotification("Please reset the date filter.");
+      //   }
+      // }
+    } else if (date == "") {
+      settrackFilter(null);
+      setDate(null);
+      eventDynamic();
+      showAllEvents();
+    }
+  }, [date]);
+  const handleTabSelect = (index) => {
+    setActiveTabIndex(index);
+  };
+  function resetFilter() {
+    setfilteredAllEvents(filteredAllEventsBackup);
+  }
+
   return (
     <Layout title={"single Event"}>
       {isSubmittingLoader ? (
@@ -462,7 +626,25 @@ const singleEventData = ({ filter_data }) => {
                   ) : null}
 
                   <div className="container">
-                    <Calendar onChange={onChange} value={value} />
+                    <Calendar
+                      onChange={(selectedDate) => {
+                        onChange(selectedDate);
+                      }}
+                      value={value}
+                      minDate={new Date()}
+                    />
+                  </div>
+                  <div className="resetBtn">
+                    {date ? (
+                      <div className="eventCalendarResetBtn">
+                        <button
+                          className="btn btn-secondary btn-sm mt-2"
+                          onClick={resetFilter}
+                        >
+                          Reset Date Filter
+                        </button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 
@@ -496,19 +678,19 @@ const singleEventData = ({ filter_data }) => {
             {/* Sidebar Start */}
             <div className="col-md-8">
               <div className="Event_sidebar_2">
-                <Tabs>
+                <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
                   <TabList>
                     {/* <Tab>Today</Tab> */}
                     <Tab>{filter_data2[0]?.event_title}</Tab>
                     <Tab>This Week </Tab>
                     <Tab>This Month</Tab>
-                    <p className="upcoming_events_wrap">
-                      All Upcoming Events{" "}
+                    <Tab>
+                      All Upcoming Events &nbsp;
                       <i
                         className="fa fa-angle-double-right"
                         aria-hidden="true"
                       ></i>
-                    </p>
+                    </Tab>
                   </TabList>
 
                   <TabPanel>
@@ -947,6 +1129,100 @@ const singleEventData = ({ filter_data }) => {
                         </div>
                       ))
                     ) : null}
+                  </TabPanel>
+                  <TabPanel>
+                    {eventListLoader ? (
+                      <Spinner
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          align: "center",
+                          color: "#333",
+                        }}
+                        animation="border"
+                      />
+                    ) : filteredAllEvents?.length ? (
+                      filteredAllEvents?.map((item, index) => (
+                        <div className="container" key={randomKey()}>
+                          <div className="row">
+                            <div className="col-md-12 col-lg-4 mt-4">
+                              {/* <Link href={`${"/event/"}${item?.id}`}> */}
+                              <Image
+                                className="eventImageIcon"
+                                src={
+                                  item?.event_media
+                                    ? process.env.SITE_URL + item?.event_media
+                                    : "/today_event_img.png"
+                                }
+                                width={200}
+                                height={250}
+                                alt={item?.event_title}
+                                onClick={() =>
+                                  updateEventView(item?.id, item?.hits)
+                                }
+                              />
+                              {/* </Link> */}
+                            </div>
+
+                            <div className="col-md-12 col-lg-8 mt-4">
+                              <p className="fst_event">
+                                <span>
+                                  {/* <i
+                                    className="fa fa-download"
+                                    aria-hidden="true"
+                                  ></i> */}
+                                </span>
+                              </p>
+                              <p className="fst_event">
+                                {item?.date
+                                  ? getFormatedDate(item?.date, "MM/DD/YYYY")
+                                  : null}{" "}
+                                {item?.time
+                                  ? convertTo12HourFormat(item?.time)
+                                  : null}
+                              </p>
+                              {/* <p className="fst_event">{item?.time} 3:00pm - 5:30pm</p> */}
+
+                              {/* <Link href={`${"/event/"}${item?.id}`}> */}
+                              <p
+                                className="fst_event color_heading eventImageIcon"
+                                onClick={() =>
+                                  updateEventView(item?.id, item?.hits)
+                                }
+                              >
+                                {item?.event_title}
+                              </p>
+                              {/* </Link> */}
+
+                              <p className="fst_event">
+                                <b>Location:</b> {item?.location_address},{" "}
+                                {item?.city}, {item?.state}
+                              </p>
+                              <p className="fst_event">
+                                <b>Event Type:</b> {item?.event_type}
+                              </p>
+                              <p className="fst_event">
+                                <b>Event Cost:</b>{" "}
+                                {item?.event_cost && item?.event_cost != "0"
+                                  ? `$ ${item?.event_cost}`
+                                  : " Free"}
+                                <span>
+                                  {/* <i
+                                    className="fa fa-plus-square-o"
+                                    aria-hidden="true"
+                                  ></i> */}
+                                  <i className="fa fa-eye" aria-hidden="true">
+                                    {item?.hits == null ? 0 : item?.hits}
+                                  </i>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <section className="tabPanel">No events found</section>
+                    )}
                   </TabPanel>
                 </Tabs>
               </div>
