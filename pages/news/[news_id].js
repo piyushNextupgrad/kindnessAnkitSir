@@ -293,8 +293,8 @@ function NewsDetailPage({ data, Newsid }) {
                           ? process.env.SITE_URL + data?.media
                           : "/no-img.jpg"
                       }
+                      controls={true}
                       playing={false}
-                      controls
                       width={"100%"}
                     />
                   ) : (

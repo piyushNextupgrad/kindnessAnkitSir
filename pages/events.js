@@ -234,8 +234,12 @@ const Events = () => {
         return accumulator;
       }, []);
 
-      setfilteredAllEvents(uniqueArray);
-      setfilteredAllEventsBackup(uniqueArray);
+      setfilteredAllEvents(
+        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
+      setfilteredAllEventsBackup(
+        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
 
       console.log("====>", filteredAllEvents);
     }
@@ -255,9 +259,21 @@ const Events = () => {
 
       if (newsResp?.data?.success) {
         console.log("showAllevents", newsResp?.data);
-        setTodayEvent(newsResp?.data?.today_events);
-        setMonthEvent(newsResp?.data?.this_month_events);
-        setWeekEvent(newsResp?.data?.this_week_events);
+        setTodayEvent(
+          newsResp?.data?.today_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
+        setMonthEvent(
+          newsResp?.data?.this_month_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
+        setWeekEvent(
+          newsResp?.data?.this_week_events.sort((a, b) =>
+            a?.date > b?.date ? 1 : -1
+          )
+        );
 
         // setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
 
@@ -548,7 +564,10 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Event Cost:</b> ${item?.event_cost}
+                                  <b>Event Cost:</b>{" "}
+                                  {item?.event_cost && item?.event_cost != "0"
+                                    ? `$ ${item?.event_cost}`
+                                    : " Free"}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
@@ -640,7 +659,10 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Cost:</b> ${item?.event_cost}{" "}
+                                  <b>Event Cost:</b>{" "}
+                                  {item?.event_cost && item?.event_cost != "0"
+                                    ? `$ ${item?.event_cost}`
+                                    : " Free"}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
@@ -732,7 +754,10 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Cost:</b> ${item?.event_cost}{" "}
+                                  <b>Event Cost:</b>{" "}
+                                  {item?.event_cost && item?.event_cost != "0"
+                                    ? `$ ${item?.event_cost}`
+                                    : " Free"}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"
@@ -823,7 +848,10 @@ const Events = () => {
                                   <b>Event Type:</b> {item?.event_type}
                                 </p>
                                 <p className="fst_event">
-                                  <b>Cost:</b> ${item?.event_cost}
+                                  <b>Event Cost:</b>{" "}
+                                  {item?.event_cost && item?.event_cost != "0"
+                                    ? `$ ${item?.event_cost}`
+                                    : " Free"}
                                   <span>
                                     {/* <i
                                     className="fa fa-plus-square-o"

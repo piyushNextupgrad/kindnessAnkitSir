@@ -446,7 +446,7 @@ function MainPage({ metaData }) {
                             ? process.env.SITE_URL + staticContent?.image3
                             : "demo-video.mp4"
                         }
-                        controls={false}
+                        controls={true}
                         playing={false}
                         muted={true}
                         width={100}
@@ -642,6 +642,7 @@ function MainPage({ metaData }) {
                           ? process.env.SITE_URL + newsSectionFirstData?.media
                           : "/no-img.jpg"
                       }
+                      controls={true}
                       playing={true}
                       muted={true}
                       width={"100%"}
@@ -1010,6 +1011,7 @@ function MainPage({ metaData }) {
                             ? process.env.SITE_URL + newsSectionData[1]?.media
                             : "/no-img.jpg"
                         }
+                        controls={true}
                         playing={true}
                         muted={true}
                         width={"100%"}
@@ -1175,6 +1177,7 @@ function MainPage({ metaData }) {
                             ? process.env.SITE_URL + newsSectionData[2]?.media
                             : "/no-img.jpg"
                         }
+                        controls={true}
                         playing={true}
                         muted={true}
                         width={"100%"}
