@@ -52,6 +52,10 @@ const Events = () => {
     console.log("Images", Images);
   }, [Images]);
 
+  useEffect(() => {
+    console.log("====>", filteredAllEvents);
+  }, [filteredAllEvents]);
+
   const adminMedia3 = async () => {
     try {
       const mediaResp3 = await eventPageSevices.adminMedia3("event");
@@ -234,14 +238,17 @@ const Events = () => {
         return accumulator;
       }, []);
 
-      setfilteredAllEvents(
-        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
-      );
-      setfilteredAllEventsBackup(
-        uniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      let currentDate = getFormatedDate(new Date(), "YYYY-MM-DD");
+      const filteredUniqueArray = uniqueArray?.filter(
+        (item) => item?.date > currentDate && item?.active == "1"
       );
 
-      console.log("====>", filteredAllEvents);
+      setfilteredAllEvents(
+        filteredUniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
+      setfilteredAllEventsBackup(
+        filteredUniqueArray.sort((a, b) => (a?.date > b?.date ? 1 : -1))
+      );
     }
   }, [allEvents]);
   useEffect(() => {
