@@ -19,6 +19,7 @@ const EventPage = () => {
   const [eventdec, seteventdec] = useState("");
   const [active, setactive] = useState("");
   const [eventTypeEdit, seteventTypeEdit] = useState("");
+  const [costEdit, setcostEdit] = useState("");
   const [cityEdit, setcityEdit] = useState("");
   const [stateEdit, setstateEdit] = useState("");
   const [zipEdit, setzipEdit] = useState("");
@@ -346,6 +347,7 @@ const EventPage = () => {
           formData.append("locationAddress", EditAddress);
         }
         formData.append("eventType", eventTypeEdit);
+        formData.append("eventCost", costEdit);
 
         formData.append("city", cityEdit);
         formData.append("state", stateEdit);
@@ -1454,7 +1456,8 @@ const EventPage = () => {
                           <th>Date</th>
                           <th>Description</th>
                           <th>Address</th>
-                          <th>Event Type</th>
+                          <th style={{ width: "200px" }}>Event Type</th>
+                          <th>Event Cost</th>
                           <th>City</th>
                           <th>State</th>
                           <th>Zip</th>
@@ -1521,6 +1524,16 @@ const EventPage = () => {
                                       options={eventTypeDropDownOptions}
                                       onChange={(e) =>
                                         seteventTypeEdit(e?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      placeholder="Event Cost"
+                                      value={costEdit}
+                                      onChange={(e) =>
+                                        setcostEdit(e?.target?.value)
                                       }
                                     />
                                   </td>
@@ -1620,6 +1633,7 @@ const EventPage = () => {
                                   <td>{item?.event_description}</td>
                                   <td>{item?.location_address}</td>
                                   <td>{item?.event_type}</td>
+                                  <td>{item?.event_cost}</td>
                                   <td>{item?.city}</td>
                                   <td>{item?.state}</td>
                                   <td>{item?.zip_code}</td>
