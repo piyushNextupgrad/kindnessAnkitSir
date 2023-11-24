@@ -95,6 +95,7 @@ const Get_involved = () => {
           setemail("");
           setphone("");
           setSelectedOption("");
+          setmsg("");
 
           showNotification("Form Submit Successfully", "Success");
         } else {
