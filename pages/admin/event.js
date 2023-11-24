@@ -18,7 +18,10 @@ const EventPage = () => {
   const [eventType, seteventType] = useState("");
   const [eventdec, seteventdec] = useState("");
   const [active, setactive] = useState("");
-
+  const [eventTypeEdit, seteventTypeEdit] = useState("");
+  const [cityEdit, setcityEdit] = useState("");
+  const [stateEdit, setstateEdit] = useState("");
+  const [zipEdit, setzipEdit] = useState("");
   const [newsTitle, setnewsTitle] = useState("");
   const [active2, setactive2] = useState("");
   const [newsMedia, setnewsMedia] = useState("");
@@ -342,6 +345,12 @@ const EventPage = () => {
         if (EditAddress != "") {
           formData.append("locationAddress", EditAddress);
         }
+        formData.append("eventType", eventTypeEdit);
+
+        formData.append("city", cityEdit);
+        formData.append("state", stateEdit);
+
+        formData.append("zipcode", zipEdit);
         if (EventEditMedia != "") {
           formData.append("eventMedia", EventEditMedia);
         }
@@ -1445,6 +1454,10 @@ const EventPage = () => {
                           <th>Date</th>
                           <th>Description</th>
                           <th>Address</th>
+                          <th>Event Type</th>
+                          <th>City</th>
+                          <th>State</th>
+                          <th>Zip</th>
                           <th>Media</th>
                           <th>Active</th>
                           <th>Action</th>
@@ -1472,7 +1485,7 @@ const EventPage = () => {
                                       }
                                     />
                                   </td>
-                                  <td>0</td>
+                                  <td>{rsvp[index]?.length}</td>
                                   <td>
                                     <DatePicker
                                       selected={editStartDate}
@@ -1484,6 +1497,7 @@ const EventPage = () => {
                                   <td>
                                     <input
                                       type="text"
+                                      placeholder="Description"
                                       value={editEventDescription3}
                                       onChange={(e) =>
                                         setEditEventDescription3(
@@ -1495,9 +1509,44 @@ const EventPage = () => {
                                   <td>
                                     <input
                                       type="text"
+                                      placeholder="Address"
                                       value={EditAddress}
                                       onChange={(e) =>
                                         setEditAddress(e?.target?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <Select
+                                      options={eventTypeDropDownOptions}
+                                      onChange={(e) =>
+                                        seteventTypeEdit(e?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      placeholder="City"
+                                      value={cityEdit}
+                                      onChange={(e) =>
+                                        setcityEdit(e?.target?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td style={{ width: "300px" }}>
+                                    <Select
+                                      options={options_2}
+                                      onChange={(e) => setstateEdit(e.value)}
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      placeholder="Zip"
+                                      value={zipEdit}
+                                      onChange={(e) =>
+                                        setzipEdit(e?.target?.value)
                                       }
                                     />
                                   </td>
@@ -1570,6 +1619,10 @@ const EventPage = () => {
                                   </td>
                                   <td>{item?.event_description}</td>
                                   <td>{item?.location_address}</td>
+                                  <td>{item?.event_type}</td>
+                                  <td>{item?.city}</td>
+                                  <td>{item?.state}</td>
+                                  <td>{item?.zip_code}</td>
                                   <td>
                                     {
                                       <Image

@@ -96,6 +96,7 @@ const GetInvolved = () => {
     }
     if (sectionName == "LearnMoreList") {
       try {
+        setIsSubmitingLoader(true);
         const params = { delId: data };
         const delResp = await getInvolvePageSevices.deleteLearnMoreList(params);
 
@@ -103,8 +104,10 @@ const GetInvolved = () => {
           (item) => item.id != data
         );
         setlearnMoreList(newLearnMoreList);
+        setIsSubmitingLoader(false);
         showNotification("Item deleted", "Success");
       } catch (error) {
+        setIsSubmitingLoader(false);
         console.log(error);
       }
     }
