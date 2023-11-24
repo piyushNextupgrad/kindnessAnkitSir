@@ -182,7 +182,7 @@ const Home = () => {
 
         setupdateFile(data?.media);
         setupdateDate(data?.expire_date);
-        settoggleNewsModal;
+
         setUpdateActive(parseInt(data?.active) ? true : false);
         setFeaturedActive(parseInt(data?.featuredItem) ? true : false);
         setUpdateCampSection(data?.news_artical);
@@ -314,6 +314,7 @@ const Home = () => {
               );
 
               if (response?.data?.success) {
+                closePopup();
                 showNotification(response?.data?.message, "Success");
                 ////////////// Get News api ////////////////
                 showNewsSection();
@@ -372,6 +373,7 @@ const Home = () => {
               );
 
               if (response?.data?.success) {
+                closePopup();
                 showNotification(response?.data?.message, "Success");
                 ////////////// Get News api ////////////////
                 showNewsSection();
@@ -2731,9 +2733,9 @@ const Home = () => {
                         <div className="col-md-12">
                           <label className="form-label-1">News Title</label>
                           <input
+                            value={campTitle}
                             type="text"
                             onChange={(e) => setCampTitle(e?.target?.value)}
-                            value={campTitle}
                           />
                           <label className="form-label-1">News Media</label>
                         </div>
