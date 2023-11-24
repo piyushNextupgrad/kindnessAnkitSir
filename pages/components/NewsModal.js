@@ -195,6 +195,7 @@ const NewsModal = ({
                       </td>
                       <td>
                         <textarea
+                          style={{ height: "200px", width: "300px" }}
                           className="form-control "
                           placeholder="Type here"
                           id="floatingTextarea"
