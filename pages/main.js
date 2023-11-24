@@ -32,22 +32,22 @@ export async function getServerSideProps() {
   try {
     let params = {};
     params.pageName = "contact_us";
-    const resp = await homePageService?.pageStaticData(params);
-    console.log("HearAboutUs", resp);
+    const resp = await fetch(
+      "https://nextupgrad.us/laravel-old/diligent-api/api/getHomePageStaticData"
+    );
+    const data = await resp.json();
+    console.log("HearAboutUs", data);
 
-    if (resp?.data?.success) {
-      // setshareheader(resp?.data?.data[0]?.header_text);
-      // setsharetext(resp?.data?.data[0]?.page_text);
-      // setsharelink(resp?.data?.data[0]?.impact_link);
-      const metaData = resp?.data?.data[0];
-      return {
-        props: {
-          metaData,
-        },
-      };
-    }
+    // if (resp?.data?.success) {
+
+    //   const metaData = resp?.data?.data[0];
+    //   return {
+    //     props: {
+    //       metaData,
+    //     },
+    //   };
+    // }
   } catch (err) {
-    // Handle any other errors that may occur during the request
     console.log(err);
   }
 }
@@ -319,6 +319,7 @@ function MainPage({ metaData }) {
       console.log(error);
     }
   }
+
   return (
     <>
       <Head>

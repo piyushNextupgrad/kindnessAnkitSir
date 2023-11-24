@@ -3454,6 +3454,15 @@ input[type="text"]:hover {
 .Putting_Chicago a {
   padding-left: 10px;
 }
+.popupFontFix {
+  font-size: 14px;
+}
+.youTubelogoPopup {
+  font-size: 10px;
+}
+.popupYT {
+  margin-top: 1rem;
+}
 /* -----------------------Media Queries----------------------- */
 @media (max-width: 1200px) {
   .search11 {

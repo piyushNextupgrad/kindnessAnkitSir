@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import NewsModal from "../components/NewsModal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
@@ -91,6 +92,7 @@ const Home = () => {
   const [isSubmitingLoader, setIsSubmitingLoader] = useState(false);
 
   const [newsSectionData, setNewsSectionData] = useState([]);
+  const [newsSectionDataBackup, setNewsSectionDataBackup] = useState([]);
   const [sponsorPartnerData, setSponsorPartnerData] = useState([]);
   const [sortedCommentsOfNews, setSortedCommentsOfNews] = useState([]);
 
@@ -115,6 +117,7 @@ const Home = () => {
     useState("");
   const [toggleNewsYT, settoggleNewsYT] = useState(false);
   const [newsupdateYTdata, setnewsupdateYTdata] = useState();
+  const [toggleNewsModal, settoggleNewsModal] = useState(false);
 
   //function to update the table data
   function editFieldData(id, index, sectionName) {
@@ -162,6 +165,7 @@ const Home = () => {
     }
 
     if (sectionName == "CampNews") {
+      setnewsid(id);
       let obj = newsSectionData?.find(
         (newRowListItem) => newRowListItem?.edit === true
       );
@@ -171,15 +175,18 @@ const Home = () => {
         data.edit = true;
 
         newsSectionData[index] = data;
+
         setNewsSectionData([...newsSectionData]);
 
         settext1(data?.title);
 
         setupdateFile(data?.media);
         setupdateDate(data?.expire_date);
+        settoggleNewsModal;
         setUpdateActive(parseInt(data?.active) ? true : false);
         setFeaturedActive(parseInt(data?.featuredItem) ? true : false);
         setUpdateCampSection(data?.news_artical);
+        settoggleNewsModal(true);
       }
       if (obj?.id != undefined) {
         showNotification("Please Save Last edited field", "Error");
@@ -250,6 +257,7 @@ const Home = () => {
             setEditDesService("");
             setEditDesYear("");
             setOrder("");
+            settoggleNewsModal(false);
 
             ///////  Call get api ////
             getDesriptionAccomplishmentAndMeetExecutive();
@@ -485,6 +493,7 @@ const Home = () => {
         setNewsSectionData(newNewsSectionData);
         showNotification("Item deleted", "Success");
         setIsSubmitingLoader(false);
+        closePopup();
       } catch (error) {
         setIsSubmitingLoader(false);
 
@@ -803,6 +812,7 @@ const Home = () => {
 
   const showNewsSection = async () => {
     try {
+      setIsSubmitingLoader(true);
       let params = {};
       params.sectionName = "camp_news";
       let currentDate = getFormatedDate(new Date(), "YYYY-MM-DD");
@@ -816,13 +826,16 @@ const Home = () => {
 
         console.log("campignNews", campignNews);
         setNewsSectionData(campignNews);
+        setNewsSectionDataBackup(campignNews);
 
         let SponserPartner = respData?.filter(
           (item) => item?.sectionName == "spon_partner"
         );
         setSponsorPartnerData(SponserPartner);
+        setIsSubmitingLoader(false);
       }
     } catch (err) {
+      setIsSubmitingLoader(false);
       console.log(err);
     }
   };
@@ -981,6 +994,7 @@ const Home = () => {
             setCampMedia(null);
             setCampMediaPreview(null);
             setCampSection("");
+            setCampTitle("");
           } else {
             setIsSubmitingLoader(false);
             showNotification(response.data.message, "Error");
@@ -1241,10 +1255,48 @@ const Home = () => {
     return count.length;
   }
 
+  function closePopup() {
+    showNewsSection();
+    // setNewsSectionData(newsSectionDataBackup);
+    settoggleNewsModal(false);
+  }
+
+  const [newsid, setnewsid] = useState("");
+
   return (
     <>
       <AdminLayout title={"Admin panel"}>
         <main role="main">
+          <NewsModal
+            newsid={newsid}
+            deleteData={deleteData}
+            updateFormData={updateFormData}
+            editFieldData={editFieldData}
+            toggleNewsModal={toggleNewsModal}
+            settoggleNewsModal={settoggleNewsModal}
+            text1={text1}
+            settext1={settext1}
+            toggleNewsYT={toggleNewsYT}
+            settoggleNewsYT={settoggleNewsYT}
+            updateDate={updateDate}
+            setupdateDate={setupdateDate}
+            updateCampSection={updateCampSection}
+            setUpdateCampSection={setUpdateCampSection}
+            setFeaturedActive={setFeaturedActive}
+            featuredActive={featuredActive}
+            updateActive={updateActive}
+            setUpdateActive={setUpdateActive}
+            newsupdateYTdata={newsupdateYTdata}
+            setnewsupdateYTdata={setnewsupdateYTdata}
+            showVideo={showVideo}
+            updateFile={updateFile}
+            setupdateFile={setupdateFile}
+            newsSectionDataBackup={newsSectionDataBackup}
+            newsSectionData={newsSectionData}
+            setNewsSectionData={setNewsSectionData}
+            setNewsSectionDataBackup={setNewsSectionDataBackup}
+            closePopup={closePopup}
+          />
           {isSubmitingLoader ? (
             <div className="overlay">
               <div className="spinner-container">
@@ -2272,7 +2324,7 @@ const Home = () => {
 
             <section className="panel important">
               <h2>
-                <i className="fa fa-hand-o-right" aria-hidden="true"></i>{" "}
+                <i className="fa fa-hand-o-right" aria-hidden="true"></i>
                 Campaign News
               </h2>
 
