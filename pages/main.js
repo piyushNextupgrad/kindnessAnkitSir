@@ -599,6 +599,9 @@ function MainPage({ metaData }) {
             </div>
           </div>
         </section>
+        <h3 className="text-center mb-5 mt-4 kindness_campaign">
+          The Kindness Campaign News
+        </h3>
 
         {newsSectionFirstData?.title ? (
           <section className="news_title_one ">
@@ -606,9 +609,6 @@ function MainPage({ metaData }) {
               className="container aos-init aos-animate bottom-bdr"
               data-aos="fade-up"
             >
-              <h3 className="text-center mb-5 mt-4 kindness_campaign">
-                The Kindness Campaign News
-              </h3>
               <div className="row">
                 <div className="col-md-12 col-lg-6 align-self-center">
                   {/* <Image
@@ -824,7 +824,7 @@ function MainPage({ metaData }) {
               />
             </section>
           </>
-        ) : (
+        ) : newsSectionData.length == 3 ? (
           <>
             <div className="newsSectionthreeItems">
               <div className="sliderItemNews">
@@ -928,7 +928,7 @@ function MainPage({ metaData }) {
                         <span className="textexpend">
                           <FacebookShareButton
                             url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
-                            quote={newsSectionData[1]?.title}
+                            quote={newsSectionData[0]?.title}
                             hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
                           >
                             {" "}
@@ -1301,6 +1301,507 @@ function MainPage({ metaData }) {
                           <LinkedinShareButton
                             url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[2]?.id}`}
                             title={newsSectionData[1]?.title}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-linkedin-square"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            &nbsp;
+                          </LinkedinShareButton>
+
+                          <Link href="#">
+                            {/* <i
+                        className="fa fa-instagram"
+                        aria-hidden="true"
+                      ></i> */}
+                            &nbsp;
+                          </Link>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </>
+        ) : newsSectionData.length == 2 ? (
+          <>
+            <div className="newsSectionthreeItems">
+              <div className="sliderItemNews">
+                <article>
+                  <div className="post-img-in">
+                    {newsSectionData[0]?.media_type == "image" ? (
+                      <Image
+                        src={
+                          newsSectionData[0]?.media
+                            ? process.env.SITE_URL + newsSectionData[0]?.media
+                            : "/no-img.jpg"
+                        }
+                        width={300}
+                        height={300}
+                      />
+                    ) : newsSectionData[0]?.media_type == "video" ? (
+                      <ReactPlayer
+                        url={
+                          newsSectionData[0]?.media
+                            ? process.env.SITE_URL + newsSectionData[0]?.media
+                            : "/no-img.jpg"
+                        }
+                        playing={true}
+                        muted={true}
+                        width={"100%"}
+                        height={""}
+                      />
+                    ) : (
+                      <ReactPlayer
+                        url={newsSectionData[0]?.media}
+                        playing={false}
+                        controls={true}
+                        muted={false}
+                        width={"100%"}
+                      />
+                    )}
+                  </div>
+                  <h2 className="News_title">
+                    <Link
+                      href={"/news/" + newsSectionData[0]?.id}
+                      disabled={showLoader}
+                      target="_blank"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[0]?.id,
+                          newsSectionData[0]?.view
+                        )
+                      }
+                    >
+                      {newsSectionData[0]?.title}
+                    </Link>
+                  </h2>
+                  <p className="post-category2">
+                    {newsSectionData[0]?.news_artical?.substring(0, 200) +
+                      "..."}
+                  </p>
+                  <div className="row">
+                    <div
+                      className="col-md-4"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[0]?.id,
+                          newsSectionData[0]?.view
+                        )
+                      }
+                    >
+                      <Link
+                        href={"/news/" + newsSectionData[0]?.id}
+                        target="_blank"
+                      >
+                        <button
+                          type="button"
+                          disabled={showLoader}
+                          className="btn btn-info shar_btn"
+                        >
+                          Read more
+                        </button>
+                      </Link>
+                    </div>
+
+                    <div className="col-md-8 align-self-center icon_wrap">
+                      <span className="share_wrap icon1">
+                        <i className="fa fa-eye icon1" aria-hidden="true" />
+                        {newsSectionData[0]?.view
+                          ? newsSectionData[0]?.view
+                          : 0}
+                      </span>
+
+                      <a href="#!" className="buttonexpend">
+                        <span className="iconexpend">
+                          {" "}
+                          <span className="share">
+                            <i
+                              className="fa fa-share-alt "
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span className="textexpend">
+                          <FacebookShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            quote={newsSectionData[0]?.title}
+                            hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-facebook"
+                              aria-hidden="true"
+                              onClick={() =>
+                                handlefbshare(
+                                  `${process.env.BASE_LIVE_URL}news/${newsSectionFirstData?.id}`,
+                                  newsSectionFirstData?.title,
+                                  newsSectionFirstData?.news_artical,
+                                  process.env.SITE_URL +
+                                    newsSectionFirstData?.media,
+                                  process.env.BASE_LIVE_URL
+                                )
+                              }
+                            />
+                            &nbsp;
+                          </FacebookShareButton>
+
+                          {/* <Link href="#">
+                        <i
+                          className="fa fa-youtube-play"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        &nbsp;
+                      </Link> */}
+
+                          <TwitterShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            title={newsSectionData[0]?.title}
+                          >
+                            {" "}
+                            <i className="fa fa-twitter" aria-hidden="true" />
+                            &nbsp;
+                          </TwitterShareButton>
+
+                          <LinkedinShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            title={newsSectionData[0]?.title}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-linkedin-square"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            &nbsp;
+                          </LinkedinShareButton>
+
+                          <Link href="#">
+                            {/* <i
+                        className="fa fa-instagram"
+                        aria-hidden="true"
+                      ></i> */}
+                            &nbsp;
+                          </Link>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div className="sliderItemNews">
+                <article>
+                  <div className="post-img-in">
+                    {newsSectionData[1]?.media_type == "image" ? (
+                      <Image
+                        src={
+                          newsSectionData[1]?.media
+                            ? process.env.SITE_URL + newsSectionData[1]?.media
+                            : "/no-img.jpg"
+                        }
+                        width={300}
+                        height={300}
+                      />
+                    ) : newsSectionData[1]?.media_type == "video" ? (
+                      <ReactPlayer
+                        url={
+                          newsSectionData[1]?.media
+                            ? process.env.SITE_URL + newsSectionData[1]?.media
+                            : "/no-img.jpg"
+                        }
+                        controls={true}
+                        playing={true}
+                        muted={true}
+                        width={"100%"}
+                        height={""}
+                      />
+                    ) : (
+                      <ReactPlayer
+                        url={newsSectionData[1]?.media}
+                        playing={false}
+                        controls={true}
+                        muted={false}
+                        width={"100%"}
+                      />
+                    )}
+                  </div>
+                  <h2 className="News_title">
+                    <Link
+                      href={"/news/" + newsSectionData[1]?.id}
+                      disabled={showLoader}
+                      target="_blank"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[1]?.id,
+                          newsSectionData[1]?.view
+                        )
+                      }
+                    >
+                      {newsSectionData[1]?.title}
+                    </Link>
+                  </h2>
+                  <p className="post-category2">
+                    {newsSectionData[1]?.news_artical?.substring(0, 200) +
+                      "..."}
+                  </p>
+                  <div className="row">
+                    <div
+                      className="col-md-4"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[1]?.id,
+                          newsSectionData[1]?.view
+                        )
+                      }
+                    >
+                      <Link
+                        href={"/news/" + newsSectionData[1]?.id}
+                        target="_blank"
+                      >
+                        <button
+                          type="button"
+                          disabled={showLoader}
+                          className="btn btn-info shar_btn"
+                        >
+                          Read more
+                        </button>
+                      </Link>
+                    </div>
+
+                    <div className="col-md-8 align-self-center icon_wrap">
+                      <span className="share_wrap icon1">
+                        <i className="fa fa-eye icon1" aria-hidden="true" />
+                        {newsSectionData[1]?.view
+                          ? newsSectionData[1]?.view
+                          : 0}
+                      </span>
+
+                      <a href="#!" className="buttonexpend">
+                        <span className="iconexpend">
+                          {" "}
+                          <span className="share">
+                            <i
+                              className="fa fa-share-alt "
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span className="textexpend">
+                          <FacebookShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[1]?.id}`}
+                            quote={newsSectionData[1]?.title}
+                            hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-facebook"
+                              aria-hidden="true"
+                              onClick={() =>
+                                handlefbshare(
+                                  `${process.env.BASE_LIVE_URL}news/${newsSectionFirstData?.id}`,
+                                  newsSectionFirstData?.title,
+                                  newsSectionFirstData?.news_artical,
+                                  process.env.SITE_URL +
+                                    newsSectionFirstData?.media,
+                                  process.env.BASE_LIVE_URL
+                                )
+                              }
+                            />
+                            &nbsp;
+                          </FacebookShareButton>
+
+                          {/* <Link href="#">
+                        <i
+                          className="fa fa-youtube-play"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        &nbsp;
+                      </Link> */}
+
+                          <TwitterShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[1]?.id}`}
+                            title={newsSectionData[1]?.title}
+                          >
+                            {" "}
+                            <i className="fa fa-twitter" aria-hidden="true" />
+                            &nbsp;
+                          </TwitterShareButton>
+
+                          <LinkedinShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[1]?.id}`}
+                            title={newsSectionData[1]?.title}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-linkedin-square"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            &nbsp;
+                          </LinkedinShareButton>
+
+                          <Link href="#">
+                            {/* <i
+                        className="fa fa-instagram"
+                        aria-hidden="true"
+                      ></i> */}
+                            &nbsp;
+                          </Link>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="newsSectionthreeItems">
+              <div className="sliderItemNews">
+                <article>
+                  <div className="post-img-in">
+                    {newsSectionData[0]?.media_type == "image" ? (
+                      <Image
+                        src={
+                          newsSectionData[0]?.media
+                            ? process.env.SITE_URL + newsSectionData[0]?.media
+                            : "/no-img.jpg"
+                        }
+                        width={300}
+                        height={300}
+                      />
+                    ) : newsSectionData[0]?.media_type == "video" ? (
+                      <ReactPlayer
+                        url={
+                          newsSectionData[0]?.media
+                            ? process.env.SITE_URL + newsSectionData[0]?.media
+                            : "/no-img.jpg"
+                        }
+                        playing={true}
+                        muted={true}
+                        width={"100%"}
+                        height={""}
+                      />
+                    ) : (
+                      <ReactPlayer
+                        url={newsSectionData[0]?.media}
+                        playing={false}
+                        controls={true}
+                        muted={false}
+                        width={"100%"}
+                      />
+                    )}
+                  </div>
+                  <h2 className="News_title">
+                    <Link
+                      href={"/news/" + newsSectionData[0]?.id}
+                      disabled={showLoader}
+                      target="_blank"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[0]?.id,
+                          newsSectionData[0]?.view
+                        )
+                      }
+                    >
+                      {newsSectionData[0]?.title}
+                    </Link>
+                  </h2>
+                  <p className="post-category2">
+                    {newsSectionData[0]?.news_artical?.substring(0, 200) +
+                      "..."}
+                  </p>
+                  <div className="row">
+                    <div
+                      className="col-md-4"
+                      onClick={() =>
+                        updateNewsView(
+                          newsSectionData[0]?.id,
+                          newsSectionData[0]?.view
+                        )
+                      }
+                    >
+                      <Link
+                        href={"/news/" + newsSectionData[0]?.id}
+                        target="_blank"
+                      >
+                        <button
+                          type="button"
+                          disabled={showLoader}
+                          className="btn btn-info shar_btn"
+                        >
+                          Read more
+                        </button>
+                      </Link>
+                    </div>
+
+                    <div className="col-md-8 align-self-center icon_wrap">
+                      <span className="share_wrap icon1">
+                        <i className="fa fa-eye icon1" aria-hidden="true" />
+                        {newsSectionData[0]?.view
+                          ? newsSectionData[0]?.view
+                          : 0}
+                      </span>
+
+                      <a href="#!" className="buttonexpend">
+                        <span className="iconexpend">
+                          {" "}
+                          <span className="share">
+                            <i
+                              className="fa fa-share-alt "
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span className="textexpend">
+                          <FacebookShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            quote={newsSectionData[0]?.title}
+                            hashtag={`#kindnesscampaign #${newsSectionFirstData?.title}`}
+                          >
+                            {" "}
+                            <i
+                              className="fa fa-facebook"
+                              aria-hidden="true"
+                              onClick={() =>
+                                handlefbshare(
+                                  `${process.env.BASE_LIVE_URL}news/${newsSectionFirstData?.id}`,
+                                  newsSectionFirstData?.title,
+                                  newsSectionFirstData?.news_artical,
+                                  process.env.SITE_URL +
+                                    newsSectionFirstData?.media,
+                                  process.env.BASE_LIVE_URL
+                                )
+                              }
+                            />
+                            &nbsp;
+                          </FacebookShareButton>
+
+                          {/* <Link href="#">
+                        <i
+                          className="fa fa-youtube-play"
+                          aria-hidden="true"
+                        ></i>{" "}
+                        &nbsp;
+                      </Link> */}
+
+                          <TwitterShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            title={newsSectionData[0]?.title}
+                          >
+                            {" "}
+                            <i className="fa fa-twitter" aria-hidden="true" />
+                            &nbsp;
+                          </TwitterShareButton>
+
+                          <LinkedinShareButton
+                            url={`${process.env.BASE_LIVE_URL}/news/${newsSectionData[0]?.id}`}
+                            title={newsSectionData[0]?.title}
                           >
                             {" "}
                             <i

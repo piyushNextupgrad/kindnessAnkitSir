@@ -1456,7 +1456,7 @@ const EventPage = () => {
                           <th>Date</th>
                           <th>Description</th>
                           <th>Address</th>
-                          <th style={{ width: "200px" }}>Event Type</th>
+                          <th>Event Type</th>
                           <th>Event Cost</th>
                           <th>City</th>
                           <th>State</th>

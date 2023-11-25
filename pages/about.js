@@ -159,6 +159,7 @@ const About = () => {
                           }
                           controls={true}
                           playing={false}
+                          muted={true}
                           width={"100%"}
                         />
                       ) : data2?.section_media_type == "image" ? (
@@ -183,6 +184,7 @@ const About = () => {
                           controls={true}
                           playing={false}
                           autoplay={false}
+                          muted={true}
                           width={"100%"}
                           height={"50vh"}
                         />
@@ -235,6 +237,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -245,6 +248,7 @@ const About = () => {
                           url={heathEquityData[0]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -276,6 +280,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -286,6 +291,7 @@ const About = () => {
                         url={heathEquityData[1]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -347,6 +353,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -357,6 +364,7 @@ const About = () => {
                         url={heathEquityData[2]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -411,6 +419,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -421,6 +430,7 @@ const About = () => {
                           url={heathEquityData[3]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -473,7 +483,7 @@ const About = () => {
                       url={educationEquityData[0]?.media ? process.env.SITE_URL + educationEquityData[0]?.media : "/demo-video.mp4"}
                       controls
                       playing={true}
-                      
+                      muted={true}
                       width='100%'
                       height={300}
                     /> */}
@@ -487,6 +497,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -497,6 +508,7 @@ const About = () => {
                           url={educationEquityData[0]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -528,7 +540,7 @@ const About = () => {
                         }
                         controls
                         playing={true}
-                        
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -558,6 +570,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -568,6 +581,7 @@ const About = () => {
                         url={educationEquityData[1]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -619,6 +633,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -629,6 +644,7 @@ const About = () => {
                         url={educationEquityData[2]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -673,6 +689,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -683,6 +700,7 @@ const About = () => {
                           url={educationEquityData[3]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -739,7 +757,7 @@ const About = () => {
                       url={workforceEquityData[0]?.media ? process.env.SITE_URL + workforceEquityData[0]?.media : "/demo-video.mp4"}
                       controls
                       playing={true}
-                      
+                      muted={true}
                       width='100%'
                       height={300}
                     /> */}
@@ -753,6 +771,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -763,6 +782,7 @@ const About = () => {
                           url={workforceEquityData[0]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -793,7 +813,7 @@ const About = () => {
                         }
                         controls
                         playing={true}
-                        
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -823,6 +843,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -833,6 +854,7 @@ const About = () => {
                         url={workforceEquityData[1]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -895,6 +917,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -905,6 +928,7 @@ const About = () => {
                         url={workforceEquityData[2]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -949,6 +973,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -959,6 +984,7 @@ const About = () => {
                           url={workforceEquityData[3]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -1020,6 +1046,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1030,6 +1057,7 @@ const About = () => {
                           url={publicEquityData[0]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -1059,7 +1087,7 @@ const About = () => {
                         }
                         controls
                         playing={true}
-                        
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1088,6 +1116,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -1098,6 +1127,7 @@ const About = () => {
                         url={publicEquityData[1]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1159,6 +1189,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -1169,6 +1200,7 @@ const About = () => {
                         url={publicEquityData[2]?.media}
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1211,6 +1243,7 @@ const About = () => {
                         }
                         controls={true}
                         playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1221,6 +1254,7 @@ const About = () => {
                           url={publicEquityData[3]?.media}
                           controls={true}
                           playing={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
