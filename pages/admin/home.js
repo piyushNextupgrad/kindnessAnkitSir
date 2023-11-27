@@ -19,6 +19,7 @@ import {
 import { BsYoutube, BsFileEarmarkImage } from "react-icons/bs";
 import Link from "next/link";
 const Home = () => {
+  const currentDate2 = getFormatedDate(new Date(), "YYYY-MM-DD");
   const [startDate, setStartDate] = useState(new Date());
   const [descriptionAccomplishment, setDescriptionAccomplishment] = useState(
     []
@@ -824,8 +825,7 @@ const Home = () => {
       if (newsResp?.data?.success) {
         let respData = newsResp?.data?.data?.reverse();
         let campignNews = respData?.filter(
-          (item) =>
-            item?.sectionName == "camp_news" && item?.expire_date > currentDate
+          (item) => item?.sectionName == "camp_news"
         );
 
         console.log("campignNews", campignNews);
@@ -2364,7 +2364,15 @@ const Home = () => {
                             {newsSectionData?.length
                               ? newsSectionData?.map((item, index) => (
                                   <tr key={index}>
-                                    <td>{index + 1}</td>
+                                    <td
+                                      className={`${
+                                        item.expire_date < currentDate2
+                                          ? "ExpireData"
+                                          : null
+                                      }`}
+                                    >
+                                      {index + 1}
+                                    </td>
                                     {item?.edit ? (
                                       <>
                                         <td></td>

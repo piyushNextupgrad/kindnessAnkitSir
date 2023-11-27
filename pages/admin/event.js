@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { getBase64 } from "@/store/library/utils";
+
+import {
+  getBase64,
+  checkImageOrVideoFromUrl,
+  getFileType,
+} from "@/store/library/utils";
 import TimePicker from "react-bootstrap-time-picker";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -24,9 +29,10 @@ const EventPage = () => {
   const [stateEdit, setstateEdit] = useState("");
   const [zipEdit, setzipEdit] = useState("");
   const [newsTitle, setnewsTitle] = useState("");
-  const [active2, setactive2] = useState("");
+  const [active2, setactive2] = useState(false);
   const [newsMedia, setnewsMedia] = useState("");
   const [promo_video, setpromo_video] = useState("");
+  const [EventPreview, setEventPreview] = useState();
 
   const [eventTitle, seteventTitle] = useState("");
   const [eventDescription3, seteventDescription3] = useState();
@@ -63,7 +69,7 @@ const EventPage = () => {
 
   //states for update Event Image List Section- piyush
   const [text2, settext2] = useState();
-  const [updateActive2, setUpdateActive2] = useState(0);
+  const [updateActive2, setUpdateActive2] = useState(false);
   const [upMedia2, setupMedia2] = useState();
   const [upMediaPreview2, setupMediaPreview2] = useState();
   const [upDesc2, setupDesc2] = useState();
@@ -315,7 +321,8 @@ const EventPage = () => {
           adminMedia3();
           setupMedia2("");
           settext2("");
-          setUpdateActive2("");
+
+          setUpdateActive2(false);
           showNotification("Data updated Successfully", "Success");
         } else {
           setIsSubmitingLoader(false);
@@ -500,7 +507,8 @@ const EventPage = () => {
           adminMedia3();
           setnewsMedia("");
           setnewsTitle("");
-          setactive2("");
+          setactive2(false);
+          setupMediaPreview(false);
           showNotification("Data updated Successfully", "Success");
         } else {
           setIsSubmitingLoader(false);
@@ -672,6 +680,7 @@ const EventPage = () => {
             setnewsMedia("");
             setzipcode("");
             seteventCost("");
+            setEventPreview(false);
             setactive3(false);
           } else {
             setIsSubmitingLoader(false);
@@ -1373,6 +1382,7 @@ const EventPage = () => {
                 <div className="col-md-4">
                   <label className="form-check-label">Active &nbsp;</label>
                   <input
+                    value={active2}
                     type="checkbox"
                     id="flexCheckDefault"
                     onChange={(e) => setactive2(e?.target?.checked)}
@@ -1499,6 +1509,7 @@ const EventPage = () => {
                                   </td>
                                   <td>
                                     <input
+                                      className="addWidth"
                                       type="text"
                                       placeholder="Description"
                                       value={editEventDescription3}
@@ -1511,6 +1522,7 @@ const EventPage = () => {
                                   </td>
                                   <td>
                                     <input
+                                      className="addWidth"
                                       type="text"
                                       placeholder="Address"
                                       value={EditAddress}
@@ -1519,8 +1531,9 @@ const EventPage = () => {
                                       }
                                     />
                                   </td>
-                                  <td>
+                                  <td className="addWidth2">
                                     <Select
+                                      className="addWidth2"
                                       options={eventTypeDropDownOptions}
                                       onChange={(e) =>
                                         seteventTypeEdit(e?.value)
@@ -1529,6 +1542,7 @@ const EventPage = () => {
                                   </td>
                                   <td>
                                     <input
+                                      className="addWidth"
                                       type="text"
                                       placeholder="Event Cost"
                                       value={costEdit}
@@ -1539,6 +1553,7 @@ const EventPage = () => {
                                   </td>
                                   <td>
                                     <input
+                                      className="addWidth"
                                       type="text"
                                       placeholder="City"
                                       value={cityEdit}
@@ -1547,14 +1562,16 @@ const EventPage = () => {
                                       }
                                     />
                                   </td>
-                                  <td style={{ width: "300px" }}>
+                                  <td className="addWidth2">
                                     <Select
+                                      className="addWidth2"
                                       options={options_2}
                                       onChange={(e) => setstateEdit(e.value)}
                                     />
                                   </td>
                                   <td>
                                     <input
+                                      className="addWidth"
                                       type="text"
                                       placeholder="Zip"
                                       value={zipEdit}
@@ -1630,7 +1647,9 @@ const EventPage = () => {
                                   <td>
                                     {getFormatedDate(item?.date, "MM/DD/YYYY")}
                                   </td>
-                                  <td>{item?.event_description}</td>
+                                  <td className="addWidth">
+                                    {item?.event_description}
+                                  </td>
                                   <td>{item?.location_address}</td>
                                   <td>{item?.event_type}</td>
                                   <td>{item?.event_cost}</td>
@@ -1860,7 +1879,7 @@ const EventPage = () => {
                       <p>Event Media</p>
                       <div className="col-md-3">
                         <Image
-                          src="/no-img.jpg"
+                          src={EventPreview ? EventPreview : "/no-img.jpg"}
                           width={80}
                           height={80}
                           alt="Picture of the author"
@@ -1870,7 +1889,7 @@ const EventPage = () => {
                       <div className="col-md-4">
                         <input
                           type="file"
-                          onChange={(e) => {
+                          onChange={async (e) => {
                             const img = e?.target?.files[0];
 
                             const fileName = img.name.toLowerCase();
@@ -1886,6 +1905,15 @@ const EventPage = () => {
                                 return;
                               } else {
                                 setnewsMedia2(e.target.files[0]);
+                                const fileName = img.name.toLowerCase();
+                                const uplodingFileType = getFileType(
+                                  e?.target?.files[0]?.type
+                                );
+
+                                let fileData = await getBase64(img);
+                                console.log("fileData", fileData);
+                                setEventPreview(fileData);
+                                e.target.value = null;
                               }
                             } else if (
                               /\.(mp4|mov|mkv|Ff4v|swf|webm)$/.test(fileName)

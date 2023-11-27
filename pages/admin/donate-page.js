@@ -863,7 +863,7 @@ const DonatePage = () => {
                             <tr key={key}>
                               <td>{key + 1} </td>
                               <td>${item.gift_amt}</td>
-                              <td>{item.name}</td>
+                              <td className="addWidth2">{item.name}</td>
                               <td>{item.email}</td>
                               <td>{item.phone_number}</td>
                               <td>{item.address}</td>

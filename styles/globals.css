@@ -3463,6 +3463,15 @@ input[type="text"]:hover {
 .popupYT {
   margin-top: 1rem;
 }
+.ExpireData {
+  background-color: #f3aa88;
+}
+.addWidth {
+  width: 150px !important;
+}
+.addWidth2 {
+  width: 200px !important;
+}
 /* -----------------------Media Queries----------------------- */
 @media (max-width: 1200px) {
   .search11 {
