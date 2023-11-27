@@ -571,6 +571,7 @@ const GetInvolved = () => {
                             {console.log("item", item)}
                             <td>{key + 1}</td>
                             <td>{item?.name}</td>
+
                             <td>{item?.email}</td>
                             <td>{item?.phone}</td>
                             <td>{item?.interest_type}</td>

@@ -71,7 +71,7 @@ const Home = () => {
   /////
   const [campTitle, setCampTitle] = useState();
   const [campActive, setCampActive] = useState();
-  const [campMedia, setCampMedia] = useState();
+  const [campMedia, setCampMedia] = useState(null);
   const [campMediaPreview, setCampMediaPreview] = useState();
   const [campDate, setCampDate] = useState();
   const [campItem, setCampItem] = useState();
@@ -666,6 +666,8 @@ const Home = () => {
       } else {
         showNotification("Please upload valid file", "Error");
       }
+
+      e.target.value = null;
     }
   };
 
@@ -985,6 +987,7 @@ const Home = () => {
           const response = await homePageService.addCampaignNewsData(formData);
 
           if (response?.data?.success) {
+            setCampTitle("");
             showNewsSection();
             showNotification(response?.data?.message, "Success");
             setIsSubmitingLoader(false);
@@ -996,7 +999,6 @@ const Home = () => {
             setCampMedia(null);
             setCampMediaPreview(null);
             setCampSection("");
-            setCampTitle("");
           } else {
             setIsSubmitingLoader(false);
             showNotification(response.data.message, "Error");
@@ -1007,6 +1009,7 @@ const Home = () => {
             "Error"
           );
         }
+        console.log("==>campTitle", campTitle);
       } catch (error) {
         console.error(error);
       }
@@ -1044,7 +1047,7 @@ const Home = () => {
             showNewsSection();
             showNotification(response?.data?.message, "Success");
             setIsSubmitingLoader(false);
-
+            setCampTitle("");
             setCampActive("");
             setStartDate("");
             setCampDate("");

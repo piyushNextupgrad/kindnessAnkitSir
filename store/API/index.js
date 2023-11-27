@@ -16,7 +16,7 @@ export default (() => {
     GETINVOLVEDYNAMIC: APPCONST.API_URL + "api/getHomeCampNewsAndSponsPartner",
     GETINVOLVEDINTLIST: APPCONST.API_URL + "api/getEnvolvedInterest",
     DELETEINTERESTLIST: APPCONST.API_URL + "api/envolvedInterest",
-    DELETELEARNMORELIST: APPCONST.API_URL + "api/learnMore",
+    DELETELEARNMORELIST: APPCONST.API_URL + "api/deletelearnMore",
 
     ADD_SIGNUP_DATA: APPCONST.API_URL + "api/signUp",
     GET_SIGNUP_LIST: APPCONST.API_URL + "api/getSignUp",

@@ -14,7 +14,7 @@ async function deleteInterestList(params) {
 }
 
 async function deleteLearnMoreList(params) {
-  return axiosInterceptor.post(API.DELETELEARNMORELIST, params);
+  return axiosInterceptor.delete(API.DELETELEARNMORELIST, params);
 }
 
 async function updateLearnMoreSection(params) {

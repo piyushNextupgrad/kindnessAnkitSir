@@ -89,7 +89,7 @@ const Get_involved = () => {
         const response =
           await getInvolvePageSevices.updateLearnMoreSectionFrontend(formData);
 
-        if (response?.data?.success) {
+        if (response?.data?.success == true) {
           setLoaderStatus(false);
           setname("");
           setemail("");
@@ -100,6 +100,11 @@ const Get_involved = () => {
           showNotification("Form Submit Successfully", "Success");
         } else {
           setLoaderStatus(false);
+          if (response?.data?.message == "email already exists") {
+            showNotification("Email already exists", "Error");
+          } else {
+            showNotification("Email not sent", "Error");
+          }
         }
       } catch (err) {
         // Handle any other errors that may occur during the request
