@@ -31,7 +31,7 @@ const Events = () => {
   const [listAllEventData, setListAllEventData] = useState([]);
   const [eventListLoader, setEventListLoader] = useState(false);
   const [todayEvent, setTodayEvent] = useState([]);
-
+  const [isSubmittingLoader, setIsSubmittingLoader] = useState(false);
   const [weekEvent, setWeekEvent] = useState([]);
   const [monthEvent, setMonthEvent] = useState([]);
   const [searchCategoryTitle, setSearchCategoryTitle] = useState();
@@ -336,6 +336,7 @@ const Events = () => {
     console.log("eventId", eventId);
     console.log("views", views);
     try {
+      setIsSubmittingLoader(true);
       let currentViews = views == null ? 0 : views;
 
       const formData = new FormData();
@@ -347,9 +348,11 @@ const Events = () => {
       if (resp?.data?.success) {
         router.push(`/event/${eventId}`);
       } else {
+        setIsSubmittingLoader(false);
         showNotification(response?.data?.message, "Error");
       }
     } catch (error) {
+      setIsSubmittingLoader(false);
       console.error(error);
     }
   };
@@ -362,6 +365,21 @@ const Events = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Layout title="Events">
+        {isSubmittingLoader ? (
+          <div className="overlay">
+            <div className="spinner-container">
+              <Spinner
+                className="loaderSpinnerPiyush"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  color: "#0a1c51fc",
+                }}
+                animation="border"
+              />
+            </div>
+          </div>
+        ) : null}
         <section>
           <div className="container">
             <div className="event_wrap_main ">

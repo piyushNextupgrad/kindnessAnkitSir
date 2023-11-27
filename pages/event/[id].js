@@ -457,22 +457,29 @@ const singleEventData = ({ filter_data }) => {
   const updateEventView = async (eventId, views) => {
     console.log("eventId", eventId);
     console.log("views", views);
-    try {
-      let currentViews = views == null ? 0 : views;
+    if (eventId == router.query.id) {
+      setActiveTabIndex(0);
+    } else {
+      try {
+        setIsSubmittingLoader(true);
+        let currentViews = views == null ? 0 : views;
 
-      const formData = new FormData();
-      formData.append("updateId", eventId);
-      formData.append("hits", parseInt(currentViews) + 1);
+        const formData = new FormData();
+        formData.append("updateId", eventId);
+        formData.append("hits", parseInt(currentViews) + 1);
 
-      const resp = await eventPageSevices.updateEventManagement(formData);
+        const resp = await eventPageSevices.updateEventManagement(formData);
 
-      if (resp?.data?.success) {
-        router.push(`/event/${eventId}`);
-      } else {
-        showNotification(response?.data?.message, "Error");
+        if (resp?.data?.success) {
+          router.push(`/event/${eventId}`);
+        } else {
+          setIsSubmittingLoader(false);
+          showNotification(response?.data?.message, "Error");
+        }
+      } catch (error) {
+        setIsSubmittingLoader(false);
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -568,21 +575,6 @@ const singleEventData = ({ filter_data }) => {
 
   return (
     <Layout title={"single Event"}>
-      {isSubmittingLoader ? (
-        <div className="overlay">
-          <div className="spinner-container">
-            <Spinner
-              className="loaderSpinnerPiyush"
-              style={{
-                width: "100px",
-                height: "100px",
-                color: "#0a1c51fc",
-              }}
-              animation="border"
-            />
-          </div>
-        </div>
-      ) : null}
       <section>
         <div className="container">
           <div className="event_wrap_main ">
