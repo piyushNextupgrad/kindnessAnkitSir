@@ -29,14 +29,6 @@ const CheckoutForm = ({
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [amount, setAmount] = useState("");
-  const formData = new FormData();
-  formData.append("donorName", donorName);
-  formData.append("donationMessage", donationMessage);
-  formData.append("amt", amt);
-  formData.append("donorEmail", donorEmail);
-  formData.append("donorPhone", donorPhone);
-  formData.append("donorAddress", donorAddress);
-  formData.append("donorGiftNote", donorGiftNote);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -86,6 +78,14 @@ const CheckoutForm = ({
       setErrorMessage(confirmError.message);
     } else {
       console.log("Payment successful");
+      const formData = new FormData();
+      formData.append("donorName", donorName);
+      formData.append("donationMessage", donationMessage);
+      formData.append("amt", amt);
+      formData.append("donorEmail", donorEmail);
+      formData.append("donorPhone", donorPhone);
+      formData.append("donorAddress", donorAddress);
+      formData.append("donorGiftNote", donorGiftNote);
       try {
         // send data to backend after successful payment
         const res = await fetch(
@@ -96,7 +96,13 @@ const CheckoutForm = ({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              formData,
+              donorName,
+              donationMessage,
+              amt,
+              donorEmail,
+              donorPhone,
+              donorAddress,
+              donorGiftNote,
             }),
           }
         );

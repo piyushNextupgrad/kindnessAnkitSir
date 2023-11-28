@@ -268,6 +268,14 @@ function MainPage({ metaData }) {
             setIsSubmitingLoader(false);
             setSignUpEmail("");
             showNotification("Response Saved.", "Success");
+          } else {
+            if (response?.data?.message == "Email already exists") {
+              setIsSubmitingLoader(false);
+              showNotification("Email already exists", "Error");
+            } else {
+              setIsSubmitingLoader(false);
+              showNotification("Failed to send", "Error");
+            }
           }
         } catch (error) {
           setIsSubmitingLoader(false);

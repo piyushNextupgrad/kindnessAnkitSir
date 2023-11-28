@@ -100,7 +100,7 @@ const Get_involved = () => {
           showNotification("Form Submit Successfully", "Success");
         } else {
           setLoaderStatus(false);
-          if (response?.data?.message == "email already exists") {
+          if (response?.data?.message == "Email already exists") {
             showNotification("Email already exists", "Error");
           } else {
             showNotification("Email not sent", "Error");
