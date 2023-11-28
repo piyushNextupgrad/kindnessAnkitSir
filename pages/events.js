@@ -44,12 +44,17 @@ const Events = () => {
   const [allEvents, setallEvents] = useState([]);
   const [filteredAllEvents, setfilteredAllEvents] = useState([]);
   const [filteredAllEventsBackup, setfilteredAllEventsBackup] = useState([]);
+  const [imageSize, setimageSize] = useState([]);
 
   const router = useRouter();
 
   const [Images, setImages] = useState([]);
   useEffect(() => {
     console.log("Images", Images);
+    if (Images?.length) {
+      const filterImg = Images.filter((item) => item.active == "1");
+      setimageSize(filterImg);
+    }
   }, [Images]);
 
   useEffect(() => {
@@ -901,8 +906,79 @@ const Events = () => {
             </div>
           </div>
         </section>
+        {console.log("images=>", Images)}
 
-        <ImageSlider Images={Images} />
+        {imageSize.length > 3 ? (
+          <ImageSlider Images={Images} />
+        ) : imageSize.length == 3 ? (
+          <>
+            <div className="EventImageSlider">
+              <img
+                className="flexItem"
+                src={
+                  imageSize[0]?.item?.event_media
+                    ? process.env.SITE_URL + item?.event_media
+                    : "/about-2.jpg"
+                }
+                alt="Picture of the author"
+              />
+
+              <img
+                className="flexItem"
+                src={
+                  imageSize[1]?.item?.event_media
+                    ? process.env.SITE_URL + item?.event_media
+                    : "/about-2.jpg"
+                }
+                alt="Picture of the author"
+              />
+
+              <img
+                className="flexItem"
+                src={
+                  imageSize[2]?.item?.event_media
+                    ? process.env.SITE_URL + item?.event_media
+                    : "/about-2.jpg"
+                }
+                alt="Picture of the author"
+              />
+            </div>
+          </>
+        ) : imageSize.length == 2 ? (
+          <div className="EventImageSlider">
+            <img
+              className="flexItem"
+              src={
+                imageSize[0]?.item?.event_media
+                  ? process.env.SITE_URL + item?.event_media
+                  : "/about-2.jpg"
+              }
+              alt="Picture of the author"
+            />
+
+            <img
+              className="flexItem"
+              src={
+                imageSize[1]?.item?.event_media
+                  ? process.env.SITE_URL + item?.event_media
+                  : "/about-2.jpg"
+              }
+              alt="Picture of the author"
+            />
+          </div>
+        ) : (
+          <div className="EventImageSlider">
+            <img
+              className="flexItem"
+              src={
+                imageSize[0]?.item?.event_media
+                  ? process.env.SITE_URL + item?.event_media
+                  : "/about-2.jpg"
+              }
+              alt="Picture of the author"
+            />
+          </div>
+        )}
       </Layout>
     </>
   );

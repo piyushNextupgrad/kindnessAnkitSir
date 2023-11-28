@@ -470,7 +470,7 @@ input:focus {
   .mbSpan {
     font-size: 8px;
   }
-  * {
+  main > * {
     font-size: 10px;
   }
   nav[role="navigation"] {
