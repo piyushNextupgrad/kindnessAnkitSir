@@ -3,7 +3,12 @@ import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { contactPageSevices } from "@/store/services/contactUs.js";
 import { homePageService } from "@/store/services/homepageServices";
-
+import {
+  getFormatedDate,
+  getBase64,
+  checkImageOrVideoFromUrl,
+  getFileType,
+} from "@/store/library/utils";
 import { Spinner } from "react-bootstrap";
 
 import showNotification from "@/helpers/show_notification";
@@ -24,7 +29,7 @@ const ContactUs = () => {
   const [sharetext, setsharetext] = useState("");
   const [sharelink, setsharelink] = useState("");
   const [urlError, setUrlError] = useState("");
-
+  const [middleImagePreview, setMiddleImagePreview] = useState("");
   const [contactStaticPageData, setContactStaticPageData] = useState([]);
   const [isSubmitingLoader, setIsSubmitingLoader] = useState(false);
 
@@ -55,6 +60,7 @@ const ContactUs = () => {
 
         const resp = await homePageService.addPageStaticContent(formData);
         if (resp?.data?.success) {
+          setMiddleImagePreview("");
           showNotification(resp?.data?.message, "Success");
         } else {
           showNotification(resp?.data?.success, "Error");
@@ -219,7 +225,9 @@ const ContactUs = () => {
                   </label>
                   <br />
                   <Image
-                    src="/no-img.jpg"
+                    src={
+                      middleImagePreview ? middleImagePreview : "/no-img.jpg"
+                    }
                     width={80}
                     height={80}
                     alt="Picture of the author"
@@ -230,8 +238,13 @@ const ContactUs = () => {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       if (e.target.files[0]?.size < 6 * 1024 * 1024) {
+                        const img = e?.target?.files[0];
+
+                        const fileName = img.name.toLowerCase();
+                        let fileData = await getBase64(img);
+                        setMiddleImagePreview(fileData);
                         setshareimage(e.target.files[0]);
                       } else {
                         showNotification(
