@@ -106,6 +106,7 @@ const CheckoutForm = ({
             }),
           }
         );
+        console.log("Payment Response", res);
       } catch (error) {
         console.log(error);
       }
