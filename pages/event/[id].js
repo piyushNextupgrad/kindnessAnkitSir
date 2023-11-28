@@ -418,7 +418,7 @@ const singleEventData = ({ filter_data }) => {
     ${filter_data2[0]?.event_type}
   </p>
   <p className="fst_event">
-                                <b>EVENT COST:</b>
+                                <b>EVENT COST: $</b>
                                 
                                 ${filter_data2[0]?.event_cost}
                               </p>
@@ -461,7 +461,7 @@ const singleEventData = ({ filter_data }) => {
       setActiveTabIndex(0);
     } else {
       try {
-        setIsSubmittingLoader(true);
+        setActiveTabIndex(0);
         let currentViews = views == null ? 0 : views;
 
         const formData = new FormData();
