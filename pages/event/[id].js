@@ -618,7 +618,7 @@ const singleEventData = ({ filter_data }) => {
                     </ul>
                   ) : null}
 
-                  <div className="container">
+                  {/* <div className="container">
                     <Calendar
                       onChange={(selectedDate) => {
                         onChange(selectedDate);
@@ -626,7 +626,7 @@ const singleEventData = ({ filter_data }) => {
                       value={value}
                       minDate={new Date()}
                     />
-                  </div>
+                  </div> */}
                   <div className="resetBtn">
                     {date ? (
                       <div className="eventCalendarResetBtn">
@@ -675,7 +675,7 @@ const singleEventData = ({ filter_data }) => {
                   <TabList>
                     {/* <Tab>Today</Tab> */}
                     <Tab>{filter_data2[0]?.event_title}</Tab>
-                    <Tab>This Week </Tab>
+                    {/* <Tab>This Week </Tab>
                     <Tab>This Month</Tab>
                     <Tab>
                       All Upcoming Events &nbsp;
@@ -683,7 +683,7 @@ const singleEventData = ({ filter_data }) => {
                         className="fa fa-angle-double-right"
                         aria-hidden="true"
                       ></i>
-                    </Tab>
+                    </Tab> */}
                   </TabList>
 
                   <TabPanel>
