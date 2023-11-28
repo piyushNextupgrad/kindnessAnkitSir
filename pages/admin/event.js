@@ -254,6 +254,11 @@ const EventPage = () => {
       seteventList([...eventList]);
 
       setEditEventTitle(data?.event_title);
+      setEditEventDescription3(data?.event_description);
+      setEditAddress(data?.location_address);
+      setcostEdit(data?.event_cost);
+      setcityEdit(data?.city);
+      setzipEdit(data?.zip_code);
 
       // setEditStartDate(data?.date)
       setEditActive3(parseInt(data?.active) ? true : false);
