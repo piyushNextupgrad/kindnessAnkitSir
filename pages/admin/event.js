@@ -1402,7 +1402,7 @@ const EventPage = () => {
                 <div className="col-md-4">
                   <label className="form-check-label">Active &nbsp;</label>
                   <input
-                    value={active2}
+                    checked={active2}
                     type="checkbox"
                     id="flexCheckDefault"
                     onChange={(e) => setactive2(e?.target?.checked)}

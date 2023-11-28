@@ -125,6 +125,9 @@ const ContactUs = () => {
         setshareheader(resp?.data?.data[0]?.header_text);
         setsharetext(resp?.data?.data[0]?.page_text);
         setsharelink(resp?.data?.data[0]?.impact_link);
+        setMiddleImagePreview(
+          process.env.SITE_URL + resp?.data?.data[0]?.image
+        );
       }
     } catch (err) {
       // Handle any other errors that may occur during the request

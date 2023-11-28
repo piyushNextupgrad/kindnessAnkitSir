@@ -679,7 +679,7 @@ const singleEventData = ({ filter_data }) => {
                 <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
                   <TabList>
                     {/* <Tab>Today</Tab> */}
-                    <Tab>{filter_data2[0]?.event_title}</Tab>
+                    {/* <Tab>{filter_data2[0]?.event_title}</Tab> */}
                     {/* <Tab>This Week </Tab>
                     <Tab>This Month</Tab>
                     <Tab>
