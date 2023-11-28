@@ -18,6 +18,11 @@ import Modal from "react-bootstrap/Modal";
 import showNotification from "@/helpers/show_notification";
 import { addToGoogleCalendar } from "@/store/library/utils";
 import ReactPlayer from "react-player";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+} from "next-share";
 
 export async function getStaticPaths() {
   const response = await fetch(
@@ -844,13 +849,48 @@ const singleEventData = ({ filter_data }) => {
                                 <p className="fst_event">
                                   <b>SHARE:</b>
                                 </p>
-                                <a href="#">
+                                <FacebookShareButton
+                                  url={`${process.env.BASE_LIVE_URL}event/${id}`}
+                                  quote={filter_data2[0]?.event_title}
+                                  hashtag={`#kindnesscampaign ${filter_data2[0]?.event_title}`}
+                                >
+                                  <i
+                                    className="fa fa-facebook"
+                                    aria-hidden="true"
+                                  />
+                                  &nbsp;
+                                </FacebookShareButton>
+
+                                <TwitterShareButton
+                                  url={`${process.env.BASE_LIVE_URL}event/${id}`}
+                                  title={filter_data2[0]?.event_title}
+                                >
+                                  {" "}
+                                  <i
+                                    className="fa fa-twitter"
+                                    aria-hidden="true"
+                                  />
+                                  &nbsp;
+                                </TwitterShareButton>
+
+                                <LinkedinShareButton
+                                  url={`${process.env.BASE_LIVE_URL}event/${id}`}
+                                  title={filter_data2[0]?.event_title}
+                                >
+                                  {" "}
+                                  <i
+                                    className="fa fa-linkedin-square"
+                                    aria-hidden="true"
+                                  ></i>{" "}
+                                  &nbsp;
+                                </LinkedinShareButton>
+                                {/* <a href="#">
                                   <i
                                     className="fa fa-facebook"
                                     aria-hidden="true"
                                   ></i>
                                   &nbsp;
-                                </a>
+                                </a> */}
                                 {/* <a href="#">
                                   {" "}
                                   <i
@@ -859,7 +899,7 @@ const singleEventData = ({ filter_data }) => {
                                   ></i>{" "}
                                   &nbsp;
                                 </a> */}
-                                <a href="#">
+                                {/* <a href="#">
                                   <i
                                     className="fa fa-twitter"
                                     aria-hidden="true"
@@ -873,7 +913,7 @@ const singleEventData = ({ filter_data }) => {
                                     aria-hidden="true"
                                   ></i>{" "}
                                   &nbsp;
-                                </a>
+                                </a> */}
                                 {/* <a href="#">
                                   
                                   <i
