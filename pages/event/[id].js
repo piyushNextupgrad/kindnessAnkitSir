@@ -460,8 +460,8 @@ const singleEventData = ({ filter_data }) => {
     if (eventId == router.query.id) {
       setActiveTabIndex(0);
     } else {
+      setIsSubmittingLoader(true);
       try {
-        setActiveTabIndex(0);
         let currentViews = views == null ? 0 : views;
 
         const formData = new FormData();
@@ -471,6 +471,7 @@ const singleEventData = ({ filter_data }) => {
         const resp = await eventPageSevices.updateEventManagement(formData);
 
         if (resp?.data?.success) {
+          setActiveTabIndex(0);
           router.push(`/event/${eventId}`);
         } else {
           setIsSubmittingLoader(false);

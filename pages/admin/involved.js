@@ -99,13 +99,43 @@ const GetInvolved = () => {
         setIsSubmitingLoader(true);
         const params = { delId: data };
         const delResp = await getInvolvePageSevices.deleteLearnMoreList(params);
+        getSignupListData();
 
-        const newLearnMoreList = learnMoreList.filter(
-          (item) => item.id != data
-        );
-        setlearnMoreList(newLearnMoreList);
+        // const newLearnMoreList = learnMoreList.filter(
+        //   (item) => item.id != data
+        // );
+        // setlearnMoreList(newLearnMoreList);
         setIsSubmitingLoader(false);
-        showNotification("Item deleted", "Success");
+        if (delResp?.data?.success) {
+          showNotification("Item deleted", "Success");
+        } else {
+          showNotification("Item not deleted", "Error");
+        }
+      } catch (error) {
+        setIsSubmitingLoader(false);
+        console.log(error);
+      }
+    }
+    if (sectionName == "SignUpList") {
+      try {
+        setIsSubmitingLoader(true);
+        const params = { delId: data };
+        const delResp = await getInvolvePageSevices.deleteSignUP(params);
+        getSignupListData();
+        console.log("SignupList", delResp);
+        setIsSubmitingLoader(false);
+        if (delResp?.data?.success) {
+          showNotification("Item deleted", "Success");
+        } else {
+          showNotification("Item not deleted", "Error");
+        }
+
+        // const newLearnMoreList = learnMoreList.filter(
+        //   (item) => item.id != data
+        // );
+        // setlearnMoreList(newLearnMoreList);
+        // setIsSubmitingLoader(false);
+        // showNotification("Item deleted", "Success");
       } catch (error) {
         setIsSubmitingLoader(false);
         console.log(error);
@@ -779,6 +809,7 @@ const GetInvolved = () => {
                           {/* <th>City</th>
                         <th>State</th> */}
                           <th>Date</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -797,6 +828,19 @@ const GetInvolved = () => {
                                       "MM/DD/YYYY"
                                     )
                                   : ""}
+                              </td>
+                              <td>
+                                <button
+                                  className="btn btn-secondary"
+                                  onClick={() =>
+                                    deleteData(item.id, "SignUpList")
+                                  }
+                                >
+                                  <i
+                                    className="fa fa-trash-o"
+                                    aria-hidden="true"
+                                  />
+                                </button>
                               </td>
                             </tr>
                           ))}

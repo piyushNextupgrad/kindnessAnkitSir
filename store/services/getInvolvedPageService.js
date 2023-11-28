@@ -14,7 +14,10 @@ async function deleteInterestList(params) {
 }
 
 async function deleteLearnMoreList(params) {
-  return axiosInterceptor.delete(API.DELETELEARNMORELIST, params);
+  return axiosInterceptor.post(API.DELETELEARNMORELIST, params);
+}
+async function deleteSignUP(params) {
+  return axiosInterceptor.post(API.DELETESignUpList, params);
 }
 
 async function updateLearnMoreSection(params) {
@@ -99,4 +102,5 @@ export const getInvolvePageSevices = {
   downloadSignUpReport,
   downloadLearnMore,
   updateLearnMoreSectionFrontend,
+  deleteSignUP,
 };
