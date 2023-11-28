@@ -6,7 +6,7 @@ import {
   getFileType,
 } from "@/store/library/utils";
 import TimePicker from "react-bootstrap-time-picker";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactPlayer from "react-player";
@@ -20,6 +20,8 @@ import { BsYoutube, BsFileEarmarkImage } from "react-icons/bs";
 import { Spinner } from "react-bootstrap";
 import Link from "next/link";
 const EventPage = () => {
+  const selectInputRef = useRef();
+  const selectStateRef = useRef();
   const [eventType, seteventType] = useState("");
   const [eventdec, seteventdec] = useState("");
   const [active, setactive] = useState("");
@@ -634,14 +636,16 @@ const EventPage = () => {
             seteventDescription3("");
             setStartDate("");
             settime("");
-            seteventType2("");
+            seteventType2(null);
             setlocationAddress("");
             setcity("");
-            setstate("");
+            setstate(null);
             setnewsMedia("");
             setzipcode("");
             seteventCost("");
             setactive3(false);
+            selectInputRef.current.clearValue();
+            selectStateRef.current.clearValue();
           } else {
             setIsSubmitingLoader(false);
             showNotification(resp?.data?.message, "Error");
@@ -702,6 +706,8 @@ const EventPage = () => {
             seteventCost("");
             setEventPreview(false);
             setactive3(false);
+            selectInputRef.current.clearValue();
+            selectStateRef.current.clearValue();
           } else {
             setIsSubmitingLoader(false);
             showNotification(resp?.data?.message, "Error");
@@ -1790,8 +1796,10 @@ const EventPage = () => {
                   <div className="col-md-6">
                     <label className="form-label">Event Type</label>
                     <Select
+                      ref={selectInputRef}
                       options={eventTypeDropDownOptions}
                       onChange={(e) => seteventType2(e?.value)}
+                      isClearable={true}
                     />
                   </div>
                 </div>
@@ -1826,8 +1834,10 @@ const EventPage = () => {
                   <div className="col-md-6">
                     <label className="form-label">State</label>
                     <Select
+                      ref={selectStateRef}
                       options={options_2}
-                      onChange={(e) => setstate(e.value)}
+                      onChange={(e) => setstate(e?.value)}
+                      isClearable={true}
                     />
                   </div>
 
