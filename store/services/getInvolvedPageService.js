@@ -88,6 +88,14 @@ async function downloadLearnMore(params) {
   }
 }
 
+async function orderPay(params) {
+  return axiosInterceptor.post(API.ORDER_PAY, params);
+}
+
+async function doPayment(params) {
+  return axiosInterceptor.post(API.DO_PAYMENT, params);
+}
+
 export const getInvolvePageSevices = {
   updateInterestSetupSection,
   updateLearnMoreSection,
@@ -103,4 +111,6 @@ export const getInvolvePageSevices = {
   downloadLearnMore,
   updateLearnMoreSectionFrontend,
   deleteSignUP,
+  orderPay,
+  doPayment,
 };

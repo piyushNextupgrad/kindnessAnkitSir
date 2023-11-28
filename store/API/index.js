@@ -64,5 +64,7 @@ export default (() => {
     GET_RSVP: APPCONST.API_URL + "api/getRsvpList",
     DEL_RSVP: APPCONST.API_URL + "api/deleteRsvpListData",
     POST_LEARNMORE: APPCONST.API_URL + "api/learnMore",
+    ORDER_PAY: APPCONST.API_URL + "api/order/pay",
+    DO_PAYMENT: APPCONST.API_URL + "api/doPayment",
   };
 })();

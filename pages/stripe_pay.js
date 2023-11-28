@@ -1,36 +1,33 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import showNotification from "@/helpers/show_notification";
+import { Spinner } from "react-bootstrap";
+import { getInvolvePageSevices } from "@/store/services/getInvolvedPageService";
 import {
   CardElement,
   Elements,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import showNotification from "@/helpers/show_notification";
 
 const CheckoutForm = ({
   amt,
   donorName,
   donationMessage,
-  customAmount,
-  amountFromCheckbox,
   donorEmail,
   donorPhone,
   donorAddress,
   donorGiftNote,
-  toggle,
-  settoggle,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [errorMessage, setErrorMessage] = useState(null);
-  const [amount, setAmount] = useState("");
+
+  const [loader, setLoader] = useState(false);
 
   const handleSubmit = async (event) => {
+    setLoader(true);
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -44,99 +41,100 @@ const CheckoutForm = ({
 
     if (paymentMethodResult.error) {
       setErrorMessage(paymentMethodResult.error.message);
+      setLoader(false);
       return;
     }
 
     // Create or confirm the payment intent on the server
-    const res = await fetch(
-      "https://nextupgrad.us/laravel-old/diligent-api/api/order/pay",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          paymentMethodId: paymentMethodResult.paymentMethod.id,
-          // paymentAmount: amount,
-          paymentAmount: amt,
-          returnUrl: "https://kindness-omega.vercel.app", // Specify your frontend return URL here
-        }),
-      }
-    );
 
-    const result = await res.json();
-    const clientSecret = result.clientSecret;
+    let params = {
+      paymentMethodId: paymentMethodResult.paymentMethod.id,
+      paymentAmount: amt,
+      returnUrl: "https://kindness-omega.vercel.app", // Specify your frontend return URL here
+    };
 
+    const response = await getInvolvePageSevices.orderPay(params);
+
+    const clientSecret = response?.data.clientSecret;
     const { error: confirmError } = await stripe.confirmCardPayment(
       clientSecret,
-      {
-        payment_method: paymentMethodResult.paymentMethod.id,
-      }
+      { payment_method: paymentMethodResult.paymentMethod.id }
     );
 
     if (confirmError) {
-      setErrorMessage(confirmError.message);
+      setLoader(false);
+      setErrorMessage(confirmError?.message);
     } else {
-      console.log("Payment successful");
-      const formData = new FormData();
-      formData.append("donorName", donorName);
-      formData.append("donationMessage", donationMessage);
-      formData.append("amt", amt);
-      formData.append("donorEmail", donorEmail);
-      formData.append("donorPhone", donorPhone);
-      formData.append("donorAddress", donorAddress);
-      formData.append("donorGiftNote", donorGiftNote);
       try {
         // send data to backend after successful payment
-        const res = await fetch(
-          "https://nextupgrad.us/laravel-old/diligent-api/api/doPayment",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              donorName,
-              donationMessage,
-              amt,
-              donorEmail,
-              donorPhone,
-              donorAddress,
-              donorGiftNote,
-            }),
-          }
-        );
-        console.log("Payment Response", res);
+        const formData = new FormData();
+        formData.append("donorName", donorName);
+        formData.append("donationMessage", donationMessage);
+        formData.append("amt", amt);
+        formData.append("donorEmail", donorEmail);
+        formData.append("donorPhone", donorPhone);
+        formData.append("donorAddress", donorAddress);
+        formData.append("donorGiftNote", donorGiftNote);
+
+        const response = await getInvolvePageSevices.doPayment(formData);
+
+        console.log("res response", response);
+
+        if (response?.data?.success) {
+          closeModal();
+          showNotification("Your Payment is successfull", "Success");
+        }
+
+        /* else{
+          showNotification("Your Payment is successfull! But not tracked in our system So please payment details", "Error");
+        } */
+
+        setLoader(false);
       } catch (error) {
+        setLoader(false);
         console.log(error);
       }
+      setLoader(false);
     }
   };
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <div>
-        {/* <label>Amount: {amt}</label> */}
-        {/* <input
-          type="text"
-          value={amt}
-          onChange={(e) => setAmount(e.target.value)}
-        /> */}
-      </div>
       <CardElement />
-      <button
-        className="payBtn"
-        onClick={handleSubmit}
-        type="button"
-        disabled={!stripe || !elements}
-      >
-        Pay Now
-      </button>
+      {loader ? (
+        <div className="overlay">
+          <div className="spinner-container">
+            <Spinner
+              className="loaderSpinnerPiyush"
+              style={{
+                width: "100px",
+                height: "100px",
+                color: "#0a1c51fc",
+              }}
+              animation="border"
+            />
+          </div>
+        </div>
+      ) : (
+        <button
+          className="payBtn"
+          onClick={handleSubmit}
+          type="button"
+          disabled={!stripe || !elements}
+        >
+          Pay Now
+        </button>
+      )}
+
       {errorMessage && <div>{errorMessage}</div>}
     </form>
   );
 };
-//pk_live_51NWr6bKALw1Ok2lyX9i6ej8x7GtWJayseuSkE79V39hhwH3DqK0kh7wCIgIQVYiLOcZtcaTF9KaKrs2DROeBYvaa00C9QMmuup
+
+/* const stripePromise = loadStripe(
+  "pk_live_51NWr6bKALw1Ok2lyX9i6ej8x7GtWJayseuSkE79V39hhwH3DqK0kh7wCIgIQVYiLOcZtcaTF9KaKrs2DROeBYvaa00C9QMmuup"
+); */
+
 const stripePromise = loadStripe(
   "pk_test_51NWr6bKALw1Ok2lyu5DdWiW3Su6Y4ndMpcokUhJLtmx42SBoBXFFskkmXulM8USUi6sYqlhsxA5BEgcHuztj2AjW005fXouJif"
 );
@@ -165,8 +163,6 @@ const StripePay = ({
       donorPhone={donorPhone}
       donorAddress={donorAddress}
       donorGiftNote={donorGiftNote}
-      toggle={toggle}
-      settoggle={settoggle}
     />
   </Elements>
 );

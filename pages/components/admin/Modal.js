@@ -92,6 +92,7 @@ const Modal = ({
                     donorGiftNote={donorGiftNote}
                     toggle={toggle}
                     settoggle={settoggle}
+                    closeModal={closeModal}
                   />
                 </form>
               </div>
