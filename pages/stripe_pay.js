@@ -135,9 +135,9 @@ const CheckoutForm = ({
     </form>
   );
 };
-
+//pk_live_51NWr6bKALw1Ok2lyX9i6ej8x7GtWJayseuSkE79V39hhwH3DqK0kh7wCIgIQVYiLOcZtcaTF9KaKrs2DROeBYvaa00C9QMmuup
 const stripePromise = loadStripe(
-  "pk_live_51NWr6bKALw1Ok2lyX9i6ej8x7GtWJayseuSkE79V39hhwH3DqK0kh7wCIgIQVYiLOcZtcaTF9KaKrs2DROeBYvaa00C9QMmuup"
+  "pk_test_51NWr6bKALw1Ok2lyu5DdWiW3Su6Y4ndMpcokUhJLtmx42SBoBXFFskkmXulM8USUi6sYqlhsxA5BEgcHuztj2AjW005fXouJif"
 );
 
 const StripePay = ({
