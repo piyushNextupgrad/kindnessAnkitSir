@@ -223,45 +223,60 @@ const EventPage = () => {
   //function to update the table data - piyush
   function editFieldData(id, index, sectionName) {
     if (sectionName == "EventCategoryList") {
-      let data = adminMediaData[index];
-      data.edit = true;
+      let obj = adminMediaData?.find((item) => item.edit === true);
+      if (obj?.id == undefined) {
+        let data = adminMediaData[index];
+        data.edit = true;
 
-      adminMediaData[index] = data;
-      setadminMediaData([...adminMediaData]);
+        adminMediaData[index] = data;
+        setadminMediaData([...adminMediaData]);
 
-      settext(data?.event_category);
-      setupDesc(data?.event_description);
-      setUpdateActive(parseInt(data?.active) ? true : false);
+        settext(data?.event_category);
+        setupDesc(data?.event_description);
+        setUpdateActive(parseInt(data?.active) ? true : false);
+      } else {
+        showNotification("Please save last edited field", "Error");
+      }
     }
     if (sectionName == "EventImageList") {
-      let data = eventImageList[index];
-      data.edit = true;
+      let obj = eventImageList?.find((item) => item.edit === true);
+      if (obj?.id == undefined) {
+        let data = eventImageList[index];
+        data.edit = true;
 
-      eventImageList[index] = data;
-      seteventImageList([...eventImageList]);
+        eventImageList[index] = data;
+        seteventImageList([...eventImageList]);
 
-      settext2(data?.event_title);
-      setupMedia2(data?.event_media);
-      setupMediaPreview2(process.env.SITE_URL + data?.event_media);
-      setUpdateActive2(parseInt(data?.active) ? 1 : 0);
+        settext2(data?.event_title);
+        setupMedia2(data?.event_media);
+        setupMediaPreview2(process.env.SITE_URL + data?.event_media);
+        setUpdateActive2(parseInt(data?.active) ? 1 : 0);
+      } else {
+        showNotification("Please save last edited field", "Error");
+      }
     }
 
     if (sectionName == "EventList") {
-      let data = eventList[index];
-      data.edit = true;
+      let obj = eventList?.find((item) => item.edit === true);
+      if (obj?.id == undefined) {
+        let data = eventList[index];
+        data.edit = true;
 
-      eventList[index] = data;
-      seteventList([...eventList]);
+        eventList[index] = data;
+        seteventList([...eventList]);
 
-      setEditEventTitle(data?.event_title);
-      setEditEventDescription3(data?.event_description);
-      setEditAddress(data?.location_address);
-      setcostEdit(data?.event_cost);
-      setcityEdit(data?.city);
-      setzipEdit(data?.zip_code);
+        setEditEventTitle(data?.event_title);
+        setEditEventDescription3(data?.event_description);
+        setEditAddress(data?.location_address);
+        setcostEdit(data?.event_cost);
+        setcityEdit(data?.city);
+        setzipEdit(data?.zip_code);
 
-      // setEditStartDate(data?.date)
-      setEditActive3(parseInt(data?.active) ? true : false);
+        // setEditStartDate(data?.date)
+        setEditActive3(parseInt(data?.active) ? true : false);
+      } else {
+        showNotification("Please save last edited field", "Error");
+      }
     }
 
     // showNotification("Item Updated", "Success");
