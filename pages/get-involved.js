@@ -121,12 +121,14 @@ const Get_involved = () => {
       amountFromCheckbox != 0 &&
       amountFromCheckbox != undefined
     ) {
+      console.log("if condition", amountFromCheckbox);
       setamt(amountFromCheckbox);
     } else if (
       customAmount != undefined &&
       customAmount != 0 &&
       amountFromCheckbox == 0
     ) {
+      console.log("else if condition", customAmount);
       setamt(customAmount);
     }
   };
@@ -233,7 +235,6 @@ const Get_involved = () => {
   };
 
   function handleClear(event) {
-    event.preventDefault();
     const radioButtons = document.querySelectorAll("input[type='radio']");
     radioButtons.forEach((radioButton) => {
       radioButton.checked = false;
@@ -267,6 +268,7 @@ const Get_involved = () => {
   ]);
 
   useEffect(() => {
+    console.log("amount current value", amt);
     if (amt != null && amt > 0) {
       callPopup();
     }
