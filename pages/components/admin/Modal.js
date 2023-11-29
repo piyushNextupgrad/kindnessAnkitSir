@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import StripePay from "../../stripe_pay";
+import showNotification from "@/helpers/show_notification";
 const Modal = ({
   amt,
   donorName,
@@ -24,6 +25,22 @@ const Modal = ({
   handleClear,
 }) => {
   function closeModal() {
+    console.log("Worked");
+    settoggle(false);
+    setamt(null);
+    setDonorGiftNote("");
+    setDonorAddress("");
+    setDonorPhone("");
+    setDonorEmail("");
+    setDonorName("");
+    setDonationMessage("");
+    setAmountFromCheckbox(0);
+    setCustomAmount(0);
+    handleClear();
+    showNotification("Your Payment is successfull", "Success");
+  }
+
+  function terminateModal() {
     console.log("Worked");
     settoggle(false);
     setamt(null);
@@ -101,7 +118,7 @@ const Modal = ({
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
-                  onClick={closeModal}
+                  onClick={terminateModal}
                 >
                   Close
                 </button>
