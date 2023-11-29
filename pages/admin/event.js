@@ -266,7 +266,8 @@ const EventPage = () => {
 
         eventList[index] = data;
         seteventList([...eventList]);
-
+        seteventTypeEdit({ label: data?.event_type, value: data?.event_type });
+        setstateEdit({ label: data?.state, value: data?.state });
         setEditEventTitle(data?.event_title);
         setEditEventDescription3(data?.event_description);
         setEditAddress(data?.location_address);
@@ -1559,6 +1560,7 @@ const EventPage = () => {
                                   </td>
                                   <td className="addWidth2">
                                     <Select
+                                      defaultValue={eventTypeEdit}
                                       className="addWidth2"
                                       options={eventTypeDropDownOptions}
                                       onChange={(e) =>
@@ -1590,6 +1592,7 @@ const EventPage = () => {
                                   </td>
                                   <td className="addWidth2">
                                     <Select
+                                      defaultValue={stateEdit}
                                       className="addWidth2"
                                       options={options_2}
                                       onChange={(e) => setstateEdit(e.value)}
