@@ -396,6 +396,7 @@ const Compaign_page = () => {
     }
     if (sectionName == "WorkforceEquity") {
       try {
+        setIsSubmittingLoader(true);
         const params = { delId: data };
         const delResp = await campaignServices.addEquitySectionContent(params);
 
@@ -403,13 +404,16 @@ const Compaign_page = () => {
           (item) => item.id != data
         );
         setWorkforceEquityData(newWorkforceEquityData);
+        setIsSubmittingLoader(false);
         showNotification("Item deleted", "Success");
       } catch (error) {
+        setIsSubmittingLoader(false);
         console.log(error);
       }
     }
     if (sectionName == "PublicEquity") {
       try {
+        setIsSubmittingLoader(true);
         const params = { delId: data };
         const delResp = await campaignServices.addEquitySectionContent(params);
 
@@ -417,8 +421,10 @@ const Compaign_page = () => {
           (item) => item.id != data
         );
         setPublicEquityData(newPublicEquityData);
+        setIsSubmittingLoader(false);
         showNotification("Item deleted", "Success");
       } catch (error) {
+        setIsSubmittingLoader(false);
         console.log(error);
       }
     }
@@ -1556,7 +1562,7 @@ const Compaign_page = () => {
                                   onChange={(e) => {
                                     const img = e?.target?.files[0];
 
-                                    const fileName = img.name.toLowerCase();
+                                    const fileName = img?.name?.toLowerCase();
 
                                     // Check if the file has an image extension
                                     if (
@@ -1963,7 +1969,7 @@ const Compaign_page = () => {
                                   onChange={(e) => {
                                     const img = e?.target?.files[0];
 
-                                    const fileName = img.name.toLowerCase();
+                                    const fileName = img?.name?.toLowerCase();
 
                                     // Check if the file has an image extension
                                     if (
@@ -2787,7 +2793,7 @@ const Compaign_page = () => {
                                   onChange={(e) => {
                                     const img = e?.target?.files[0];
 
-                                    const fileName = img.name.toLowerCase();
+                                    const fileName = img?.name?.toLowerCase();
 
                                     // Check if the file has an image extension
                                     if (

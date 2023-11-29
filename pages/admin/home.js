@@ -222,6 +222,7 @@ const Home = () => {
 
   const updateFormData = async (id, sectionName) => {
     let check = 0;
+    setIsSubmitingLoader(true);
     try {
       if (sectionName == "DescriptionAccomplishment") {
         if (updateOrder) {
@@ -230,6 +231,7 @@ const Home = () => {
           );
 
           if (OrderStatus?.length) {
+            setIsSubmitingLoader(false);
             showNotification(
               "This order is already assigned to other slide. Please choose different order for this slide",
               "Error"
@@ -252,6 +254,7 @@ const Home = () => {
           const response = await homePageService.addDescription(formData);
 
           if (response?.data?.success) {
+            setIsSubmitingLoader(false);
             showNotification("Record updated successfully", "Success");
             setEditDesTotal("");
             setEditDesActive("");
@@ -263,6 +266,7 @@ const Home = () => {
             ///////  Call get api ////
             getDesriptionAccomplishmentAndMeetExecutive();
           } else {
+            setIsSubmitingLoader(false);
             showNotification(response?.data?.message, "Error");
           }
         } else {
@@ -278,6 +282,7 @@ const Home = () => {
           );
 
           if (featuredActiveStatus?.length) {
+            setIsSubmitingLoader(false);
             showNotification(
               "Please remove previous news from featured to show this news prominently",
               "Error"
@@ -315,6 +320,7 @@ const Home = () => {
               );
 
               if (response?.data?.success) {
+                setIsSubmitingLoader(false);
                 closePopup();
                 showNotification(response?.data?.message, "Success");
                 ////////////// Get News api ////////////////
@@ -375,10 +381,10 @@ const Home = () => {
 
               if (response?.data?.success) {
                 closePopup();
+                setIsSubmitingLoader(false);
                 showNotification(response?.data?.message, "Success");
                 ////////////// Get News api ////////////////
                 showNewsSection();
-                setIsSubmitingLoader(false);
 
                 settext1("");
                 setupdateFile("");
@@ -423,13 +429,13 @@ const Home = () => {
           );
 
           if (response?.data?.success) {
+            setIsSubmitingLoader(false);
             showNotification(response.data.message, "Success");
             ////////////// Get News api ////////////////
             showNewsSection();
             setEditSponTitle("");
             setEditSponMedia("");
             setSponActive("");
-            setIsSubmitingLoader(false);
           } else {
             setIsSubmitingLoader(false);
 
@@ -460,12 +466,12 @@ const Home = () => {
         const newDescriptionAccomplishment = descriptionAccomplishment.filter(
           (item) => item.id != data
         );
+        setIsSubmitingLoader(false);
         setDescriptionAccomplishment(newDescriptionAccomplishment);
         showNotification("Item deleted", "Success");
-        setIsSubmitingLoader(false);
       } catch (error) {
-        console.log(error);
         setIsSubmitingLoader(false);
+        console.log(error);
       }
     } else if (sectionName == "MeetExecutive") {
       try {
@@ -476,9 +482,9 @@ const Home = () => {
 
         const newMeetExeutive = meetExeutive.filter((item) => item.id != data);
         setMeetExeutive(newMeetExeutive);
+        setIsSubmitingLoader(false);
 
         showNotification("Item deleted", "Success");
-        setIsSubmitingLoader(false);
       } catch (error) {
         console.log(error);
         setIsSubmitingLoader(false);
@@ -493,9 +499,10 @@ const Home = () => {
         const newNewsSectionData = newsSectionData.filter(
           (item) => item.id != data
         );
+        setIsSubmitingLoader(false);
         setNewsSectionData(newNewsSectionData);
         showNotification("Item deleted", "Success");
-        setIsSubmitingLoader(false);
+
         closePopup();
       } catch (error) {
         setIsSubmitingLoader(false);
@@ -504,6 +511,7 @@ const Home = () => {
       }
     } else if (sectionName == "ExecutiveList") {
       try {
+        setIsSubmitingLoader(true);
         const params = { delId: data };
         const delResp2 = await homePageService.addSponsorPartnerData(params);
 
@@ -511,9 +519,11 @@ const Home = () => {
           (item) => item.id != data
         );
         setSponsorPartnerData(newSponsorPartnerData);
+        setIsSubmitingLoader(false);
         showNotification("Item deleted", "Success");
       } catch (error) {
         console.log(error);
+        setIsSubmitingLoader(false);
       }
     }
   }
@@ -770,6 +780,7 @@ const Home = () => {
     }
   };
   const addDesriptionAccomplishment = async (e) => {
+    setIsSubmitingLoader(true);
     let check = 0;
     descriptionAccomplishment.map((item) => {
       if (item?.order_in_slider == Order) {
@@ -777,6 +788,7 @@ const Home = () => {
       }
     });
     if (check > 0) {
+      setIsSubmitingLoader(false);
       showNotification("Order Already Exist");
     } else {
       try {
@@ -791,6 +803,7 @@ const Home = () => {
           const response = await homePageService.addDescription(formData);
 
           if (response?.data?.success) {
+            setIsSubmitingLoader(false);
             showNotification(response?.data?.message, "Success");
             setDesTotal("");
             setDesActive("");
@@ -801,15 +814,18 @@ const Home = () => {
             ///////  Call get api ////
             getDesriptionAccomplishmentAndMeetExecutive();
           } else {
+            setIsSubmitingLoader(false);
             showNotification(response?.data?.message, "Error");
           }
         } else {
+          setIsSubmitingLoader(false);
           showNotification(
             "Please fill all fields of Description/Accomplishment section",
             "Error"
           );
         }
       } catch (error) {
+        setIsSubmitingLoader(false);
         console.error(error);
       }
     }
@@ -873,6 +889,7 @@ const Home = () => {
   };
 
   const saveMeetExecutive = async (e) => {
+    setIsSubmitingLoader(true);
     try {
       if (exeName && exeTitle && exeDes && exeMedia) {
         const formData = new FormData();
@@ -886,6 +903,8 @@ const Home = () => {
         const response = await homePageService.addMeetExecutive(formData);
 
         if (response?.data?.success) {
+          getDesriptionAccomplishmentAndMeetExecutive();
+          setIsSubmitingLoader(false);
           showNotification(response.data.message, "Success");
           setExeActive("");
           setExeDes("");
@@ -894,15 +913,18 @@ const Home = () => {
           setExeName("");
           setExeTitle("");
         } else {
+          setIsSubmitingLoader(false);
           showNotification(response.data.message, "Error");
         }
       } else {
+        setIsSubmitingLoader(false);
         showNotification(
           "Please fill all fields of Meet Executive section",
           "Error"
         );
       }
     } catch (error) {
+      setIsSubmitingLoader(false);
       console.error(error);
     }
   };
@@ -935,6 +957,7 @@ const Home = () => {
       const response = await homePageService.addMeetExecutive(formData);
 
       if (response?.data?.success) {
+        setIsSubmitingLoader(false);
         showNotification(response.data.message, "Success");
         getDesriptionAccomplishmentAndMeetExecutive();
         setEditExeActive("");
@@ -943,7 +966,6 @@ const Home = () => {
         setEditExeMediaPreview("");
         setEditExeName("");
         setEditExeTitle("");
-        setIsSubmitingLoader(false);
       } else {
         showNotification(response.data.message, "Error");
         setIsSubmitingLoader(false);
@@ -1071,6 +1093,7 @@ const Home = () => {
     }
   };
   const updateSponPartner = async (e) => {
+    setIsSubmitingLoader(true);
     try {
       if (sponTitle && sponMedia) {
         const formData = new FormData();
@@ -1083,23 +1106,28 @@ const Home = () => {
         const response = await homePageService.addSponsorPartnerData(formData);
 
         if (response?.data?.success) {
+          showNewsSection();
+          setIsSubmitingLoader(false);
           showNotification(response.data.message, "Success");
           setSponActive("");
           setSponTitle("");
           setSponMedia("");
           setSponMediaPreview("");
         } else {
+          setIsSubmitingLoader(false);
           showNotification(response.data.message, "Error");
         }
       } else {
+        setIsSubmitingLoader(false);
         showNotification(
           "Please fill all fields of Sponsor partner section",
           "Error"
         );
+        setIsSubmitingLoader(false);
       }
     } catch (error) {
-      console.error(error?.message);
-      showNotification(error?.message, "Error");
+      showNotification(error?.message);
+      setIsSubmitingLoader(false);
     }
   };
 
@@ -1915,7 +1943,7 @@ const Home = () => {
                           <input
                             type="checkbox"
                             name="status"
-                            value={desActive}
+                            checked={desActive}
                             id="active"
                             onChange={(e) => setDesActive(e?.target?.checked)}
                           />
@@ -2147,6 +2175,7 @@ const Home = () => {
                         <div className="col-md-6">
                           <label className="form-label-1">Exec Name</label>
                           <input
+                            value={exeName}
                             type="text"
                             onChange={(e) => setExeName(e?.target?.value)}
                           />
@@ -2154,6 +2183,7 @@ const Home = () => {
                         <div className="col-md-6">
                           <label className="form-label-1">Exec Title</label>
                           <input
+                            value={exeTitle}
                             type="text"
                             onChange={(e) => setExeTitle(e?.target?.value)}
                           />
@@ -2193,7 +2223,7 @@ const Home = () => {
                             </label>
                             <input
                               type="checkbox"
-                              value={exeActive}
+                              checked={exeActive}
                               id="active"
                               onChange={(e) => setExeActive(e?.target?.checked)}
                             />
@@ -2208,6 +2238,7 @@ const Home = () => {
 
                         <div className="form-outline">
                           <textarea
+                            value={exeDes}
                             className="form-control "
                             placeholder="Type here"
                             id="floatingTextarea"
@@ -3191,7 +3222,7 @@ const Home = () => {
                           <br />
                           <input
                             type="checkbox"
-                            value="true"
+                            checked={sponActive}
                             id="flexCheckDefault"
                             onChange={(e) => setSponActive(e?.target?.value)}
                           />
