@@ -24,6 +24,7 @@ const Modal = ({
   handleClear,
 }) => {
   function closeModal() {
+    console.log("Worked");
     settoggle(false);
     setamt(null);
     setDonorGiftNote("");

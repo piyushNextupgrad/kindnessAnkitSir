@@ -83,7 +83,6 @@ const CheckoutForm = ({
 
         if (response?.data?.success) {
           showNotification("Your Payment is successfull", "Success");
-          closeModal();
         }
 
         /* else{
