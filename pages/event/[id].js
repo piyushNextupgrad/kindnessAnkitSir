@@ -602,7 +602,7 @@ const singleEventData = ({ filter_data }) => {
       <section className="pt-0">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <div className="Event_sidebar_1">
                 <div className="container">
                   <div className="form-group has-search">
@@ -679,7 +679,7 @@ const singleEventData = ({ filter_data }) => {
             {/* Sidebar End */}
 
             {/* Sidebar Start */}
-            <div className="col-md-8">
+            <div className="col-md-7">
               <div className="Event_sidebar_2">
                 <Tabs selectedIndex={activeTabIndex} onSelect={handleTabSelect}>
                   <TabList>
