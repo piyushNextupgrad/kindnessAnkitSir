@@ -109,10 +109,10 @@ const singleEventData = ({ filter_data }) => {
   }, [name, email, city, state]);
 
   async function handlersvp() {
+    setIsSubmittingLoader(true);
     const eventId = router.query.id;
     if (name != "" && email != "" && city != "" && state != "") {
       if (email.includes("@")) {
-        setIsSubmittingLoader(true);
         try {
           const formData = new FormData();
           formData.append("eventId", eventId);
@@ -124,7 +124,10 @@ const singleEventData = ({ filter_data }) => {
           console.log("RSVP FORM", mediaResp3);
           if (mediaResp3.data.success == true) {
             setIsSubmittingLoader(false);
-            setShow(false);
+            setname("");
+            setemail("");
+            setcity("");
+            setstate("");
             showNotification(
               "Thank you ! your response has been saved",
               "Success"
@@ -785,11 +788,11 @@ const singleEventData = ({ filter_data }) => {
                                     </Modal.Header>
                                     <Modal.Body>
                                       <input
+                                        value={name}
                                         type="text"
                                         class="form-control"
                                         id="exampleInputEmail1"
                                         placeholder="Name"
-                                        aria-describedby="emailHelp"
                                         onChange={(e) => {
                                           setname(e.target.value);
                                         }}
@@ -798,7 +801,7 @@ const singleEventData = ({ filter_data }) => {
                                         type="email"
                                         class="form-control"
                                         placeholder="Email"
-                                        aria-describedby="emailHelp"
+                                        value={email}
                                         onChange={(e) => {
                                           setemail(e.target.value);
                                         }}
@@ -809,7 +812,7 @@ const singleEventData = ({ filter_data }) => {
                                         class="form-control"
                                         id="exampleInputEmail1"
                                         placeholder="City"
-                                        aria-describedby="emailHelp"
+                                        value={city}
                                         onChange={(e) => {
                                           setcity(e.target.value);
                                         }}
@@ -819,7 +822,7 @@ const singleEventData = ({ filter_data }) => {
                                         class="form-control"
                                         id="exampleInputEmail1"
                                         placeholder="State"
-                                        aria-describedby="emailHelp"
+                                        value={state}
                                         onChange={(e) => {
                                           setstate(e.target.value);
                                         }}

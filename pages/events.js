@@ -604,6 +604,7 @@ const Events = () => {
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
+                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -699,6 +700,7 @@ const Events = () => {
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
+                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -794,6 +796,7 @@ const Events = () => {
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
+                                      &nbsp;
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
@@ -888,6 +891,7 @@ const Events = () => {
                                     aria-hidden="true"
                                   ></i> */}
                                     <i className="fa fa-eye" aria-hidden="true">
+                                      &nbsp;{" "}
                                       {item?.hits == null ? 0 : item?.hits}
                                     </i>
                                   </span>
