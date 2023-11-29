@@ -235,12 +235,17 @@ const Get_involved = () => {
   };
 
   function handleClear(event) {
-    const radioButtons = document.querySelectorAll("input[type='radio']");
-    radioButtons.forEach((radioButton) => {
-      radioButton.checked = false;
-    });
-    setCustomAmountDisable(false);
-    setAmountFromCheckbox(0);
+    event?.preventDefault();
+    const radioButtons = document.querySelectorAll(
+      "input[type='radio']:checked"
+    );
+    if (radioButtons.length > 0) {
+      radioButtons.forEach((radioButton) => {
+        radioButton.checked = false;
+      });
+      setCustomAmountDisable(false);
+      setAmountFromCheckbox(0);
+    }
   }
 
   useEffect(() => {
