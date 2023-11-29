@@ -602,7 +602,7 @@ const singleEventData = ({ filter_data }) => {
       <section className="pt-0">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-4">
               <div className="Event_sidebar_1">
                 <div className="container">
                   <div className="form-group has-search">
