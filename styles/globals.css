@@ -3465,6 +3465,10 @@ input[type="text"]:hover {
 .addWidth2 {
   width: 200px !important;
 }
+.addWidthName {
+  display: block;
+  width: 200px !important;
+}
 .EventImageSlider {
   display: flex;
   justify-content: center;

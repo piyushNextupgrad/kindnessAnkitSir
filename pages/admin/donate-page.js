@@ -835,7 +835,7 @@ const DonatePage = () => {
                   ) : (
                     <Link href="#!">
                       <p onClick={downloadDonorList}>
-                        <strong>Download List</strong>
+                        <strong className="mbSpan">Download List</strong>
                       </p>
                     </Link>
                   )}
@@ -863,7 +863,11 @@ const DonatePage = () => {
                             <tr key={key}>
                               <td>{key + 1} </td>
                               <td>${item.gift_amt}</td>
-                              <td className="addWidth2">{item.name}</td>
+                              <td>
+                                <span className="addWidthName">
+                                  {item.name}
+                                </span>
+                              </td>
                               <td>{item.email}</td>
                               <td>{item.phone_number}</td>
                               <td>{item.address}</td>
