@@ -591,7 +591,7 @@ const singleEventData = ({ filter_data }) => {
           <div className="event_wrap_main ">
             <div className="row">
               <div className="col-md-12">
-                <h1 className="about_the_campaign">CALENDAR OF EVENTS</h1>
+                <h1 className="about_the_campaign">EVENT DETAILS</h1>
                 <h4 className="About_heading-1">Kindness Everyday</h4>
               </div>
             </div>
