@@ -18,6 +18,7 @@ const CheckoutForm = ({
   donorPhone,
   donorAddress,
   donorGiftNote,
+  closeModal,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -81,8 +82,8 @@ const CheckoutForm = ({
         console.log("res response", response);
 
         if (response?.data?.success) {
-          closeModal();
           showNotification("Your Payment is successfull", "Success");
+          closeModal();
         }
 
         /* else{
@@ -151,6 +152,7 @@ const StripePay = ({
   donorGiftNote,
   toggle,
   settoggle,
+  closeModal,
 }) => (
   <Elements stripe={stripePromise}>
     <CheckoutForm
@@ -163,6 +165,7 @@ const StripePay = ({
       donorPhone={donorPhone}
       donorAddress={donorAddress}
       donorGiftNote={donorGiftNote}
+      closeModal={closeModal}
     />
   </Elements>
 );
