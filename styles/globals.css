@@ -3281,13 +3281,6 @@ input[type="text"]:hover {
   font-family: "Maven Pro", sans-serif;
 }
 
-.accessed_p {
-  font-size: 12pt;
-  color: #fff;
-  text-transform: uppercase;
-  padding-left: 50px;
-}
-
 .accessed_p2nd {
   font-size: 14pt;
   color: #fff;
@@ -3479,6 +3472,12 @@ input[type="text"]:hover {
 }
 .flexItem {
   width: 30% !important;
+}
+.accessed_p {
+  color: #fff;
+  font-size: 12px;
+  padding: 0;
+  text-transform: uppercase;
 }
 
 /* -----------------------Media Queries----------------------- */
