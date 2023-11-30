@@ -2003,164 +2003,168 @@ const Home = () => {
                 </label>
                 <div className="row">
                   <div className="col-md-12">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          {/* <th>Order</th> */}
-                          <th>Name</th>
-                          <th>Title</th>
-                          <th>Overview </th>
-                          <th>Image </th>
-                          <th>Active</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {meetExeutive?.length
-                          ? meetExeutive.map((item, index) => {
-                              return (
-                                <tr key={item?.id + index}>
-                                  {/* <td>{index + 1}</td> */}
-                                  {item?.edit ? (
-                                    <>
-                                      <td>
-                                        <input
-                                          type="text"
-                                          value={editExeName}
-                                          onChange={(e) =>
-                                            setEditExeName(e?.target?.value)
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <input
-                                          type="text"
-                                          value={editExeTitle}
-                                          onChange={(e) =>
-                                            setEditExeTitle(e?.target?.value)
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <textarea
-                                          className="form-control "
-                                          placeholder="Type here"
-                                          id="floatingTextarea"
-                                          value={editExeDes}
-                                          onChange={(e) =>
-                                            setEditExeDes(e?.target?.value)
-                                          }
-                                        ></textarea>
-                                      </td>
-
-                                      <td>
-                                        <Image
-                                          src={
-                                            editExeMediaPreview
-                                              ? editExeMediaPreview
-                                              : "/no-img.jpg"
-                                          }
-                                          width={80}
-                                          height={80}
-                                          alt={editExeTitle}
-                                        />
-                                        <input
-                                          type="file"
-                                          onChange={(e) =>
-                                            onchangeFile(e, "editExecutive")
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <span className="btn ">
+                    <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            {/* <th>Order</th> */}
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Overview </th>
+                            <th>Image </th>
+                            <th>Active</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {meetExeutive?.length
+                            ? meetExeutive.map((item, index) => {
+                                return (
+                                  <tr key={item?.id + index}>
+                                    {/* <td>{index + 1}</td> */}
+                                    {item?.edit ? (
+                                      <>
+                                        <td>
                                           <input
-                                            type="checkbox"
-                                            checked={editExeActive}
-                                            id="active"
+                                            type="text"
+                                            value={editExeName}
                                             onChange={(e) =>
-                                              setEditExeActive(
-                                                e?.target?.checked
-                                              )
+                                              setEditExeName(e?.target?.value)
                                             }
                                           />
-                                        </span>
-                                      </td>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <td className="fixNameBreak fixLineHeight">
-                                        {item?.column_1}{" "}
-                                      </td>
-                                      <td className="fixLineHeight">
-                                        {item?.column_2}
-                                      </td>
-                                      <td className="fixLineHeight">
-                                        {item?.description}
-                                      </td>
+                                        </td>
+                                        <td>
+                                          <input
+                                            type="text"
+                                            value={editExeTitle}
+                                            onChange={(e) =>
+                                              setEditExeTitle(e?.target?.value)
+                                            }
+                                          />
+                                        </td>
+                                        <td>
+                                          <textarea
+                                            className="form-control "
+                                            placeholder="Type here"
+                                            id="floatingTextarea"
+                                            value={editExeDes}
+                                            onChange={(e) =>
+                                              setEditExeDes(e?.target?.value)
+                                            }
+                                          ></textarea>
+                                        </td>
 
-                                      <td className="fixLineHeight">
-                                        <Image
-                                          src={
-                                            item?.media
-                                              ? process.env.SITE_URL +
-                                                item?.media
-                                              : "/no-img.jpg"
-                                          }
-                                          width={80}
-                                          height={80}
-                                          alt={item?.column_1}
-                                        />
-                                      </td>
-                                      <td className="fixLineHeight">
-                                        {parseInt(item?.active) ? "Yes" : "No"}
-                                      </td>
-                                    </>
-                                  )}
+                                        <td>
+                                          <Image
+                                            src={
+                                              editExeMediaPreview
+                                                ? editExeMediaPreview
+                                                : "/no-img.jpg"
+                                            }
+                                            width={80}
+                                            height={80}
+                                            alt={editExeTitle}
+                                          />
+                                          <input
+                                            type="file"
+                                            onChange={(e) =>
+                                              onchangeFile(e, "editExecutive")
+                                            }
+                                          />
+                                        </td>
+                                        <td>
+                                          <span className="btn ">
+                                            <input
+                                              type="checkbox"
+                                              checked={editExeActive}
+                                              id="active"
+                                              onChange={(e) =>
+                                                setEditExeActive(
+                                                  e?.target?.checked
+                                                )
+                                              }
+                                            />
+                                          </span>
+                                        </td>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <td className="fixNameBreak fixLineHeight">
+                                          {item?.column_1}{" "}
+                                        </td>
+                                        <td className="fixLineHeight">
+                                          {item?.column_2}
+                                        </td>
+                                        <td className="fixLineHeight">
+                                          {item?.description}
+                                        </td>
 
-                                  <td>
-                                    <button
-                                      className="btn btn-primary mx-1"
-                                      onClick={() =>
-                                        item?.edit
-                                          ? updateMeetExecutive(item?.id)
-                                          : editFieldData(
-                                              item?.id,
-                                              index,
-                                              "MeetExecutive"
-                                            )
-                                      }
-                                    >
-                                      {item?.edit ? (
+                                        <td className="fixLineHeight">
+                                          <Image
+                                            src={
+                                              item?.media
+                                                ? process.env.SITE_URL +
+                                                  item?.media
+                                                : "/no-img.jpg"
+                                            }
+                                            width={80}
+                                            height={80}
+                                            alt={item?.column_1}
+                                          />
+                                        </td>
+                                        <td className="fixLineHeight">
+                                          {parseInt(item?.active)
+                                            ? "Yes"
+                                            : "No"}
+                                        </td>
+                                      </>
+                                    )}
+
+                                    <td>
+                                      <button
+                                        className="btn btn-primary mx-1"
+                                        onClick={() =>
+                                          item?.edit
+                                            ? updateMeetExecutive(item?.id)
+                                            : editFieldData(
+                                                item?.id,
+                                                index,
+                                                "MeetExecutive"
+                                              )
+                                        }
+                                      >
+                                        {item?.edit ? (
+                                          <i
+                                            className="fa fa-floppy-o"
+                                            aria-hidden="true"
+                                          />
+                                        ) : (
+                                          <i
+                                            className="fa fa-pencil-square-o"
+                                            aria-hidden="true"
+                                          />
+                                        )}
+                                      </button>
+
+                                      <button
+                                        className="btn btn-secondary"
+                                        onClick={() =>
+                                          deleteData(item.id, "MeetExecutive")
+                                        }
+                                      >
                                         <i
-                                          className="fa fa-floppy-o"
+                                          className="fa fa-trash-o"
                                           aria-hidden="true"
                                         />
-                                      ) : (
-                                        <i
-                                          className="fa fa-pencil-square-o"
-                                          aria-hidden="true"
-                                        />
-                                      )}
-                                    </button>
-
-                                    <button
-                                      className="btn btn-secondary"
-                                      onClick={() =>
-                                        deleteData(item.id, "MeetExecutive")
-                                      }
-                                    >
-                                      <i
-                                        className="fa fa-trash-o"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                  </td>
-                                </tr>
-                              );
-                            })
-                          : ""}
-                      </tbody>
-                    </table>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            : ""}
+                        </tbody>
+                      </table>
+                    </div>
 
                     <br />
                     <br />
