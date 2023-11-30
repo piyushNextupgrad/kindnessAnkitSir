@@ -1726,7 +1726,7 @@ const Home = () => {
                 />{" "}
                 Description/Accomplishment
               </h2>
-              <span className="mbSpan">
+              <span className="mbSpan5">
                 &nbsp;Note - Please dont add '+' symbol with total.
               </span>
               <div className="container">

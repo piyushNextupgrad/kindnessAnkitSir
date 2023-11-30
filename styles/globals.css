@@ -3295,6 +3295,12 @@ input[type="text"]:hover {
   color: #ed5501;
   display: block;
 }
+.mbSpan5 {
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #ed5501;
+  display: block;
+}
 
 .newsLink:hover {
   cursor: pointer;
