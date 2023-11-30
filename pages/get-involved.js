@@ -496,12 +496,19 @@ const Get_involved = () => {
                       />
 
                       <input
-                        type="phone"
+                        type="number"
                         className="donation_form_text"
                         id="inputnumber"
                         placeholder="Phone:"
                         value={donorPhone}
-                        onChange={(e) => setDonorPhone(e?.target?.value)}
+                        onChange={(e) => {
+                          e.target.value.length < 10
+                            ? setDonorPhone(e?.target?.value)
+                            : showNotification(
+                                "Only 10 digits allowed for phone number",
+                                "Error"
+                              );
+                        }}
                       />
 
                       <textarea
@@ -623,7 +630,14 @@ const Get_involved = () => {
                       id="inputnumber"
                       placeholder="Phone:"
                       value={phone}
-                      onChange={(e) => setphone(e.target.value)}
+                      onChange={(e) => {
+                        e?.target?.value?.length < 11
+                          ? setphone(e?.target?.value)
+                          : showNotification(
+                              "Only 10 digits allowed for phone number",
+                              "Error"
+                            );
+                      }}
                     />
 
                     <label
