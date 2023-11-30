@@ -104,7 +104,7 @@ export default function Footer() {
                     <i className="fa fa-facebook" aria-hidden="true"></i>
                   </a> */}
                   <FacebookShareButton
-                    url={shareUrl}
+                    url={process.env.BASE_LIVE_URL + "shareUs/meta/"}
                     hashtag={`#kindnesscampaign `}
                   >
                     <i
