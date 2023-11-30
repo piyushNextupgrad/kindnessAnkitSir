@@ -1364,7 +1364,7 @@ const Home = () => {
                   <div className="col-md-9">
                     <div className="form-outline">
                       <textarea
-                        className="form-control"
+                        className="form-control reduceFont"
                         placeholder="Type here"
                         name="headerText"
                         onChange={(e) => setHeaderText(e?.target?.value)}
@@ -1663,7 +1663,7 @@ const Home = () => {
                   <div className="col-md-9">
                     <div className="form-outline">
                       <textarea
-                        className="form-control"
+                        className="form-control reduceFont"
                         placeholder="Type here"
                         name="vissionText"
                         onChange={(e) => setMission(e?.target?.value)}
@@ -1693,7 +1693,7 @@ const Home = () => {
                   <div className="col-md-9">
                     <div className="form-outline">
                       <textarea
-                        className="form-control"
+                        className="form-control reduceFont"
                         placeholder="Type here"
                         name="vissionText"
                         onChange={(e) => setVisionText(e?.target?.value)}
@@ -1822,11 +1822,9 @@ const Home = () => {
                                         <td>{item?.column_2}</td>
                                         <td>{item?.impactYear}</td>
                                         <td>
-                                          <span className="btn ">
-                                            {parseInt(item?.active)
-                                              ? "Yes"
-                                              : "No"}
-                                          </span>
+                                          {parseInt(item?.active)
+                                            ? "Yes"
+                                            : "No"}
                                         </td>
                                       </>
                                     )}
@@ -1967,7 +1965,7 @@ const Home = () => {
                           </label>
                           <input
                             type="text"
-                            className="form-control"
+                            className="form-control reduceFont"
                             name="impactLink"
                             value={impactLink}
                             onChange={(e) => setImpactLink(e?.target?.value)}
@@ -2114,11 +2112,7 @@ const Home = () => {
                                         />
                                       </td>
                                       <td className="fixLineHeight">
-                                        <span className="btn ">
-                                          {parseInt(item?.active)
-                                            ? "Yes"
-                                            : "No"}
-                                        </span>
+                                        {parseInt(item?.active) ? "Yes" : "No"}
                                       </td>
                                     </>
                                   )}
@@ -2239,7 +2233,7 @@ const Home = () => {
                         <div className="form-outline">
                           <textarea
                             value={exeDes}
-                            className="form-control "
+                            className="form-control reduceFont"
                             placeholder="Type here"
                             id="floatingTextarea"
                             onChange={(e) => setExeDes(e?.target?.value)}
@@ -2281,7 +2275,7 @@ const Home = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control reduceFont"
                         name="section_title"
                         value={sectionTitle}
                         onChange={(e) => setSectionTitle(e?.target?.value)}
@@ -2296,7 +2290,7 @@ const Home = () => {
                       </label>
 
                       <textarea
-                        className="form-control "
+                        className="form-control reduceFont"
                         placeholder="Type here"
                         name="sectionPost"
                         value={sectionPost}
@@ -2688,11 +2682,9 @@ const Home = () => {
                                           </p>
                                         </td>
                                         <td>
-                                          <span className="btn ">
-                                            {parseInt(item?.featuredItem)
-                                              ? "Yes"
-                                              : "No"}
-                                          </span>{" "}
+                                          {parseInt(item?.featuredItem)
+                                            ? "Yes"
+                                            : "No"}
                                         </td>
 
                                         <td>
@@ -2813,7 +2805,7 @@ const Home = () => {
                                   </span>
                                 </div>
 
-                                <div className="col-md-3">
+                                {/* <div className="col-md-3">
                                   <button
                                     type="button"
                                     className="btn btn-outline-primary updateBtnSize"
@@ -2821,7 +2813,7 @@ const Home = () => {
                                   >
                                     Update Site
                                   </button>
-                                </div>
+                                </div> */}
                               </div>
 
                               <div className="text-center youTubeOption2">
@@ -2949,7 +2941,7 @@ const Home = () => {
                               </label>
                               <div className="form-outline">
                                 <textarea
-                                  className="form-control "
+                                  className="form-control reduceFont"
                                   placeholder="Type here"
                                   id="floatingTextarea"
                                   onChange={(e) =>
@@ -3120,11 +3112,7 @@ const Home = () => {
                                         )}
                                       </td>
                                       <td>
-                                        <span className="btn ">
-                                          {parseInt(item?.active)
-                                            ? "Yes"
-                                            : "No"}
-                                        </span>{" "}
+                                        {parseInt(item?.active) ? "Yes" : "No"}
                                       </td>
                                     </>
                                   )}

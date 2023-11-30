@@ -209,7 +209,7 @@ const ContactUs = () => {
                 <div className="col-md-12">
                   <div className="form-outline">
                     <textarea
-                      className="form-control"
+                      className="form-control reduceFont"
                       placeholder="Type here"
                       name="shareheader"
                       value={shareheader}
@@ -277,7 +277,7 @@ const ContactUs = () => {
                       </label>
                       <div className="form-outline">
                         <textarea
-                          className="form-control"
+                          className="form-control reduceFont"
                           placeholder="Type here"
                           name="shareText"
                           value={sharetext}
@@ -294,7 +294,7 @@ const ContactUs = () => {
                       <div className="form-outline">
                         <input
                           type="url"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="websiteLink"
                           value={sharelink}
                           onChange={(e) => updateUrl(e.target.value)}
@@ -338,7 +338,7 @@ const ContactUs = () => {
                 <div className="col-md-12">
                   <div className="form-outline">
                     <textarea
-                      className="form-control"
+                      className="form-control reduceFont"
                       placeholder="Type here"
                       name="headerText"
                       value={contactHeader}
@@ -406,7 +406,7 @@ const ContactUs = () => {
                       <div className="form-outline">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="company_name"
                           value={companyName}
                           onChange={(e) => setcompanyName(e?.target?.value)}
@@ -421,7 +421,7 @@ const ContactUs = () => {
                       <div className="form-outline">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="address"
                           value={address}
                           onChange={(e) => setaddress(e?.target?.value)}
@@ -438,7 +438,7 @@ const ContactUs = () => {
                       <div className="form-outline">
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="city"
                           value={zip}
                           onChange={(e) => setzip(e?.target?.value)}
@@ -453,7 +453,7 @@ const ContactUs = () => {
                       <div className="form-outline">
                         <input
                           type="phone"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="phone"
                           value={phone}
                           onChange={(e) => setphone(e?.target?.value)}
@@ -465,12 +465,12 @@ const ContactUs = () => {
                   <div className="row">
                     <div className="col-md-12">
                       <label className="form-label-1" htmlFor="typeText">
-                        Coorporate Email
+                        Corporate Email
                       </label>
                       <div className="form-outline">
                         <input
                           type="email"
-                          className="form-control"
+                          className="form-control reduceFont"
                           name="headerText"
                           value={email}
                           onChange={(e) => setemail(e?.target?.value)}

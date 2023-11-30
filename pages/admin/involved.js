@@ -699,7 +699,7 @@ const GetInvolved = () => {
                     <div className="col-md-12">
                       <div className="form-outline">
                         <textarea
-                          className="form-control"
+                          className="form-control reduceFont"
                           placeholder="Type here"
                           name="headerText"
                           value={volunteerText}
@@ -737,7 +737,7 @@ const GetInvolved = () => {
                     <div className="col-md-12">
                       <div className="form-outline">
                         <textarea
-                          className="form-control"
+                          className="form-control reduceFont"
                           placeholder="Type here"
                           name="headerText"
                           value={partnerText}

@@ -1055,7 +1055,7 @@ const Compaign_page = () => {
                       Section Post
                     </label>
                     <textarea
-                      className="form-control "
+                      className="form-control reduceFont "
                       placeholder="Type here"
                       value={hPost}
                       onChange={(e) => setHPost(e?.target?.value)}

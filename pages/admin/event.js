@@ -97,6 +97,9 @@ const EventPage = () => {
       console.log("delete api ", resp);
       if (resp.data.success) {
         getRSVP();
+        showNotification("Record Deleted", "Success");
+      } else {
+        showNotification("Record not deleted", "Error");
       }
       setIsSubmitingLoader(false);
     } catch (err) {
@@ -1020,7 +1023,7 @@ const EventPage = () => {
                           Event Description
                         </label>
                         <textarea
-                          className="form-control "
+                          className="form-control reduceFont"
                           placeholder="Type here"
                           value={eventdec}
                           onChange={(e) => seteventdec(e.target.value)}
@@ -1788,6 +1791,7 @@ const EventPage = () => {
                   <div className="col-md-3">
                     <label className="form-label">Time</label>
                     <TimePicker
+                      className="reduceFont"
                       value={time}
                       start="10:00"
                       end="21:00"
