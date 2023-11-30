@@ -587,6 +587,9 @@ input:focus {
   }
 }
 @media (max-width: 980px) {
+  .panel {
+    width: 100%;
+  }
   nav[role="navigation"] {
     background: #012550;
     color: #fff;
@@ -668,10 +671,10 @@ input:focus {
     margin: 0px !important;
   }
 
-  .panel {
+  /* .panel {
     float: left;
     width: 96%;
-  }
+  } */
 
   .panel:after {
     content: "";
@@ -762,10 +765,10 @@ input:focus {
     margin: 0px !important;
   }
 
-  .panel {
+  /* .panel {
     float: left;
     width: 96%;
-  }
+  } */
 
   .panel:after {
     content: "";
@@ -794,7 +797,21 @@ input:focus {
     margin-left: 200px;
   }
 }
-/* @media screen and (max-width: 600px) and (orientation: portrait) {
+@media (max-width: 500px) {
+  .custom-youtube-toggleLink {
+    font-size: 10px;
+  }
+  .updateBtnSize {
+    font-size: 10px;
+    padding: 0px 1px 0px 1px;
+    margin-left: 15px;
+  }
+  label {
+    font-size: 10px;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 500px) and (orientation: portrait) {
   main::before {
     content: "Please switch to landscape mode.";
     display: block;
@@ -811,7 +828,7 @@ input:focus {
     font-size: 20px;
     padding-top: calc(50vh - 12px);
   }
-} */
+}
 
 .table {
   width: 100%;
