@@ -1050,6 +1050,7 @@ const Home = () => {
             return false;
           }
         }
+        console.log("campDate", campDate, startDate);
 
         if (campTitle && campMedia && campDate) {
           setIsSubmitingLoader(true);

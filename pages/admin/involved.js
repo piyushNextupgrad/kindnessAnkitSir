@@ -277,6 +277,7 @@ const GetInvolved = () => {
         console.log("======>", resp2?.data?.data);
         setVolunteerText(resp2?.data?.data[3]?.header_text);
         setpartnerText(resp2?.data?.data[3]?.page_text);
+        setVolText(resp2?.data?.data[3]?.section_post);
       }
     } catch (err) {
       // Handle any other errors that may occur during the request
