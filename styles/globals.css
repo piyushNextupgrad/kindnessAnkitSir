@@ -3517,6 +3517,9 @@ input[type="text"]:hover {
 }
 
 @media (max-width: 768px) {
+  .footer_btn {
+    margin-top: 10px !important;
+  }
   /* 767 to 768 sudhanshu*/
   .testimonials .testimonial-wrap {
     padding-left: 0;
