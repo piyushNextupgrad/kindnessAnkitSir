@@ -994,7 +994,7 @@ const Home = () => {
         }
 
         console.log("campDate", campDate, startDate);
-        if (campTitle && youtubeLinkCampHeaderNews && startDate) {
+        if (campTitle && youtubeLinkCampHeaderNews && campDate) {
           setIsSubmitingLoader(true);
           const formData = new FormData();
           formData.append("title", campTitle);
@@ -1051,7 +1051,7 @@ const Home = () => {
           }
         }
 
-        if (campTitle && campMedia && startDate) {
+        if (campTitle && campMedia && campDate) {
           setIsSubmitingLoader(true);
           const formData = new FormData();
           formData.append("title", campTitle);
@@ -1074,6 +1074,7 @@ const Home = () => {
             setStartDate("");
             setCampDate("");
             setCampItem("");
+
             setCampMedia(null);
             setCampMediaPreview(null);
             setCampSection("");

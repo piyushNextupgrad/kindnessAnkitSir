@@ -150,7 +150,7 @@ const GetInvolved = () => {
 
         const formData = new FormData();
         formData.append("interest", interest);
-        formData.append("active", active);
+        formData.append("active", active ? "1" : "0");
         try {
           const resp = await getInvolvePageSevices.updateInterestSetupSection(
             formData
@@ -158,8 +158,10 @@ const GetInvolved = () => {
 
           if (resp?.data?.success) {
             setIsSubmitingLoader(false);
+            getInterestList();
             showNotification(resp?.data?.message, "Success");
             setinterest("");
+            setactive("");
           } else {
             setIsSubmitingLoader(false);
             showNotification(resp?.data?.message, "Error");
@@ -213,6 +215,7 @@ const GetInvolved = () => {
           if (resp?.data?.success) {
             setIsSubmitingLoader(false);
             setVolunteerText("");
+
             showNotification(resp?.data?.message, "Success");
           } else {
             setIsSubmitingLoader(false);
@@ -271,6 +274,7 @@ const GetInvolved = () => {
     try {
       const resp2 = await getInvolvePageSevices.getStaticDataPiyush();
       if (resp2?.data?.data) {
+        console.log("======>", resp2?.data?.data);
         setVolunteerText(resp2?.data?.data[3]?.header_text);
         setpartnerText(resp2?.data?.data[3]?.page_text);
       }
@@ -284,6 +288,7 @@ const GetInvolved = () => {
     try {
       let params = {};
       const signupResp = await getInvolvePageSevices.getSignupListData(params);
+      console.log("learn more data", signupResp.data.learn_more.data);
       setlearnMoreList(signupResp.data.learn_more.data);
       setSignUpList(signupResp.data.sign_up.data);
     } catch (err) {
@@ -512,7 +517,7 @@ const GetInvolved = () => {
                     <label className="form-check-label">Active &nbsp;</label>
                     <input
                       type="checkbox"
-                      value=""
+                      checked={active}
                       id="active"
                       onChange={(e) => setactive(e.target.checked)}
                     />
