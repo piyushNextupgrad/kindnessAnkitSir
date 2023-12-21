@@ -31,7 +31,9 @@ a {
   color: var(--color-primary);
   text-decoration: none;
 }
-
+.section2AboutPage {
+  word-break: break-word;
+}
 a:hover {
   color: #00b6a1;
   text-decoration: none;
@@ -214,6 +216,16 @@ section {
   gap: 3rem;
   margin-left: 2rem;
   margin-right: 2rem;
+}
+.imageContainerDiv {
+  width: 40% !important;
+}
+.post-img-in {
+  width: 100%;
+}
+.newsSliderImage {
+  width: 100%;
+  height: auto;
 }
 .newsSectionthreeItems .post-img-in {
   display: flex;

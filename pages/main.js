@@ -840,6 +840,7 @@ function MainPage({ metaData }) {
                   <div className="post-img-in">
                     {newsSectionData[0]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[0]?.media
                             ? process.env.SITE_URL + newsSectionData[0]?.media
@@ -1005,6 +1006,7 @@ function MainPage({ metaData }) {
                   <div className="post-img-in">
                     {newsSectionData[1]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[1]?.media
                             ? process.env.SITE_URL + newsSectionData[1]?.media
@@ -1171,6 +1173,7 @@ function MainPage({ metaData }) {
                   <div className="post-img-in">
                     {newsSectionData[2]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[2]?.media
                             ? process.env.SITE_URL + newsSectionData[2]?.media
@@ -1341,6 +1344,7 @@ function MainPage({ metaData }) {
                   <div className="post-img-in">
                     {newsSectionData[0]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[0]?.media
                             ? process.env.SITE_URL + newsSectionData[0]?.media
@@ -1505,6 +1509,7 @@ function MainPage({ metaData }) {
                   <div className="post-img-in">
                     {newsSectionData[1]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[1]?.media
                             ? process.env.SITE_URL + newsSectionData[1]?.media
@@ -1669,11 +1674,12 @@ function MainPage({ metaData }) {
         ) : (
           <>
             <div className="newsSectionthreeItems">
-              <div className="sliderItemNews">
+              <div className="sliderItemNews imageContainerDiv">
                 <article>
-                  <div className="post-img-in">
+                  <div className="post-img-in ">
                     {newsSectionData[0]?.media_type == "image" ? (
                       <Image
+                        className="newsSliderImage"
                         src={
                           newsSectionData[0]?.media
                             ? process.env.SITE_URL + newsSectionData[0]?.media

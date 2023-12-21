@@ -192,7 +192,9 @@ const About = () => {
                     </div>
                   </div>
                   <div className="col-md-12 col-lg-6 about_p">
-                    <p className="about_p">{data2?.section_post}</p>
+                    <p className="about_p section2AboutPage">
+                      {data2?.section_post}
+                    </p>
                   </div>
                 </div>
               )}

@@ -13,7 +13,7 @@ const SliderComp = (props) => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -29,7 +29,7 @@ const SliderComp = (props) => {
         },
       },
       {
-        breakpoint: 550,
+        breakpoint: 786,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

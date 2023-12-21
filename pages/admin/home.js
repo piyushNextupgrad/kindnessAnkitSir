@@ -1187,7 +1187,7 @@ const Home = () => {
         form_data.append("jobPostLink", jobPostLink);
       }
       if (fieldname == "MissionText") {
-        message = "Link Updated Successfully";
+        message = "Text Updated Successfully";
         form_data.append("missionText", Mission);
       }
 

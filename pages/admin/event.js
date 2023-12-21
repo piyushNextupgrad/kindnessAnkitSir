@@ -1604,7 +1604,7 @@ const EventPage = () => {
                                   <td>
                                     <input
                                       className="addWidth"
-                                      type="text"
+                                      type="number"
                                       placeholder="Zip"
                                       value={zipEdit}
                                       onChange={(e) =>
