@@ -28,8 +28,11 @@ import {
 } from "next-share";
 
 export async function getStaticPaths() {
+  // const response = await fetch(
+  //   "https://nextupgrad.us/laravel-old/diligent-api/api/getHomeCampNewsAndSponsPartner"
+  // );
   const response = await fetch(
-    "https://nextupgrad.us/laravel-old/diligent-api/api/getHomeCampNewsAndSponsPartner"
+    "https://nextupgrad.us/laravel-old/diligent-api/api/getHomeCampNews"
   );
 
   const data1 = await response.json();
