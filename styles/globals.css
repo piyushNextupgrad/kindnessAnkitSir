@@ -3462,6 +3462,12 @@ input[type="text"]:hover {
   transition: 0.3s;
   background: #afb8b6;
 }
+.footer_fbicon:hover {
+  color: #ff6120 !important;
+  border: 1px solid #ff6120;
+  background: #fff !important;
+  transform: rotate(5deg) !important;
+}
 .Putting_Chicago a {
   padding-left: 10px;
 }
