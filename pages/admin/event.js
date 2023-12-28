@@ -283,7 +283,7 @@ const EventPage = () => {
         setEditAddress(data?.location_address);
         setcostEdit(data?.event_cost);
         setcityEdit(data?.city);
-        setzipEdit(data?.zip_code);
+        setzipEdit(parseInt(data?.zip_code));
         const date = new Date(data?.date);
         setEditStartDate(date);
         setEditActive3(parseInt(data?.active) ? true : false);
@@ -1588,9 +1588,7 @@ const EventPage = () => {
                                       defaultValue={eventTypeEdit}
                                       className="addWidth2"
                                       options={eventTypeDropDownOptions}
-                                      onChange={(e) =>
-                                        seteventTypeEdit(e?.value)
-                                      }
+                                      onChange={(e) => seteventTypeEdit(e)}
                                     />
                                   </td>
                                   <td>
@@ -1620,7 +1618,7 @@ const EventPage = () => {
                                       defaultValue={stateEdit}
                                       className="addWidth2"
                                       options={options_2}
-                                      onChange={(e) => setstateEdit(e?.value)}
+                                      onChange={(e) => setstateEdit(e)}
                                     />
                                   </td>
                                   <td>
