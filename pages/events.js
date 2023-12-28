@@ -88,6 +88,9 @@ const Events = () => {
 
   function resetFilter() {
     setfilteredAllEvents(filteredAllEventsBackup);
+    settrackFilter(null);
+    setDate(null);
+    onChange(null);
   }
 
   const handleTabSelect = (index) => {
