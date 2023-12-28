@@ -797,9 +797,16 @@ const EventPage = () => {
       setIsSubmitingLoader(true);
       const eventListresp = await eventPageSevices.eventList();
       console.log("eventListresp", eventListresp);
+      // if (eventListresp.data.success) {
+      //   setIsSubmitingLoader(false);
+      //   seteventList(eventListresp?.data?.data);
+      // }
       if (eventListresp.data.success) {
         setIsSubmitingLoader(false);
-        seteventList(eventListresp?.data?.data);
+        let sortedEvents = eventListresp?.data?.data.sort((a, b) =>
+          b.active.localeCompare(a.active)
+        );
+        seteventList(sortedEvents);
       } else {
         setIsSubmitingLoader(false);
       }
@@ -1522,7 +1529,15 @@ const EventPage = () => {
                         {eventList?.length &&
                           eventList?.map((item, index) => (
                             <tr key={index}>
-                              <td>{index + 1} </td>
+                              <td
+                                className={`${
+                                  item.active == "0"
+                                    ? "ExpireData"
+                                    : "ActiveData"
+                                }`}
+                              >
+                                {index + 1}{" "}
+                              </td>
                               <td>{item.hits}</td>
                               {item?.edit ? (
                                 <>

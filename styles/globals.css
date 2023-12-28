@@ -3483,6 +3483,9 @@ input[type="text"]:hover {
 .ExpireData {
   background-color: #f3aa88;
 }
+.ActiveData {
+  background-color: #8ed284;
+}
 .addWidth {
   width: 150px !important;
 }

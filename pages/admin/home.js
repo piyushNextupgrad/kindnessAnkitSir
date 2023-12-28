@@ -843,6 +843,7 @@ const Home = () => {
         let campignNews = respData?.filter(
           (item) => item?.sectionName == "camp_news"
         );
+        campignNews.sort((a, b) => b.active.localeCompare(a.active));
 
         console.log("campignNews", campignNews);
         setNewsSectionData(campignNews);
@@ -2396,10 +2397,15 @@ const Home = () => {
                               ? newsSectionData?.map((item, index) => (
                                   <tr key={index}>
                                     <td
+                                      // className={`${
+                                      //   item.expire_date < currentDate2
+                                      //     ? "ExpireData"
+                                      //     : null
+                                      // }`}
                                       className={`${
-                                        item.expire_date < currentDate2
+                                        item.active == "0"
                                           ? "ExpireData"
-                                          : null
+                                          : "ActiveData"
                                       }`}
                                     >
                                       {index + 1}
