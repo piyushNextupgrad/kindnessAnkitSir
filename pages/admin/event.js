@@ -86,6 +86,8 @@ const EventPage = () => {
   const [EventEditMedia, setEventEditMedia] = useState("");
   const [isSubmitingLoader, setIsSubmitingLoader] = useState(false);
 
+  const [logData, setlogData] = useState("");
+
   async function deleteRsvp(id) {
     console.log("RSVP id", id);
     try {
@@ -223,6 +225,10 @@ const EventPage = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("data", logData);
+  }, [logData]);
+
   //function to show notification - piyush
   // const notify = (e) => toast.success(e);
   //function to update the table data - piyush
@@ -268,6 +274,7 @@ const EventPage = () => {
         data.edit = true;
 
         eventList[index] = data;
+        setlogData(data);
         seteventList([...eventList]);
         seteventTypeEdit({ label: data?.event_type, value: data?.event_type });
         setstateEdit({ label: data?.state, value: data?.state });
@@ -277,8 +284,8 @@ const EventPage = () => {
         setcostEdit(data?.event_cost);
         setcityEdit(data?.city);
         setzipEdit(data?.zip_code);
-
-        // setEditStartDate(data?.date)
+        const date = new Date(data?.date);
+        setEditStartDate(date);
         setEditActive3(parseInt(data?.active) ? true : false);
       } else {
         showNotification("Please save last edited field", "Error");
@@ -379,11 +386,11 @@ const EventPage = () => {
         if (EditAddress != "") {
           formData.append("locationAddress", EditAddress);
         }
-        formData.append("eventType", eventTypeEdit);
+        formData.append("eventType", eventTypeEdit.value);
         formData.append("eventCost", costEdit);
 
         formData.append("city", cityEdit);
-        formData.append("state", stateEdit);
+        formData.append("state", stateEdit.value);
 
         formData.append("zipcode", zipEdit);
         if (EventEditMedia != "") {
@@ -1598,7 +1605,7 @@ const EventPage = () => {
                                       defaultValue={stateEdit}
                                       className="addWidth2"
                                       options={options_2}
-                                      onChange={(e) => setstateEdit(e.value)}
+                                      onChange={(e) => setstateEdit(e?.value)}
                                     />
                                   </td>
                                   <td>
