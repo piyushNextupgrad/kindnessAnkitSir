@@ -502,7 +502,7 @@ const Get_involved = () => {
                         placeholder="Phone:"
                         value={donorPhone}
                         onChange={(e) => {
-                          e.target.value.length < 10
+                          e.target.value.length <= 10
                             ? setDonorPhone(e?.target?.value)
                             : showNotification(
                                 "Only 10 digits allowed for phone number",
