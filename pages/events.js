@@ -272,27 +272,61 @@ const Events = () => {
       setEventListLoader(true);
       const newsResp = await eventPageSevices.getAllEventList(params);
 
+      // if (newsResp?.data?.success) {
+      //   console.log("showAllevents", newsResp?.data);
+      //   setTodayEvent(
+      //     newsResp?.data?.today_events.sort((a, b) =>
+      //       a?.date > b?.date ? 1 : -1
+      //     )
+      //   );
+      //   setMonthEvent(
+      //     newsResp?.data?.this_month_events.sort((a, b) =>
+      //       a?.date > b?.date ? 1 : -1
+      //     )
+      //   );
+      //   setWeekEvent(
+      //     newsResp?.data?.this_week_events.sort((a, b) =>
+      //       a?.date > b?.date ? 1 : -1
+      //     )
+      //   );
+
+      //   // setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
+
+      //   setListAllEventData(newsResp?.data);
+
+      //   setEventListLoader(false);
+      // }
       if (newsResp?.data?.success) {
         console.log("showAllevents", newsResp?.data);
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let todayEvents = newsResp?.data?.today_events.filter(
+          (event) => new Date(event.date) >= today
+        );
         setTodayEvent(
-          newsResp?.data?.today_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
+          todayEvents.sort((a, b) =>
+            new Date(a.date) > new Date(b.date) ? 1 : -1
           )
         );
-        setMonthEvent(
-          newsResp?.data?.this_month_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
-          )
+
+        let weekEvents = newsResp?.data?.this_week_events.filter(
+          (event) => new Date(event.date) >= today
         );
         setWeekEvent(
-          newsResp?.data?.this_week_events.sort((a, b) =>
-            a?.date > b?.date ? 1 : -1
+          weekEvents.sort((a, b) =>
+            new Date(a.date) > new Date(b.date) ? 1 : -1
           )
         );
 
-        // setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
-
-        setListAllEventData(newsResp?.data);
+        let monthEvents = newsResp?.data?.this_month_events.filter(
+          (event) => new Date(event.date) >= today
+        );
+        setMonthEvent(
+          monthEvents.sort((a, b) =>
+            new Date(a.date) > new Date(b.date) ? 1 : -1
+          )
+        );
 
         setEventListLoader(false);
       }
